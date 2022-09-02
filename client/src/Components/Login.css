@@ -1,0 +1,79 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap");
+.login-div-container {
+  height: 100vh;
+  background-position: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-size: auto;
+  background-image: url("../assets/images/login-background.webp");
+}
+body {
+  font-family: "Poppins", sans-serif;
+}
+.login-desc-noads {
+  color: red;
+}
+.link-forgot-pass {
+  margin-top: 20px;
+  text-decoration: none;
+  color: white;
+}
+.heading {
+  font-size: 2.2rem;
+}
+.logininput {
+  width: 330px;
+  font-size: 1.8rem;
+  border-radius: 5px;
+  outline: none;
+  border: none;
+}
+button {
+  width: 330px;
+  background-color: #fc4747;
+  color: white;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  margin-top: 15px;
+  padding: 10px;
+  border-radius: 5px;
+}
+.input-sep {
+  gap: 5px;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  text-align: left;
+}
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.link-signup {
+  margin-top: 1px;
+  text-decoration: none;
+}
+.login-div {
+  border-radius: 10px;
+  background-color: #10141e;
+  padding: 25px;
+  color: white;
+  height: fit-content;
+  width: fit-content;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.newtodiv {
+  display: flex;
+  flex-direction: column;
+  gap: 0px;
+  justify-content: center;
+  align-items: center;
+}

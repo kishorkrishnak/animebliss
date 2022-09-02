@@ -1,0 +1,79 @@
+.section-header {
+  height: 550px;
+  background-color: #10141e;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 30px;
+  flex-direction: column;
+  width: 100vw;
+}
+.header-card img {
+
+  height: 100%;
+  
+  width: 100%;
+}
+
+.section-carousel{
+ 
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.header-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-top: 20px;
+  align-items: flex-start;
+  padding: 20px 40px;
+  text-align: left;
+  width: 97%;
+
+  height: 450px;
+  border-radius: 10px;
+}
+
+.btn-watchnow {
+  background-color: red;
+
+  color: white;
+  padding: 8px 20px;
+  border-radius: 5px;
+  font-size: 2rem;
+}
+.anime-descr {
+  color: white;
+  width: 50%;
+  text-align: justify;
+}
+.anime-info {
+  color: white;
+  display: flex;
+  gap: 20px;
+
+
+
+}
+@media screen and (max-width: 1050px) {
+  .brand-title{
+    display: none;
+  }
+}
+.anime-info-div{
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+ gap: 15px;
+}
+.anime-title {
+  font-size: 4rem;
+  color: white;
+
+
+}

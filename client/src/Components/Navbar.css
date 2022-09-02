@@ -1,0 +1,155 @@
+*,
+*::after,
+*::before {
+  margin: 0;
+  box-sizing: border-box;
+}
+html {
+  font-size: 62.5%;
+}
+body {
+  font-size: 1.6rem;
+}
+li {
+  list-style: none;
+}
+a {
+  text-decoration: none;
+  color: black;
+}
+
+.nav {
+
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content:center;
+
+  height: 6vh;
+
+
+}
+
+.nav-side-div {
+  align-items: center;
+
+  gap: 20px;
+  display: flex;
+}
+.nav__link {
+  color: white;
+}
+.nav__brand {
+  display: flex;
+  align-items: center;
+  color: white;
+  gap: 10px;
+  text-transform: uppercase;
+}
+
+.nav__menu {
+  display: flex;
+  align-items: center;
+
+  justify-content: space-around;
+
+  gap: 3rem;
+}
+.nav__toggler {
+  display: none;
+}
+.nav__toggler div {
+  width: 2.5rem;
+  height: 0.2rem;
+  margin: 0.4rem;
+  background: rgb(204, 204, 204);
+  transition: 0.3s ease-in;
+}
+@media screen and (max-width: 1200px) {
+  .nav {
+   
+    gap: 20px;
+  }
+
+  .searchbar{
+    flex: 2;
+  }
+}
+@media screen and (max-width: 1100px) {
+  .nav__brand h2 {
+    display: none;
+  }
+}
+.nav__link-signout{
+margin-right: auto;
+}
+@media screen and (max-width: 1050px) {
+  .nav{
+    justify-content: space-between;
+  }
+  .nav__toggler {
+    display: block;
+    cursor: pointer;
+  }
+
+  .searchbar{
+
+   flex: 2;
+  }
+  .nav__brand h2 {
+    display: none;
+  }
+
+  .nav__menu {
+    position: fixed;
+    z-index: 1;
+    top: 8vh;
+    right: 0;
+    width: 50vw;
+    height: 70vh;
+
+    border: 1px solid hsl(248, 24%, 10%);
+    background-color: hsl(248, 24%, 24%);
+    border-radius: 5px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transform: translateX(100%);
+    transition: 0.5s ease-in;
+  }
+  .nav__item {
+    font-size: 1.8rem;
+  }
+}
+
+.nav__active {
+  transform: translateX(0%);
+}
+
+.toggle .line1 {
+  transform: rotate(-45deg) translate(-4px, 5px);
+}
+.toggle .line2 {
+  opacity: 0;
+}
+.toggle .line3 {
+  transform: rotate(45deg) translate(-4px, -5px);
+}
+
+.searchbar {
+  outline: none;
+  border: 1px solid cyan;
+  padding: 9px;
+  border-radius: 0.2em;
+  width: 230px;
+  color: white;
+  background-color: transparent;
+}
+.searchbar::placeholder {
+  color: grey;
+}
+
+.searchbar:hover,
+.searchbar:focus {
+  box-shadow: 0 0 5px 0 cyan;
+}

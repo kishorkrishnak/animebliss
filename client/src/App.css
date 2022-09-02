@@ -1,0 +1,16 @@
+
+
+html {
+  scroll-behavior: smooth;
+}
+
+*{
+  box-sizing: border-box;
+}
+body{
+
+    background-color: #10141e ;
+margin: 0;
+max-height: 100vh;
+max-width: 100vw;
+}
