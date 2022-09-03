@@ -1,11 +1,3 @@
-import {
-  PlayCircleOutlined,
-  CalendarOutlined,
-  ClockCircleOutlined,
-} from "@ant-design/icons";
-import { faListOl } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
 export default function GridCard({
   title,
   image,
@@ -15,10 +7,11 @@ export default function GridCard({
 }) {
   return (
     <div
-      className="animecard-wrapper"
+      className="gridcard-wrapper"
       style={{
-        padding: "50px",
+        marginTop: "30px",
         display: "flex",
+
         gap: "10px",
         flexDirection: "column",
         alignItems: "center",
@@ -27,11 +20,9 @@ export default function GridCard({
     >
       <div
         style={{
-          padding: "50px",
-
           borderRadius: "10px",
           backgroundImage: `url(${image})`,
-          height: "450px",
+          height: "480px",
           width: "320px",
 
           backgroundPosition: "center",

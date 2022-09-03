@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import Grid from "./Grid.js";
-import ElasticCarousel from "./ElasticCarousel";
 
+import "./PopularSection.css";
 export default function PopularSection() {
   const [popular, setPopular] = useState([]);
 
