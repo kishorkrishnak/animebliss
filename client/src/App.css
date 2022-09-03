@@ -1,14 +1,16 @@
 html {
   scroll-behavior: smooth;
 }
-
+.section-recent,.section-popular,.section-topairing,.section-trending{
+  margin-top: 25px;
+}
 * {
   box-sizing: border-box;
 }
 body {
   background-color: #10141e;
   margin: 0;
-  max-height: 100vh;
+
   max-width: 100vw;
 }
 
@@ -23,41 +25,46 @@ button.rec-dot:focus {
 }
 
 @media screen and (max-width: 1770px) {
-  .animecard-wrapper{
+  .animecard-wrapper {
     transform: scale(0.9);
+    transition: 5ms ease-in;
   }
-.animecard-wrapper div  {
-  transform: scale(0.9);
-}
+  .animecard-wrapper div {
+    transform: scale(0.9);
+    transition: 2ms ease;
+  }
 }
 
 @media screen and (max-width: 1450px) {
-  .animecard-wrapper{
+  .animecard-wrapper {
     transform: scale(0.85);
   }
-.animecard-wrapper div  {
-  transform: scale(0.85);
-}
+  .animecard-wrapper div {
+    transform: scale(0.85);
+  }
 }
 
 @media screen and (max-width: 720px) {
-  .animecard-wrapper{
-    transform: scale(0.75);
+
+
+  .animecard-wrapper:not(.section-trending .animecard-wrapper) {
+    transform: scale(0.8);
   }
-.animecard-wrapper div  {
-  transform: scale(0.75);
-}
+  .animecard-wrapper div:not(.section-trending .animecard-wrapper div) {
+    transform: scale(0.8);
+  }
+
+  .animecard-wrapper {
+    transform: scale(0.73);
+  }
+
+  .animecard-wrapper div {
+    transform: scale(0.73);
+  }
 }
 @media screen and (max-width: 500px) {
-  .animecard-wrapper{
-    transform: scale(0.7);
-  }
-.animecard-wrapper div  {
-  transform: scale(0.7);
-}
 }
 
-
-.grid-card-title{
+.grid-card-title {
   text-align: center;
 }

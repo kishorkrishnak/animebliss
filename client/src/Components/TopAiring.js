@@ -15,20 +15,14 @@ export default function TopAiring() {
   return (
     <section className="section section-topairing">
       {airing.length > 0 && (
-        <>
-          <h1
-            style={{ color: "#fdba74", fontSize: "3rem", marginLeft: "35px" }}
-          >
-            Top Airing
-          </h1>
-          <ElasticCarousel
-            finalQuery={airing}
-            rowtitle="Top Airing"
-            api="enime"
-            stretchedA={true}
-            isAiring={true}
-          ></ElasticCarousel>
-        </>
+        <ElasticCarousel
+          finalQuery={airing}
+          rowTitle="Top Airing"
+          api="enime"
+          stretchedA={true}
+          isAiring={true}
+          initialActiveIndex={4}
+        ></ElasticCarousel>
       )}
     </section>
   );

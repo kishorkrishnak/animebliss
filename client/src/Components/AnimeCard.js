@@ -17,21 +17,25 @@ export default function AnimeCard({
     <div
       className="animecard-wrapper"
       style={{
-        padding: "50px",
+   
         display: "flex",
-        gap: "10px",
+ 
         flexDirection: "column",
         alignItems: "center",
+        height:"fit-content",
+       
         justifyContent: "center",
+        textAlign:"center",
+        
+
       }}
     >
       <div
         style={{
-          padding: "50px",
-
+       
           borderRadius: "10px",
           backgroundImage: `url(${image})`,
-          height: stretchedA ? "340px" : "230px",
+          height: stretchedA ? "340px" : "240px",
           width: stretchedA ? "230px" : "430px",
           backgroundPosition: "center",
           backgroundSize: "cover",

@@ -15,8 +15,9 @@ export default function Header() {
   const [id, setId] = useState("");
   const [queries, setQueries] = useState([
     "death note",
-    "onepunchman",
-    "monster",
+    "steins gate",
+
+    "spy x family",
   ]);
   const [active, setActive] = useState("nav__menu");
   const [icon, setIcon] = useState("nav__toggler");
@@ -63,7 +64,7 @@ export default function Header() {
           <a href="/home" className="nav__brand ">
             <img height="40" src={logo} style={{ color: "white" }} alt="" />
 
-            <h3 className="brand-title">Anime Bliss</h3>
+            <h5 className="brand-title">Anime Bliss</h5>
           </a>
           <FontAwesomeIcon
             icon={faMagnifyingGlass}
@@ -124,10 +125,9 @@ export default function Header() {
           <div className="line3"></div>
         </div>
       </nav>
-      {/* descr !== "" */}
 
       {finalQuery.length === queries.length && (
-        <ElasticHeader  isHeader={true} finalQuery={finalQuery}></ElasticHeader>
+        <ElasticHeader isHeader={true} finalQuery={finalQuery}></ElasticHeader>
       )}
     </section>
   );

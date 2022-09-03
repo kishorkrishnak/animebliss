@@ -11,9 +11,10 @@ function App() {
       <Header></Header> 
 
       <TrendingSection></TrendingSection>
-      <RecentSection></RecentSection>
+     <RecentSection></RecentSection>
 
-      <TopAiring></TopAiring>
+<TopAiring></TopAiring>
+
       <PopularSection></PopularSection>
     </div>
   );

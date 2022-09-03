@@ -13,21 +13,14 @@ export default function TrendingSection() {
       });
   }, []);
   return (
-    <section className="section section-topairing">
+    <section className="section section-trending" id="trending">
       {trending.length > 0 && (
-        <>
-          <h1
-            style={{ color: "#fdba74", fontSize: "3rem", marginLeft: "35px" }}
-          >
-            Trending
-          </h1>
-          <ElasticCarousel
-            finalQuery={trending}
-            api="anilist"
-            rowtitle="Trending"
-            isTrending={true}
-          ></ElasticCarousel>
-        </>
+        <ElasticCarousel
+          finalQuery={trending}
+          api="anilist"
+          rowTitle="Trending"
+          isTrending={true}
+        ></ElasticCarousel>
       )}
     </section>
   );

@@ -16,7 +16,7 @@ export default function GridCard({
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
-        backgroundColor:"red"
+     
       }}
     >
       <div

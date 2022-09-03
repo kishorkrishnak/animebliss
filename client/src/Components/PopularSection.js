@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import Grid from "./Grid.js";
 
-import "./PopularSection.css";
+
 export default function PopularSection() {
   const [popular, setPopular] = useState([]);
 
@@ -13,7 +13,7 @@ export default function PopularSection() {
       });
   }, []);
   return (
-    <section className="section section-topairing">
+    <section className="section section-popular">
       {popular.length > 0 && (
         <>
           <h1
