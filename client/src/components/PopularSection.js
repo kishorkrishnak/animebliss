@@ -12,7 +12,7 @@ export default function PopularSection() {
       });
   }, []);
   return (
-    <section className="section section-popular">
+    <section className="section section-popular" style={{paddingBottom:150}}>
       {popular.length > 0 && (
         <>
           <h1
