@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 
-import CarouselPage from "./Carousel";
 import ElasticCarousel from "./ElasticCarousel";
 
 export default function TopAiring() {
@@ -14,14 +13,19 @@ export default function TopAiring() {
       });
   }, []);
   return (
-    <section style={{    paddingTop: "30px"}} className="section section-topairing">
-      <h1 style={{color: "#fdba74", fontSize: "3rem",  marginLeft:"35px"}}>Top Airing</h1>
+    <section className="section section-topairing">
+      <h1 style={{ color: "#fdba74", fontSize: "3rem", marginLeft: "35px" }}>
+        Top Airing
+      </h1>
 
       {airing.length > 0 && (
         <ElasticCarousel
           finalQuery={airing}
           rowtitle="Top Airing"
           api="enime"
+          stretchedA={true}
+          stretchedB={false}
+          
         ></ElasticCarousel>
       )}
     </section>

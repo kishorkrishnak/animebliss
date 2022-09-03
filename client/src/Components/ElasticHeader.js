@@ -11,14 +11,19 @@ const breakPoints = [
 
 export default function ElasticHeader({ finalQuery }) {
   return (
-    <Carousel enableAutoPlay={true} showArrows={false} breakPoints={breakPoints}>
+    <Carousel
+      enableAutoPlay={true}
+      showArrows={false}
+      breakPoints={breakPoints}
+    >
       {finalQuery.map((query, index) => (
-        <CarouselCard key={query.title}
+        <CarouselCard
+          key={query.title}
           ep={query.episodes.length}
           year={query.releaseDate}
           duration={query.duration}
           title={query.title}
-          descr={query.description}
+          descr={query.description.replaceAll(/<\/?[\w\s]*>|<.+[\W]>/g, "")}
           cover={query.cover}
         ></CarouselCard>
       ))}

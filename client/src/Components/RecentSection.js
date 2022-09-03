@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 
-import CarouselPage from "./Carousel";
+
 import ElasticCarousel from "./ElasticCarousel";
 
 export default function RecentSection() {
@@ -13,11 +13,12 @@ export default function RecentSection() {
       .then((response) => response.json())
       .then((data) => {
         setRecent(data.results);
+        console.log(data.results);
        
       });
   }, []);
   return (
-    <section className="section section-topairing">
+    <section className="section section-recent">
       <h1 style={{ color: "#fdba74", fontSize: "3rem", marginLeft: "35px" }}>
         Recent Releases
       </h1>
@@ -25,8 +26,13 @@ export default function RecentSection() {
       {recent.length > 0 && (
         <ElasticCarousel
           finalQuery={recent}
-          api="anilist"
+          api="zoro"
+            size='stretch'
           rowtitle="Trending"
+          isRecent={true}
+
+          stretchedA = {true}
+          stretchedB = {false}
         ></ElasticCarousel>
       )}
     </section>

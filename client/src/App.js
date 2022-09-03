@@ -8,12 +8,10 @@ import PopularSection from "./Components/PopularSection";
 function App() {
   return (
     <div className="App">
-      <Header></Header>{" "}
-      <TrendingSection></TrendingSection>
+      <Header></Header> <TrendingSection></TrendingSection>
       <RecentSection></RecentSection>
       <TopAiring></TopAiring>
       <PopularSection></PopularSection>
-      
     </div>
   );
 }

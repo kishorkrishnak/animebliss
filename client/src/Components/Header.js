@@ -9,15 +9,8 @@ import "./Navbar.css";
 import logo from "../assets/images/image.png";
 import React from "react";
 import ElasticHeader from "./ElasticHeader";
-import CarouselPage from "./Carousel";
+
 export default function Header() {
-  const [info, setInfo] = useState(null);
-  const [ep, setEp] = useState(undefined);
-  const [cover, setCover] = useState("");
-  const [title, setTitle] = useState(undefined);
-  const [year, setYear] = useState(undefined);
-  const [descr, setDescr] = useState("");
-  const [duration, setDuration] = useState(undefined);
   const [query, setQuery] = useState("death note");
   const [id, setId] = useState("");
   const [queries, setQueries] = useState([
@@ -51,27 +44,6 @@ export default function Header() {
       }, []);
   });
 
-  // useEffect(() => {
-  //   fetch("https://consumet-api.herokuapp.com/anime/enime/" + query)
-  //     .then((response) => response.json())
-  //     .then((data) => {
-  //       setCover(data.results[0].cover);
-  //       setId(data.results[0].id);
-  //     });
-  // }, []);
-
-  // useEffect(() => {
-  //   fetch("https://consumet-api.herokuapp.com/anime/enime/info?id=" + id)
-  //     .then((response) => response.json())
-  //     .then((data) => {
-  //       setTitle(data.title);
-  //       setYear(data.releaseDate);
-  //       let regexed = data.description.replaceAll(/<\/?[\w\s]*>|<.+[\W]>/g, "");
-  //       setDescr(regexed.substring(0, regexed.indexOf("(")));
-  //       setEp(data.episodes.length);
-  //       setDuration(data.duration);
-  //     });
-  // });
   const navToggle = () => {
     if (active === "nav__menu") {
       setActive("nav__menu nav__active");
@@ -155,7 +127,7 @@ export default function Header() {
       {/* descr !== "" */}
 
       {finalQuery.length === queries.length && (
-        <ElasticHeader isHeader={true} finalQuery={finalQuery}></ElasticHeader>
+        <ElasticHeader  isHeader={true} finalQuery={finalQuery}></ElasticHeader>
       )}
     </section>
   );

@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 
-import CarouselPage from "./Carousel";
 import ElasticCarousel from "./ElasticCarousel";
 
 export default function TrendingSection() {
@@ -11,7 +10,6 @@ export default function TrendingSection() {
       .then((response) => response.json())
       .then((data) => {
         setTrending(data.results);
-      
       });
   }, []);
   return (

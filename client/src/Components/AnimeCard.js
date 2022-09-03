@@ -6,7 +6,13 @@ import {
 import { faListOl } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-export default function AnimeCard({ title, image }) {
+export default function AnimeCard({
+  title,
+  image,
+  stretchedA,
+  stretchedB,
+  episodeNum,
+}) {
   return (
     <div
       className="animecard-wrapper"
@@ -22,14 +28,22 @@ export default function AnimeCard({ title, image }) {
       <div
         style={{
           padding: "50px",
-          height: 230,
+
           borderRadius: "10px",
           backgroundImage: `url(${image})`,
-          width: "400px",
+          height: stretchedA ? "340px" : "230px",
+          width: stretchedA ? "230px" : "430px",
           backgroundPosition: "center",
           backgroundSize: "cover",
         }}
       ></div>
+
+      {episodeNum > 0 && (
+        <h5 style={{ color: "white", fontWeight: "lighter" }}>
+          Episode {episodeNum}
+        </h5>
+      )}
+
 
       <h3 style={{ color: "white", fontWeight: "lighter" }}>{title}</h3>
     </div>
