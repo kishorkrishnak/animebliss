@@ -21,7 +21,7 @@ export default function RecentSection() {
             finalQuery={recent}
             api="zoro"
             size="stretch"
-            rowTitle="Recent"
+            rowTitle="Recent Releases"
             isRecent={true}
             stretchedA={true}
           ></ElasticCarousel>

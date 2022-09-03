@@ -1,7 +1,10 @@
 html {
   scroll-behavior: smooth;
 }
-.section-recent,.section-popular,.section-topairing,.section-trending{
+.section-recent,
+.section-popular,
+.section-topairing,
+.section-trending {
   margin-top: 25px;
 }
 * {
@@ -35,6 +38,36 @@ button.rec-dot:focus {
   }
 }
 
+/* @media screen and (max-width: 1683px) {
+  .gridcard-wrapper,
+  .gridcard-wrapper div {
+    transform: scale(0.95);
+  }
+}
+
+@media screen and (max-width: 1532px) {
+  .gridcard-wrapper,
+  .gridcard-wrapper div {
+    transform: scale(0.9);
+  }
+}
+
+@media screen and (max-width: 1420px) {
+  .gridcard-wrapper,
+  .gridcard-wrapper div {
+    transform: scale(0.8);
+  }
+} */
+@media screen and (max-width: 850px) {
+  .gridcard-wrapper,
+  .gridcard-wrapper div {
+
+
+
+  }
+} */
+
+
 @media screen and (max-width: 1450px) {
   .animecard-wrapper {
     transform: scale(0.85);
@@ -45,8 +78,6 @@ button.rec-dot:focus {
 }
 
 @media screen and (max-width: 720px) {
-
-
   .animecard-wrapper:not(.section-trending .animecard-wrapper) {
     transform: scale(0.8);
   }
@@ -67,4 +98,10 @@ button.rec-dot:focus {
 
 .grid-card-title {
   text-align: center;
+}
+
+.animecard-wrapper:hover,
+.gridcard-wrapper:hover {
+  transform: scale(1.03);
+  transition: 150ms ease;
 }

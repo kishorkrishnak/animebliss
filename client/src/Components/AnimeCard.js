@@ -26,12 +26,15 @@ export default function AnimeCard({
        
         justifyContent: "center",
         textAlign:"center",
-        
+
+        paddingTop:8
 
       }}
     >
       <div
         style={{
+   
+       
        
           borderRadius: "10px",
           backgroundImage: `url(${image})`,

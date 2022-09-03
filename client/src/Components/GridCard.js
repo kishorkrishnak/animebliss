@@ -9,23 +9,19 @@ export default function GridCard({
     <div
       className="gridcard-wrapper"
       style={{
-        marginTop: "30px",
         display: "flex",
-
-        gap: "10px",
+       marginTop:"30px",
         flexDirection: "column",
         alignItems: "center",
-        justifyContent: "center",
-     
+        justifyContent: "flex-start",
       }}
     >
       <div
         style={{
-          borderRadius: "10px",
+          borderRadius: "15px",
           backgroundImage: `url(${image})`,
           height: "480px",
           width: "320px",
-
 
           backgroundPosition: "center",
           backgroundSize: "cover",
@@ -38,7 +34,12 @@ export default function GridCard({
         </h5>
       )}
 
-      <h4 className="grid-card-title" style={{ textAlign:"center",color: "white", fontWeight: "lighter" }}>{title}</h4>
+      <h4
+        className="grid-card-title"
+        style={{ textAlign: "center", color: "white", fontWeight: "lighter" }}
+      >
+        {title}
+      </h4>
     </div>
   );
 }

@@ -48,6 +48,12 @@
   border-radius: 5px;
   font-size: 2rem;
 }
+
+
+.btn-watchnow:hover{
+  opacity: 0.8;
+  transition: 500ms ease;
+}
 .anime-descr {
   color: white;
   width: 50%;
@@ -61,7 +67,7 @@
 
 
 }
-@media screen and (min-width: 1050px) {
+@media screen and (max-width: 1000px) {
   .brand-title{
     display: none;
   }

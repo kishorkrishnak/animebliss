@@ -25,7 +25,7 @@ export default function ElasticCarousel({
 
     { width: 590, itemsToShow: isTrending ? 2 : 4 },
 
-    { width: 950, itemsToShow: isTrending ? 3 : 6 },
+    { width: 950, itemsToShow: isTrending ? 3 : 5 },
 
     { width: 1200, itemsToShow: isTrending ? 4 : 7 },
   ];
@@ -45,7 +45,7 @@ export default function ElasticCarousel({
       </h1>
       <Carousel
         initialActiveIndex={initialActiveIndex}
-       
+   
         enableTilt={true}
         pagination={windowSize < 800 ? false : true}
         showArrows={false}

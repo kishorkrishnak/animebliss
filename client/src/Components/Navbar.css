@@ -20,7 +20,7 @@ a {
 
 .nav {
 
-  width: 100vw;
+width: 100%;
   display: flex;
   align-items: center;
   justify-content:center;
@@ -75,11 +75,7 @@ a {
     flex: 2;
   }
 }
-@media screen and (max-width: 1100px) {
-  .nav__brand h2 {
-    display: none;
-  }
-}
+
 .nav__link-signout{
 margin-right: auto;
 }
@@ -96,10 +92,7 @@ margin-right: auto;
 
    flex: 2;
   }
-  .nav__brand h2 {
-    display: none;
-  }
-
+ 
   .nav__menu {
     position: fixed;
     z-index: 1;
@@ -138,12 +131,14 @@ margin-right: auto;
 
 .searchbar {
   outline: none;
-  border: 1px solid cyan;
+
   padding: 9px;
   border-radius: 0.2em;
   width: 230px;
+  border: none;
+  border: 1px solid teal;
   color: white;
-  background-color: transparent;
+  background-color: #10141E;
 }
 .searchbar::placeholder {
   color: grey;

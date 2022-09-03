@@ -64,7 +64,7 @@ export default function Header() {
           <a href="/home" className="nav__brand ">
             <img height="40" src={logo} style={{ color: "white" }} alt="" />
 
-            <h5 className="brand-title">Anime Bliss</h5>
+            <h5 className="brand-title">Animebliss</h5>
           </a>
           <FontAwesomeIcon
             icon={faMagnifyingGlass}
@@ -114,7 +114,11 @@ export default function Header() {
 
             <li className="nav__item"></li>
           </ul>
-          <a href="/home" className="nav__link nav__link-signout">
+      
+        </div>
+        <div>
+
+        <a href="/home" className="nav__link nav__link-signout">
             Signout
           </a>
         </div>
