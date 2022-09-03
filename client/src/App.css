@@ -21,3 +21,43 @@ button.rec-dot:active,
 button.rec-dot:focus {
   background-color: #fc4747;
 }
+
+@media screen and (max-width: 1770px) {
+  .animecard-wrapper{
+    transform: scale(0.9);
+  }
+.animecard-wrapper div  {
+  transform: scale(0.9);
+}
+}
+
+@media screen and (max-width: 1450px) {
+  .animecard-wrapper{
+    transform: scale(0.85);
+  }
+.animecard-wrapper div  {
+  transform: scale(0.85);
+}
+}
+
+@media screen and (max-width: 720px) {
+  .animecard-wrapper{
+    transform: scale(0.75);
+  }
+.animecard-wrapper div  {
+  transform: scale(0.75);
+}
+}
+@media screen and (max-width: 500px) {
+  .animecard-wrapper{
+    transform: scale(0.7);
+  }
+.animecard-wrapper div  {
+  transform: scale(0.7);
+}
+}
+
+
+.grid-card-title{
+  text-align: center;
+}

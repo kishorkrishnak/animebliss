@@ -16,6 +16,7 @@ export default function GridCard({
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
+        backgroundColor:"red"
       }}
     >
       <div
@@ -24,6 +25,7 @@ export default function GridCard({
           backgroundImage: `url(${image})`,
           height: "480px",
           width: "320px",
+
 
           backgroundPosition: "center",
           backgroundSize: "cover",
@@ -36,7 +38,7 @@ export default function GridCard({
         </h5>
       )}
 
-      <h3 style={{ color: "white", fontWeight: "lighter" }}>{title}</h3>
+      <h4 className="grid-card-title" style={{ textAlign:"center",color: "white", fontWeight: "lighter" }}>{title}</h4>
     </div>
   );
 }

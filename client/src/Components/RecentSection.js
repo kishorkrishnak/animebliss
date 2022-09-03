@@ -19,11 +19,13 @@ export default function RecentSection() {
   }, []);
   return (
     <section className="section section-recent">
-      <h1 style={{ color: "#fdba74", fontSize: "3rem", marginLeft: "35px" }}>
-        Recent Releases
-      </h1>
+     
 
       {recent.length > 0 && (
+        <>
+        <h1 style={{ color: "#fdba74", fontSize: "3rem", marginLeft: "35px" }}>
+        Recent Releases
+      </h1>
         <ElasticCarousel
           finalQuery={recent}
           api="zoro"
@@ -32,8 +34,9 @@ export default function RecentSection() {
           isRecent={true}
 
           stretchedA = {true}
-          stretchedB = {false}
+          
         ></ElasticCarousel>
+        </>
       )}
     </section>
   );

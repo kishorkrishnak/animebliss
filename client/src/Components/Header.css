@@ -61,7 +61,7 @@
 
 
 }
-@media screen and (max-width: 1050px) {
+@media screen and (min-width: 1050px) {
   .brand-title{
     display: none;
   }

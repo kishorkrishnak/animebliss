@@ -7,22 +7,25 @@ export default function ElasticCarousel({
   finalQuery,
   rowtitle,
   isRecent,
+  isTrending,
   api,
   stretchedA,
-  stretchedB,
 }) {
   const breakPoints = [
-    { width: 1, itemsToShow: 1 },
-    { width: 550, itemsToShow: 2 },
-    { width: 1100, itemsToShow: 3 },
-    { width: 1200, itemsToShow: stretchedA ? 7 : stretchedB ? 5 : 4 },
+    { width: 1, itemsToShow: isTrending ? 2 : 3 },
+
+    { width: 500, itemsToShow: isTrending ? 2 : 4 },
+
+    { width: 950, itemsToShow: isTrending ? 3 : 6 },
+
+    { width: 1200, itemsToShow: isTrending ? 4 : 7 },
   ];
 
   return (
     <div>
       <Carousel
+        style={{ backgroundColor: "red", height: "fit-content" }}
         enableTilt={true}
-        style={{ height: "fit-content" }}
         showArrows={false}
         breakPoints={breakPoints}
       >
@@ -36,7 +39,6 @@ export default function ElasticCarousel({
             image={query.image}
             key={uuidv4()}
             stretchedA={stretchedA}
-            stretchedB={stretchedB}
             episodeNum={isRecent ? query.episode : 0}
           ></AnimeCard>
         ))}

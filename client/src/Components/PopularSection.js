@@ -14,11 +14,16 @@ export default function PopularSection() {
   }, []);
   return (
     <section className="section section-topairing">
-      <h1 style={{ color: "#fdba74", fontSize: "3rem", marginLeft: "35px" }}>
-        Most Popular
-      </h1>
-
-      {popular.length > 0 && <Grid finalQuery={popular}></Grid>}
+      {popular.length > 0 && (
+        <>
+          <h1
+            style={{ color: "#fdba74", fontSize: "3rem", marginLeft: "35px" }}
+          >
+            Most Popular
+          </h1>
+          <Grid finalQuery={popular}></Grid>
+        </>
+      )}
     </section>
   );
 }

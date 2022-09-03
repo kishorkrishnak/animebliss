@@ -10,7 +10,7 @@ export default function AnimeCard({
   title,
   image,
   stretchedA,
-  stretchedB,
+
   episodeNum,
 }) {
   return (
@@ -44,7 +44,7 @@ export default function AnimeCard({
         </h5>
       )}
 
-      <h3 style={{ color: "white", fontWeight: "lighter" }}>{title}</h3>
+      <h4 className="anime-card-title" style={{ color: "white", fontWeight: "lighter" }}>{title}</h4>
     </div>
   );
 }
