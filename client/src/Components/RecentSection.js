@@ -13,7 +13,7 @@ export default function RecentSection() {
       .then((response) => response.json())
       .then((data) => {
         setRecent(data.results);
-        console.log(data.results);
+     
        
       });
   }, []);

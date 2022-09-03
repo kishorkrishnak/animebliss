@@ -6,7 +6,7 @@ import {
 import { faListOl } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-export default function AnimeCard({
+export default function GridCard({
   title,
   image,
   stretchedA,
@@ -31,8 +31,9 @@ export default function AnimeCard({
 
           borderRadius: "10px",
           backgroundImage: `url(${image})`,
-          height: stretchedA ? "340px" : "230px",
-          width: stretchedA ? "230px" : "430px",
+          height: "450px",
+          width: "320px",
+
           backgroundPosition: "center",
           backgroundSize: "cover",
         }}

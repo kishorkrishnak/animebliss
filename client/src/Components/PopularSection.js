@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-
+import Grid from "./Grid.js";
 import ElasticCarousel from "./ElasticCarousel";
 
 export default function PopularSection() {
@@ -18,15 +18,7 @@ export default function PopularSection() {
         Most Popular
       </h1>
 
-      {popular.length > 0 && (
-        <ElasticCarousel
-          finalQuery={popular}
-          api="anilist"
-          rowtitle="Most Popular"
-          stretchedA={true}
-          stretchedB={false}
-        ></ElasticCarousel>
-      )}
+      {popular.length > 0 && <Grid finalQuery={popular}></Grid>}
     </section>
   );
 }

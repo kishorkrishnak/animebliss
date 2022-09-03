@@ -1,16 +1,23 @@
-
-
 html {
   scroll-behavior: smooth;
 }
 
-*{
+* {
   box-sizing: border-box;
 }
-body{
+body {
+  background-color: #10141e;
+  margin: 0;
+  max-height: 100vh;
+  max-width: 100vw;
+}
 
-    background-color: #10141e ;
-margin: 0;
-max-height: 100vh;
-max-width: 100vw;
+button.rec-dot {
+  background-color: #3f1e26;
+}
+
+button.rec-dot:hover,
+button.rec-dot:active,
+button.rec-dot:focus {
+  background-color: #fc4747;
 }

@@ -25,7 +25,6 @@ export default function TopAiring() {
           api="enime"
           stretchedA={true}
           stretchedB={false}
-          
         ></ElasticCarousel>
       )}
     </section>
