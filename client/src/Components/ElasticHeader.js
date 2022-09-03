@@ -1,7 +1,7 @@
 import Carousel from "react-elastic-carousel";
 import "./Item.css";
 import CarouselCard from "./CarouselCard";
-import AnimeCard from "./AnimeCard";
+
 const breakPoints = [
   { width: 1, itemsToShow: 1 },
   { width: 550, itemsToShow: 1 },

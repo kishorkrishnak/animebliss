@@ -4,14 +4,13 @@ import { v4 as uuidv4 } from "uuid";
 import GridCard from "./GridCard";
 import { useState, useEffect } from "react";
 setConfiguration({ breakpoints: [1100, 1428, 1500, 1700, 1800, 1900] });
-
+const streamapi = ["https://consumet-api.herokuapp.com/anime/enime/watch"];
 export default function Grid({ finalQuery }) {
   const [windowSize, setWindowSize] = useState(null);
 
   useEffect(() => {
     window.addEventListener("resize", () => {
       setWindowSize(window.innerWidth);
-      console.log(windowSize);
     });
   });
   return (

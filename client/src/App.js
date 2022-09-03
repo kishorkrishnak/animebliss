@@ -6,14 +6,15 @@ import Header from "./Components/Header";
 import TopAiring from "./Components/TopAiring";
 import PopularSection from "./Components/PopularSection";
 function App() {
+
   return (
     <div className="App">
-      <Header></Header> 
+      <Header></Header>
 
       <TrendingSection></TrendingSection>
-     <RecentSection></RecentSection>
+      <RecentSection></RecentSection>
 
-<TopAiring></TopAiring>
+      <TopAiring></TopAiring>
 
       <PopularSection></PopularSection>
     </div>

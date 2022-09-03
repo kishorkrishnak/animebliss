@@ -9,7 +9,9 @@ import "./Navbar.css";
 import logo from "../assets/images/image.png";
 import React from "react";
 import ElasticHeader from "./ElasticHeader";
-
+import { Routes, Route, Link } from "react-router-dom";
+import VideoPlayer from "./VideoPlayer";
+import Login from "./Login";
 export default function Header() {
   const [query, setQuery] = useState("death note");
   const [id, setId] = useState("");
@@ -17,7 +19,7 @@ export default function Header() {
     "death note",
     "steins gate",
 
-    "spy x family",
+    "When Will Ayumu Make His Move?",
   ]);
   const [active, setActive] = useState("nav__menu");
   const [icon, setIcon] = useState("nav__toggler");
@@ -70,6 +72,7 @@ export default function Header() {
             icon={faMagnifyingGlass}
             style={{ color: "white", fontSize: 25 }}
           ></FontAwesomeIcon>
+
           <input
             onInput={(e) => {
               setValue(e.target.value);
@@ -97,12 +100,6 @@ export default function Header() {
 
             <li className="nav__item">
               <a href="/home" className="nav__link">
-                Wallpapers
-              </a>
-            </li>
-
-            <li className="nav__item">
-              <a href="/home" className="nav__link">
                 Watchlist
               </a>
             </li>
@@ -114,11 +111,9 @@ export default function Header() {
 
             <li className="nav__item"></li>
           </ul>
-      
         </div>
         <div>
-
-        <a href="/home" className="nav__link nav__link-signout">
+          <a href="/home" className="nav__link nav__link-signout">
             Signout
           </a>
         </div>

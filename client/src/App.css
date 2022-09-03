@@ -38,35 +38,12 @@ button.rec-dot:focus {
   }
 }
 
-/* @media screen and (max-width: 1683px) {
+@media screen and (max-width: 800px) {
   .gridcard-wrapper,
   .gridcard-wrapper div {
-    transform: scale(0.95);
+    transform: scale(0.75);
   }
 }
-
-@media screen and (max-width: 1532px) {
-  .gridcard-wrapper,
-  .gridcard-wrapper div {
-    transform: scale(0.9);
-  }
-}
-
-@media screen and (max-width: 1420px) {
-  .gridcard-wrapper,
-  .gridcard-wrapper div {
-    transform: scale(0.8);
-  }
-} */
-@media screen and (max-width: 850px) {
-  .gridcard-wrapper,
-  .gridcard-wrapper div {
-
-
-
-  }
-} */
-
 
 @media screen and (max-width: 1450px) {
   .animecard-wrapper {
@@ -92,8 +69,6 @@ button.rec-dot:focus {
   .animecard-wrapper div {
     transform: scale(0.73);
   }
-}
-@media screen and (max-width: 500px) {
 }
 
 .grid-card-title {

@@ -2,9 +2,11 @@ import { useEffect, useState } from "react";
 
 import ElasticCarousel from "./ElasticCarousel";
 
+
+
+
 export default function TrendingSection() {
   const [trending, setTrending] = useState([]);
-
   useEffect(() => {
     fetch("https://consumet-api.herokuapp.com/meta/anilist/trending")
       .then((response) => response.json())

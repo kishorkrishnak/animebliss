@@ -15,17 +15,15 @@ export default function RecentSection() {
   return (
     <section className="section section-recent">
       {recent.length > 0 && (
-       
-          <ElasticCarousel
-            initialActiveIndex={2}
-            finalQuery={recent}
-            api="zoro"
-            size="stretch"
-            rowTitle="Recent Releases"
-            isRecent={true}
-            stretchedA={true}
-          ></ElasticCarousel>
-
+        <ElasticCarousel
+          initialActiveIndex={2}
+          finalQuery={recent}
+          api="zoro"
+          size="stretch"
+          rowTitle="Recent Releases"
+          isRecent={true}
+          stretchedA={true}
+        ></ElasticCarousel>
       )}
     </section>
   );

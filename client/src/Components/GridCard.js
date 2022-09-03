@@ -36,7 +36,7 @@ export default function GridCard({
 
       <h4
         className="grid-card-title"
-        style={{ textAlign: "center", color: "white", fontWeight: "lighter" }}
+        style={{ textAlign: "center", color: "white", fontWeight: "lighter",marginTop:8 }}
       >
         {title}
       </h4>

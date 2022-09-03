@@ -3,7 +3,9 @@ import "./Item.css";
 import { v4 as uuidv4 } from "uuid";
 import AnimeCard from "./AnimeCard";
 import { useState, useEffect } from "react";
-
+const streamapi = {
+  enime: "https://consumet-api.herokuapp.com/anime/enime/watch?episodeId=",
+};
 export default function ElasticCarousel({
   finalQuery,
   rowTitle,
@@ -13,6 +15,7 @@ export default function ElasticCarousel({
   stretchedA,
   initialActiveIndex,
 }) {
+
   const [windowSize, setWindowSize] = useState(null);
 
   useEffect(() => {
@@ -37,15 +40,13 @@ export default function ElasticCarousel({
           color: "#fdba74",
           fontSize: "3rem",
           marginLeft: "21px",
-      marginBottom:"5px"
-          
+          marginBottom: "5px",
         }}
       >
         {rowTitle}
       </h1>
       <Carousel
         initialActiveIndex={initialActiveIndex}
-   
         enableTilt={true}
         pagination={windowSize < 800 ? false : true}
         showArrows={false}
@@ -60,7 +61,10 @@ export default function ElasticCarousel({
             }
             image={query.image}
             key={uuidv4()}
+            id={query.id}
+            api={api}
             stretchedA={stretchedA}
+            rowTitle = {rowTitle}
             episodeNum={isRecent ? query.episode : 0}
           ></AnimeCard>
         ))}
