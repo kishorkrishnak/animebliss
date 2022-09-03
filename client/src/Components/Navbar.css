@@ -19,15 +19,13 @@ a {
 }
 
 .nav {
-
-width: 100%;
+  width: 100%;
   display: flex;
   align-items: center;
-  justify-content:center;
-
+  justify-content: center;
+  padding-right: 25px;
   height: 6vh;
-
-
+  padding-left: 25px;
 }
 
 .nav-side-div {
@@ -65,22 +63,13 @@ width: 100%;
   background: rgb(204, 204, 204);
   transition: 0.3s ease-in;
 }
-@media screen and (max-width: 1200px) {
-  .nav {
-   
-    gap: 20px;
-  }
 
-  .searchbar{
-    flex: 2;
-  }
-}
 
-.nav__link-signout{
-margin-right: auto;
+.nav__link-signout {
+  margin-right: auto;
 }
 @media screen and (max-width: 1050px) {
-  .nav{
+  .nav {
     justify-content: space-between;
   }
   .nav__toggler {
@@ -88,11 +77,10 @@ margin-right: auto;
     cursor: pointer;
   }
 
-  .searchbar{
-
-   flex: 2;
+  .searchbar {
+display: none;
   }
- 
+
   .nav__menu {
     position: fixed;
     z-index: 1;
@@ -131,14 +119,15 @@ margin-right: auto;
 
 .searchbar {
   outline: none;
-
+display: inline-block;
   padding: 9px;
-  border-radius: 0.2em;
-  width: 230px;
+  border-radius: 0.4em;
+
+  width: 280px;
   border: none;
   border: 1px solid teal;
   color: white;
-  background-color: #10141E;
+  background-color: #374151;
 }
 .searchbar::placeholder {
   color: grey;

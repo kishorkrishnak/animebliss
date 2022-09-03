@@ -10,7 +10,7 @@ export default function GridCard({
       className="gridcard-wrapper"
       style={{
         display: "flex",
-       marginTop:"30px",
+        marginTop: "30px",
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "flex-start",
@@ -36,7 +36,12 @@ export default function GridCard({
 
       <h4
         className="grid-card-title"
-        style={{ textAlign: "center", color: "white", fontWeight: "lighter",marginTop:8 }}
+        style={{
+          textAlign: "center",
+          color: "white",
+          fontWeight: "lighter",
+          marginTop: 8,
+        }}
       >
         {title}
       </h4>

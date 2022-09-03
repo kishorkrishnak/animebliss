@@ -1,21 +1,8 @@
-import {
-  PlayCircleOutlined,
-  CalendarOutlined,
-  ClockCircleOutlined,
-} from "@ant-design/icons";
-import { faListOl } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import VideoPlayer from "./VideoPlayer";
+
+
 import { useEffect, useState } from "react";
 import React from "react";
 
-setTimeout(() => {
-  const cards = document.querySelectorAll(".animecard-wrapper");
-  console.log(cards);
-  Array.from(cards).forEach((card) => {
-    card.addEventListener("click", () => {});
-  });
-}, 3000);
 const streamapi = {
   enime: "https://consumet-api.herokuapp.com/meta/anilist/info/",
 };
@@ -75,7 +62,7 @@ export default function AnimeCard({
     )
       .then((res) => res.json())
       .then((data) => {
-        setLink(link);
+        setLink(data);
         console.log(link);
       });
   };

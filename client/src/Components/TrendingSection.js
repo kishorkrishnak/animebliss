@@ -2,9 +2,6 @@ import { useEffect, useState } from "react";
 
 import ElasticCarousel from "./ElasticCarousel";
 
-
-
-
 export default function TrendingSection() {
   const [trending, setTrending] = useState([]);
   useEffect(() => {
