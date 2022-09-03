@@ -23,8 +23,9 @@ a {
   display: flex;
   align-items: center;
   justify-content: center;
+
   padding-right: 25px;
-  height: 6vh;
+  height: 65px;
   padding-left: 25px;
 }
 
@@ -64,11 +65,13 @@ a {
   transition: 0.3s ease-in;
 }
 
-
 .nav__link-signout {
   margin-right: auto;
 }
 @media screen and (max-width: 1050px) {
+  .magnify-icon {
+    display: none;
+  }
   .nav {
     justify-content: space-between;
   }
@@ -78,7 +81,7 @@ a {
   }
 
   .searchbar {
-display: none;
+    display: none;
   }
 
   .nav__menu {
@@ -119,14 +122,14 @@ display: none;
 
 .searchbar {
   outline: none;
-display: inline-block;
-  padding: 9px;
+  display: inline-block;
+  padding: 10px;
   border-radius: 0.4em;
 
-  width: 280px;
+  width: 330px;
   border: none;
-  border: 1px solid teal;
-  color: white;
+  font-size: 1.5rem;
+  color: #9aa2ae;
   background-color: #374151;
 }
 .searchbar::placeholder {
@@ -135,5 +138,5 @@ display: inline-block;
 
 .searchbar:hover,
 .searchbar:focus {
-  box-shadow: 0 0 5px 0 cyan;
+  background-color: white;
 }

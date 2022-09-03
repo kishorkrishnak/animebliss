@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 
-import ElasticCarousel from "./ElasticCarousel";
+import CarouselRenderer from "./CarouselRenderer";
+
 
 export default function RecentSection() {
   const [recent, setRecent] = useState([]);
@@ -15,7 +16,7 @@ export default function RecentSection() {
   return (
     <section className="section section-recent">
       {recent.length > 0 && (
-        <ElasticCarousel
+        <CarouselRenderer
           initialActiveIndex={2}
           finalQuery={recent}
           api="zoro"
@@ -23,7 +24,7 @@ export default function RecentSection() {
           rowTitle="Recent Releases"
           isRecent={true}
           stretchedA={true}
-        ></ElasticCarousel>
+        ></CarouselRenderer>
       )}
     </section>
   );

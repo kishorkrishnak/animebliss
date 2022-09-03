@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-import ElasticCarousel from "./ElasticCarousel";
+import CarouselRenderer from "./CarouselRenderer";
 
 export default function TrendingSection() {
   const [trending, setTrending] = useState([]);
@@ -14,12 +14,12 @@ export default function TrendingSection() {
   return (
     <section className="section section-trending" id="trending">
       {trending.length > 0 && (
-        <ElasticCarousel
+        <CarouselRenderer
           finalQuery={trending}
           api="anilist"
           rowTitle="Trending"
           isTrending={true}
-        ></ElasticCarousel>
+        ></CarouselRenderer>
       )}
     </section>
   );

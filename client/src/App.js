@@ -1,10 +1,10 @@
-import Login from "./Components/Login";
+import Login from "./components/Login";
 import "./App.css";
-import RecentSection from "./Components/RecentSection";
-import TrendingSection from "./Components/TrendingSection";
-import Header from "./Components/Header";
-import TopAiring from "./Components/TopAiring";
-import PopularSection from "./Components/PopularSection";
+import RecentSection from "./components/RecentSection";
+import TrendingSection from "./components/TrendingSection";
+import Header from "./components/Header";
+import TopAiring from "./components/TopAiring";
+import PopularSection from "./components/PopularSection";
 function App() {
 
   return (

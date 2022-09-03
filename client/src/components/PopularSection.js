@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import Grid from "./Grid.js";
+import GridRenderer from "./GridRenderer.js";
 
 export default function PopularSection() {
   const [popular, setPopular] = useState([]);
@@ -20,7 +20,7 @@ export default function PopularSection() {
           >
             Most Popular
           </h1>
-          <Grid api="anilist" finalQuery={popular}></Grid>
+          <GridRenderer api="anilist" finalQuery={popular}></GridRenderer>
         </>
       )}
     </section>

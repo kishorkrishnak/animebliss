@@ -9,21 +9,16 @@
   width: 100vw;
 }
 .header-card img {
-
   height: 100%;
-  
+
   width: 100%;
 }
 
-.section-carousel{
- 
-
+.section-carousel {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
-
 }
 
 .header-card {
@@ -49,8 +44,7 @@
   font-size: 2rem;
 }
 
-
-.btn-watchnow:hover{
+.btn-watchnow:hover {
   opacity: 0.8;
   transition: 500ms ease;
 }
@@ -63,24 +57,19 @@
   color: white;
   display: flex;
   gap: 20px;
-
-
-
 }
 @media screen and (max-width: 1000px) {
-  .brand-title{
+  .brand-title {
     display: none;
   }
 }
-.anime-info-div{
+.anime-info-div {
   overflow: hidden;
   display: flex;
   flex-direction: column;
- gap: 15px;
+  gap: 15px;
 }
 .anime-title {
   font-size: 4rem;
   color: white;
-
-
 }

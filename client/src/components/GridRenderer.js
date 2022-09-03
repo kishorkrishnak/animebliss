@@ -2,17 +2,10 @@ import { Container, Row, Col } from "react-grid-system";
 import { setConfiguration } from "react-grid-system";
 import { v4 as uuidv4 } from "uuid";
 import GridCard from "./GridCard";
-import { useState, useEffect } from "react";
-setConfiguration({ breakpoints: [1100, 1428, 1500, 1700, 1800, 1900] });
-const streamapi = ["https://consumet-api.herokuapp.com/anime/enime/watch"];
-export default function Grid({ finalQuery }) {
-  const [windowSize, setWindowSize] = useState(null);
 
-  useEffect(() => {
-    window.addEventListener("resize", () => {
-      setWindowSize(window.innerWidth);
-    });
-  });
+setConfiguration({ breakpoints: [1100, 1428, 1500, 1700, 1800, 1900] });
+
+export default function GridRenderer({ finalQuery }) {
   return (
     <Container fluid={true}>
       <Row justify="center" gutterWidth={1}>

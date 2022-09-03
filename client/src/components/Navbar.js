@@ -31,6 +31,7 @@ export default function Navbar() {
           <h5 className="brand-title">Animebliss</h5>
         </a>
         <FontAwesomeIcon
+          className="magnify-icon"
           icon={faMagnifyingGlass}
           style={{ color: "white", fontSize: 25 }}
         ></FontAwesomeIcon>
@@ -42,7 +43,7 @@ export default function Navbar() {
           onChange={(e) => {
             setQuery(e.target.value);
           }}
-          placeholder="Search"
+          placeholder="Search for anime"
           className="searchbar"
           type="text"
           value={value}
@@ -50,7 +51,10 @@ export default function Navbar() {
         <ul className={active}>
           <li></li>
           <li className="nav__item">
-            <a href="/home" className="nav__link">
+            <a onClick={(e)=>{
+              e.preventDefault()
+              document.querySelector(".section-popular").scrollIntoView()
+              }} href="/home" className="nav__link">
               Top Anime
             </a>
           </li>

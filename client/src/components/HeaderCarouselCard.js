@@ -11,8 +11,8 @@ export default function CarouselCard({
   cover,
   title,
   year,
-  descr,
-  ep,
+  description,
+  epcount,
 }) {
   return (
     <div
@@ -33,7 +33,7 @@ export default function CarouselCard({
             <PlayCircleOutlined /> TV
           </p>
           <p>
-            <FontAwesomeIcon icon={faListOl} /> {ep} Episodes
+            <FontAwesomeIcon icon={faListOl} /> {epcount} Episodes
           </p>
           <p>
             <ClockCircleOutlined /> {duration} Minutes
@@ -42,7 +42,7 @@ export default function CarouselCard({
             <CalendarOutlined /> {year}
           </p>
         </div>
-        <p className="anime-descr">{descr}</p>
+        <p className="anime-descr">{description}</p>
       </div>
       <a className="btn btn-watchnow" href="/login">
         {" "}
