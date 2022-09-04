@@ -19,6 +19,7 @@ export default function Home() {
       <UpcomingSection></UpcomingSection>
       <FavoriteSection></FavoriteSection>
       <TopAiringSection></TopAiringSection>
+      <PopularSection></PopularSection>
     </>
   );
 }
