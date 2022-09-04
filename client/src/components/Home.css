@@ -1,85 +1,82 @@
 html {
-    scroll-behavior: smooth;
+  scroll-behavior: smooth;
+}
+.section-recent,
+.section-popular,
+.section-topairing,
+.section-trending {
+  margin-top: 25px;
+}
+* {
+  box-sizing: border-box;
+}
+body {
+  background-color: #10141e;
+  margin: 0;
+  max-height: 100vh;
+  max-width: 100vw;
+}
+
+button.rec-dot {
+  background-color: #3f1e26;
+}
+
+.animecard-wrapper:hover,
+.gridcard-wrapper:hover {
+  transform: scale(1.03);
+  transition: 150ms ease;
+}
+
+button.rec-dot:hover,
+button.rec-dot:active,
+button.rec-dot:focus {
+  background-color: #fc4747;
+}
+
+@media screen and (max-width: 1770px) {
+  .animecard-wrapper {
+    transform: scale(0.9);
+    transition: 5ms ease-in;
   }
-  .section-recent,
-  .section-popular,
-  .section-topairing,
-  .section-trending {
-    margin-top: 25px;
+  .animecard-wrapper div {
+    transform: scale(0.9);
+    transition: 2ms ease;
   }
-  * {
-    box-sizing: border-box;
+}
+
+@media screen and (max-width: 800px) {
+  .gridcard-wrapper,
+  .gridcard-wrapper div {
+    transform: scale(0.75);
   }
-  body {
-    background-color: #10141e;
-    margin: 0;
-    max-height: 100vh;
-    max-width: 100vw;
+}
+
+@media screen and (max-width: 1450px) {
+  .animecard-wrapper {
+    transform: scale(0.85);
   }
-  
-  button.rec-dot {
-    background-color: #3f1e26;
+  .animecard-wrapper div {
+    transform: scale(0.85);
   }
-  
-  
-  
-  button.rec-dot:hover,
-  button.rec-dot:active,
-  button.rec-dot:focus {
-    background-color: #fc4747;
+}
+
+@media screen and (max-width: 720px) {
+  .animecard-wrapper:not(.section-trending .animecard-wrapper) {
+    transform: scale(0.8);
   }
-  
-  @media screen and (max-width: 1770px) {
-    .animecard-wrapper {
-      transform: scale(0.9);
-      transition: 5ms ease-in;
-    }
-    .animecard-wrapper div {
-      transform: scale(0.9);
-      transition: 2ms ease;
-    }
+  .animecard-wrapper div:not(.section-trending .animecard-wrapper div) {
+    transform: scale(0.8);
   }
-  
-  @media screen and (max-width: 800px) {
-    .gridcard-wrapper,
-    .gridcard-wrapper div {
-      transform: scale(0.75);
-    }
+
+  .animecard-wrapper {
+    transform: scale(0.73);
   }
-  
-  @media screen and (max-width: 1450px) {
-    .animecard-wrapper {
-      transform: scale(0.85);
-    }
-    .animecard-wrapper div {
-      transform: scale(0.85);
-    }
+
+  .animecard-wrapper div {
+    transform: scale(0.73);
   }
-  
-  @media screen and (max-width: 720px) {
-    .animecard-wrapper:not(.section-trending .animecard-wrapper) {
-      transform: scale(0.8);
-    }
-    .animecard-wrapper div:not(.section-trending .animecard-wrapper div) {
-      transform: scale(0.8);
-    }
-  
-    .animecard-wrapper {
-      transform: scale(0.73);
-    }
-  
-    .animecard-wrapper div {
-      transform: scale(0.73);
-    }
-  }
-  
-  .grid-card-title {
-    text-align: center;
-  }
-  
-  .animecard-wrapper:hover,
-  .gridcard-wrapper:hover {
-    transform: scale(1.03);
-    transition: 150ms ease;
-  }
-  
+}
+
+.grid-card-title {
+  text-align: center;
+}

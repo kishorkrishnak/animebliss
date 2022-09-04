@@ -2,11 +2,36 @@ import "./Navbar.css";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import logo from "../assets/images/image.png";
-
+import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
-import { useState } from "react";
-export default function Navbar({ setInput }) {
+import { useState, useEffect } from "react";
+import { toast } from "react-toastify";
+
+export default function Navbar() {
   const [query, setQuery] = useState("death note");
+  const [input, setInput] = useState("");
+
+  const [searchResults, setSearchResults] = useState([]);
+
+  const navigate = useNavigate();
+  const searchAnime = async () => {
+    return fetch("https://api.jikan.moe/v4/anime?q=" + input)
+      .then((response) => {
+        return response.json();
+      })
+      .then((data) => {
+        navigate("/search", {
+          state: { finalResults: [...data.data], input: input },
+        });
+      });
+  };
+  useEffect(() => {
+    if (input !== "") {
+      searchAnime();
+    } else {
+      toast.warning("Search keyword cannot be empty!");
+    }
+  }, [input]);
 
   const [active, setActive] = useState("nav__menu");
   const [icon, setIcon] = useState("nav__toggler");
@@ -84,11 +109,7 @@ export default function Navbar({ setInput }) {
           </li>
 
           <li className="nav__item">
-            <a
-            
-              href="/home"
-              className="nav__link nav__link-signout"
-            >
+            <a href="/home" className="nav__link nav__link-signout">
               Signout
             </a>
           </li>

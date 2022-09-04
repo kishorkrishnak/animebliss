@@ -4,14 +4,31 @@ import { Audio, ProgressBar } from "react-loader-spinner";
 
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { CSSProperties } from "react";
+import RingLoader from "react-spinners/RingLoader";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
+import { faArrowLeftLong,faArrowRightLong} from "@fortawesome/free-solid-svg-icons";
+
+const override = (CSSProperties = {
+  position: "fixed",
+  zIndex: 1,
+  left: 0,
+  right: 0,
+  top: 0,
+  bottom: 0,
+
+  margin: "auto",
+
+  borderColor: "red",
+});
 export default function PopularSection() {
-  const nopreviouspageerror = () => toast("You are on the first page!");
-  const nonextpageerror = () => toast("You are on the last page!");
+  const nopreviouspageerror = () => toast.warning("You are on the first page!");
+  const nonextpageerror = () => toast.warning("You are on the last page!");
 
   const [popular, setPopular] = useState([]);
   const [currpage, setCurrpage] = useState(1);
-  const [btnText, setBtnText] = useState("");
+
   const [loading, setLoading] = useState(false);
   const [hasNextPage, setHasNextPage] = useState(true);
   useEffect(() => {
@@ -23,10 +40,8 @@ export default function PopularSection() {
       .then((response) => response.json())
       .then((data) => {
         if (data.hasNextPage) {
-          setBtnText("Next Page");
           setHasNextPage(true);
         } else {
-          setBtnText("Previous Page");
           setHasNextPage(false);
         }
 
@@ -38,12 +53,10 @@ export default function PopularSection() {
 
   return (
     <section
-      className="section section-popular"
+      className="section section-popular "
       style={{
         paddingBottom: 40,
-        flexDirection: "column",
-
-        textAlign: "center",
+        height: "fit-content",
       }}
     >
       <ToastContainer />
@@ -57,15 +70,11 @@ export default function PopularSection() {
           </h1>
 
           {loading && (
-            <ProgressBar
-              style={{ position: "absolute", top: 0, bottom: 0 }}
-              height="80"
-              width="400"
-              ariaLabel="progress-bar-loading"
-              wrapperStyle={{}}
-              wrapperClass="progress-bar-wrapper"
-              borderColor="#F4442E"
-              barColor="#51E5FF"
+            <RingLoader
+              color={"rgb(192, 202, 51)"}
+              loading={loading}
+              cssOverride={override}
+              size={80}
             />
           )}
           <GridRenderer
@@ -73,51 +82,65 @@ export default function PopularSection() {
             width={320}
             finalQuery={popular}
           ></GridRenderer>
-
           <div
-            className="pagination"
+            className="pagination-wrapper"
             style={{
-              height: 60,
-              width: "100vw",
-              borderBottom: "1px solid red",
+              marginTop: 20,
               display: "flex",
               alignItems: "center",
-              justifyContent: "space-around",
+              width: "100vw",
+              justifyContent: "center",
             }}
           >
-            <button
-              onClick={() => {
-                if (currpage <= 1) {
-                  nonextpageerror();
-                } else {
-                  setCurrpage((prev) => prev - 1);
-                }
-              }}
+            <div
+              className="pagination"
               style={{
-                color: "white",
-                width: 150,
-                backgroundColor: "transparent",
-              }}
-            >
-              Previous
-            </button>
-            <button
-              onClick={() => {
-                if (hasNextPage) {
-                  setCurrpage((curr) => curr + 1);
-                } else {
-                  nonextpageerror();
-                }
-              }}
-              style={{
-                color: "white",
-                width: 150,
+                height: 60,
+                width: "96%",
 
-                backgroundColor: "transparent",
+                borderBottom: "1px solid red",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "space-between",
               }}
             >
-              Next
-            </button>
+              <button
+                onClick={() => {
+                  if (currpage <= 1) {
+                    nopreviouspageerror();
+                  } else {
+                    setCurrpage((prev) => prev - 1);
+                  }
+                }}
+                style={{
+                  fontSize: "1.8rem",
+
+                  color: "white",
+                  width: 150,
+                  backgroundColor: "transparent",
+                }}
+              >
+              <FontAwesomeIcon icon={faArrowLeftLong}></FontAwesomeIcon> &nbsp;  Previous
+              </button>
+              <button
+                onClick={() => {
+                  if (hasNextPage) {
+                    setCurrpage((curr) => curr + 1);
+                  } else {
+                    nonextpageerror.error();
+                  }
+                }}
+                style={{
+                  color: "white",
+                  width: 150,
+                  fontSize: "1.8rem",
+
+                  backgroundColor: "transparent",
+                }}
+              >
+                Next&nbsp;  <FontAwesomeIcon icon={faArrowRightLong}></FontAwesomeIcon>
+              </button>
+            </div>
           </div>
         </>
       )}

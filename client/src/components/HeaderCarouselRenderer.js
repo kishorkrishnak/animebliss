@@ -1,5 +1,5 @@
 import Carousel from "react-elastic-carousel";
-import "./Item.css";
+
 import HeaderCarouselCard from "./HeaderCarouselCard";
 import { v4 as uuidv4 } from "uuid";
 

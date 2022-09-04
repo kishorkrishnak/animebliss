@@ -3,12 +3,17 @@ import { Container, Row, Col } from "react-grid-system";
 import GridCard from "./GridCard";
 import { v4 as uuidv4 } from "uuid";
 import { useLocation } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { ToastContainer, toast } from "react-toastify";
+
+import Navbar from "./Navbar";
 export default function SearchResults() {
   const location = useLocation();
   console.log(location.state.finalResults);
 
   return (
     <>
+      <Navbar></Navbar>
       <h1 style={{ fontSize: "3rem", color: "white" }}>
         Search Results for {location.state.input}
       </h1>
@@ -40,6 +45,7 @@ export default function SearchResults() {
               );
           })}
         </Row>
+        <ToastContainer></ToastContainer>
       </Container>
     </>
   );

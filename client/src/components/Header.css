@@ -31,7 +31,6 @@
   text-align: left;
   width: 98.7%;
 
- 
   border-radius: 10px;
 }
 
@@ -49,11 +48,8 @@
   transition: 500ms ease;
 }
 
-
 @media screen and (max-width: 1000px) {
   .brand-title {
     display: none;
   }
 }
-
-

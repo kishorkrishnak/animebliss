@@ -21,8 +21,6 @@ export default function CarouselCard({
 
         justifyContent: "center",
         textAlign: "center",
-
-        paddingTop: 8,
       }}
     >
       <div
