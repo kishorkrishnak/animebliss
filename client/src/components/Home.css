@@ -44,13 +44,6 @@ button.rec-dot:focus {
   }
 }
 
-@media screen and (max-width: 800px) {
-  .gridcard-wrapper,
-  .gridcard-wrapper div {
-    transform: scale(0.75);
-  }
-}
-
 @media screen and (max-width: 1450px) {
   .animecard-wrapper {
     transform: scale(0.85);

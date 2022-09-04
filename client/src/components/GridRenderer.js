@@ -8,7 +8,7 @@ setConfiguration({ breakpoints: [1100, 1428, 1500, 1700, 1800, 1900] });
 export default function GridRenderer({ finalQuery, height, width }) {
   return (
     <Container fluid={true}>
-      <Row justify="center" gutterWidth={1}>
+      <Row justify="center" gutterWidth={12}>
         {finalQuery.map((query, index) => (
           <Col align="center" xxl={2.4} md={3} sm={4} xs={5} key={uuidv4()}>
             <GridCard

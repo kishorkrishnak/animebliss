@@ -29,7 +29,7 @@ export default function Navbar() {
     if (input !== "") {
       searchAnime();
     } else {
-      toast.warning("Search keyword cannot be empty!");
+      console.log("input cannot be empty");
     }
   }, [input]);
 
@@ -52,7 +52,7 @@ export default function Navbar() {
   return (
     <nav className="nav">
       <div className="nav-side-div">
-        <a href="/home" className="nav__brand ">
+        <a href="/" className="nav__brand ">
           <img height="40" src={logo} style={{ color: "white" }} alt="" />
 
           <h5 className="brand-title">Animebliss</h5>
@@ -85,7 +85,7 @@ export default function Navbar() {
                 e.preventDefault();
                 document.querySelector(".section-popular").scrollIntoView();
               }}
-              href="/home"
+              href="/"
               className="nav__link"
             >
               Top Anime
@@ -98,7 +98,7 @@ export default function Navbar() {
           </li>
 
           <li className="nav__item">
-            <a href="/home" className="nav__link">
+            <a href="/" className="nav__link">
               Watchlist
             </a>
           </li>
@@ -109,7 +109,7 @@ export default function Navbar() {
           </li>
 
           <li className="nav__item">
-            <a href="/home" className="nav__link nav__link-signout">
+            <a href="/" className="nav__link nav__link-signout">
               Signout
             </a>
           </li>

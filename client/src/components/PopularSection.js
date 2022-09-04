@@ -1,14 +1,17 @@
 import { useEffect, useState } from "react";
 import GridRenderer from "./GridRenderer.js";
 import { Audio, ProgressBar } from "react-loader-spinner";
-
+import Rend from "./Rend.js";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { CSSProperties } from "react";
 import RingLoader from "react-spinners/RingLoader";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-import { faArrowLeftLong,faArrowRightLong} from "@fortawesome/free-solid-svg-icons";
+import {
+  faArrowLeftLong,
+  faArrowRightLong,
+} from "@fortawesome/free-solid-svg-icons";
 
 const override = (CSSProperties = {
   position: "fixed",
@@ -23,6 +26,13 @@ const override = (CSSProperties = {
   borderColor: "red",
 });
 export default function PopularSection() {
+  const [windowSize, setWindowSize] = useState(null);
+
+  useEffect(() => {
+    window.addEventListener("resize", () => {
+      setWindowSize(window.innerWidth);
+    });
+  });
   const nopreviouspageerror = () => toast.warning("You are on the first page!");
   const nonextpageerror = () => toast.warning("You are on the last page!");
 
@@ -77,11 +87,13 @@ export default function PopularSection() {
               size={80}
             />
           )}
+          {/* <Rend finalQuery={popular}></Rend> */}
           <GridRenderer
-            height={480}
-            width={320}
+            height={windowSize > 800 ? 480 : 220}
+            width={windowSize > 800 ? 320 : 180}
             finalQuery={popular}
           ></GridRenderer>
+
           <div
             className="pagination-wrapper"
             style={{
@@ -120,7 +132,8 @@ export default function PopularSection() {
                   backgroundColor: "transparent",
                 }}
               >
-              <FontAwesomeIcon icon={faArrowLeftLong}></FontAwesomeIcon> &nbsp;  Previous
+                <FontAwesomeIcon icon={faArrowLeftLong}></FontAwesomeIcon>{" "}
+                &nbsp; Previous
               </button>
               <button
                 onClick={() => {
@@ -138,7 +151,8 @@ export default function PopularSection() {
                   backgroundColor: "transparent",
                 }}
               >
-                Next&nbsp;  <FontAwesomeIcon icon={faArrowRightLong}></FontAwesomeIcon>
+                Next&nbsp;{" "}
+                <FontAwesomeIcon icon={faArrowRightLong}></FontAwesomeIcon>
               </button>
             </div>
           </div>
