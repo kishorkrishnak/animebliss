@@ -1,22 +1,27 @@
 import Login from "./components/Login";
 import "./App.css";
+import { useState } from "react";
 import RecentSection from "./components/RecentSection";
 import TrendingSection from "./components/TrendingSection";
 import Header from "./components/Header";
 import TopAiring from "./components/TopAiring";
 import PopularSection from "./components/PopularSection";
 function App() {
-
+  const [isSearching, setIsSearching] = useState(false);
   return (
     <div className="App">
-      <Header></Header>
+      <Header setIsSearching={setIsSearching}></Header>
 
-      <TrendingSection></TrendingSection>
-      <RecentSection></RecentSection>
+      {!isSearching && (
+        <>
+          <TrendingSection></TrendingSection>
+          <RecentSection></RecentSection>
 
-      <TopAiring></TopAiring>
+          <TopAiring></TopAiring>
 
-      <PopularSection></PopularSection>
+          <PopularSection></PopularSection>
+        </>
+      )}
     </div>
   );
 }

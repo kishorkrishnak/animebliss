@@ -1,15 +1,17 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./Header.css";
 
 import "./Navbar.css";
-
+import SearchResults from "./SearchResults";
 import React from "react";
 import HeaderCarouselRenderer from "./HeaderCarouselRenderer";
 import Navbar from "./Navbar";
 
-export default function Header() {
+export default function Header({ setIsSearching }) {
+  const [searchResults, setSearchResults] = useState([]);
   const [finalResults, setFinalResults] = useState([]);
-
+  const [input, setInput] = useState("");
+  const [showSearchPage, setShowSearchPage] = useState(false);
   const [queries, setQueries] = useState([
     "death note",
     "steins gate",
@@ -17,35 +19,47 @@ export default function Header() {
     "When Will Ayumu Make His Move?",
   ]);
 
-  queries.forEach((query, index) => {
-    fetch("https://consumet-api.herokuapp.com/anime/enime/" + query)
+  useEffect(() => {
+    if (input !== "") {
+      console.log("calling request with " + input);
+      fetch("https://api.jikan.moe/v4/anime?q=" + input)
+        .then((response) => response.json())
+        .then((data) => {
+          setShowSearchPage(true);
+          setIsSearching(true);
+          setSearchResults([...data.data]);
+        });
+    } else {
+      setShowSearchPage(false);
+      setIsSearching(false);
+    }
+  }, [input]);
+
+  useEffect(() => {
+    fetch("https://api.enime.moe/popular")
       .then((response) => response.json())
       .then((data) => {
-        fetch(
-          "https://consumet-api.herokuapp.com/anime/enime/info?id=" +
-            data.results[0].id
-        )
-          .then((response) => response.json())
-          .then((data) => {
-            let isDup = false;
-
-            for (let i = 0; i < finalResults.length; i++) {
-              if (finalResults[i].title === data.title) isDup = true;
-            }
-
-            if (!isDup) setFinalResults([...finalResults, data]);
-          }, []);
+        console.log(data.data);
+        setFinalResults(data.data);
       }, []);
-  });
+  }, []);
 
+  
   return (
     <header className="header">
-      <Navbar></Navbar>
+      <Navbar setInput={setInput}></Navbar>
       <section className="section section-carousel">
-        {finalResults.length === queries.length && (
+        {finalResults.length > 0 && (
           <HeaderCarouselRenderer
             finalResults={finalResults}
           ></HeaderCarouselRenderer>
+        )}
+
+        {showSearchPage && (
+          <SearchResults
+            finalResults={searchResults}
+            input={input}
+          ></SearchResults>
         )}
       </section>
     </header>

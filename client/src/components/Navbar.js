@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import logo from "../assets/images/image.png";
 
 import { useState } from "react";
-export default function Navbar() {
+export default function Navbar({ setInput }) {
   const [query, setQuery] = useState("death note");
 
   const [active, setActive] = useState("nav__menu");
@@ -40,8 +40,10 @@ export default function Navbar() {
           onInput={(e) => {
             setValue(e.target.value);
           }}
-          onChange={(e) => {
-            setQuery(e.target.value);
+          onKeyDown={(e) => {
+            if (e.key === "Enter") {
+              setInput(e.target.value)
+            }
           }}
           placeholder="Search for anime"
           className="searchbar"
@@ -51,10 +53,14 @@ export default function Navbar() {
         <ul className={active}>
           <li></li>
           <li className="nav__item">
-            <a onClick={(e)=>{
-              e.preventDefault()
-              document.querySelector(".section-popular").scrollIntoView()
-              }} href="/home" className="nav__link">
+            <a
+              onClick={(e) => {
+                e.preventDefault();
+                document.querySelector(".section-popular").scrollIntoView();
+              }}
+              href="/home"
+              className="nav__link"
+            >
               Top Anime
             </a>
           </li>

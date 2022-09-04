@@ -1,6 +1,7 @@
 import Carousel from "react-elastic-carousel";
 import "./Item.css";
 import HeaderCarouselCard from "./HeaderCarouselCard";
+import { v4 as uuidv4 } from "uuid";
 
 const breakPoints = [
   { width: 1, itemsToShow: 1 },
@@ -18,16 +19,16 @@ export default function CarouselRenderer({ finalResults }) {
     >
       {finalResults.map((item) => (
         <HeaderCarouselCard
-          key={item.title}
-          epcount={item.episodes.length}
+          key={uuidv4()}
+          epcount={10}
           year={item.releaseDate}
           duration={item.duration}
-          title={item.title}
+          title={item.title.english}
           description={item.description.replaceAll(
             /<\/?[\w\s]*>|<.+[\W]>/g,
             ""
           )}
-          cover={item.cover}
+          cover={item.bannerImage}
         ></HeaderCarouselCard>
       ))}
     </Carousel>
