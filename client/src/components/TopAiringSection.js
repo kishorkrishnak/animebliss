@@ -19,7 +19,7 @@ export default function TopAiring() {
           finalQuery={airing}
           rowTitle="Top Airing"
           stretchedA={true}
-          initialActiveIndex={3}
+          initialActiveIndex={2}
         ></CarouselRenderer>
       )}
     </section>
