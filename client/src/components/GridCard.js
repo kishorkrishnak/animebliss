@@ -1,11 +1,18 @@
-export default function GridCard({ title, image, height, width, episodeNum,test }) {
- 
+export default function GridCard({
+  title,
+  image,
+  height,
+  width,
+  episodeNum,
+  year,
+  score
+}) {
   return (
     <div
       className="gridcard-wrapper"
       style={{
         display: "flex",
-        marginTop: "30px",
+        marginTop: "20px",
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "flex-start",
@@ -28,6 +35,9 @@ export default function GridCard({ title, image, height, width, episodeNum,test 
           Episode {episodeNum}
         </h5>
       )}
+      <div className="gridcardinfo">
+        <p>{score}</p>
+      </div>
 
       <h4
         className="grid-card-title"

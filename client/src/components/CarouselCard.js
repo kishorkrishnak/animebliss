@@ -7,9 +7,9 @@ export default function CarouselCard({
   rowTitle,
   episodeNum,
   id,
-  api,
 }) {
   return (
+    
     <div
       className="animecard-wrapper"
       style={{

@@ -10,7 +10,7 @@ export default function GridRenderer({ finalQuery, height, width }) {
     <Container fluid={true}>
       <Row justify="center" gutterWidth={12}>
         {finalQuery.map((query, index) => (
-          <Col align="center" xxl={2.4} md={3} sm={4} xs={5} key={uuidv4()}>
+          <Col align="center" xxl={2.4} md={3} sm={4} xs={5.5} key={uuidv4()}>
             <GridCard
               title={query.title.english}
               image={query.image}

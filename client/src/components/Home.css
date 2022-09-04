@@ -23,7 +23,7 @@ button.rec-dot {
 
 .animecard-wrapper:hover,
 .gridcard-wrapper:hover {
-  transform: scale(1.03);
+  transform: scale(1.02);
   transition: 150ms ease;
 }
 
@@ -32,6 +32,19 @@ button.rec-dot:active,
 button.rec-dot:focus {
   background-color: #fc4747;
 }
+
+
+
+@media screen and (max-width: 768px) {
+  .header-card{
+    height:350px !important;
+  }
+  .anime-description{
+   font-size: 1.5rem;
+
+  }
+}
+
 
 @media screen and (max-width: 1770px) {
   .animecard-wrapper {
@@ -54,22 +67,20 @@ button.rec-dot:focus {
 }
 
 @media screen and (max-width: 720px) {
-  .animecard-wrapper:not(.section-trending .animecard-wrapper) {
+  .animecard-wrapper:not(.section-upcoming .animecard-wrapper) {
     transform: scale(0.8);
   }
-  .animecard-wrapper div:not(.section-trending .animecard-wrapper div) {
+  .animecard-wrapper div:not(.section-upcoming .animecard-wrapper div) {
     transform: scale(0.8);
   }
 
   .animecard-wrapper {
-    transform: scale(0.73);
+    transform: scale(0.72);
   }
 
   .animecard-wrapper div {
-    transform: scale(0.73);
+    transform: scale(0.72,0.89);
   }
 }
 
-.grid-card-title {
-  text-align: center;
-}
+

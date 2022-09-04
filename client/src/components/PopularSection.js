@@ -87,10 +87,10 @@ export default function PopularSection() {
               size={80}
             />
           )}
-          {/* <Rend finalQuery={popular}></Rend> */}
+
           <GridRenderer
-            height={windowSize > 800 ? 480 : 220}
-            width={windowSize > 800 ? 320 : 180}
+            height={windowSize > 700 ? 480 : 220}
+            width={windowSize > 700 ? 320 : 180}
             finalQuery={popular}
           ></GridRenderer>
 
@@ -110,9 +110,11 @@ export default function PopularSection() {
                 height: 60,
                 width: "96%",
 
-                borderBottom: "1px solid red",
                 display: "flex",
                 alignItems: "center",
+                paddingLeft: "2%",
+                paddingRight: "2%",
+                borderBottom: "1px solid dodgerblue",
                 justifyContent: "space-between",
               }}
             >

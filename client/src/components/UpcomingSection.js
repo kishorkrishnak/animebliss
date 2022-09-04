@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 
 import CarouselRenderer from "./CarouselRenderer";
 
-
 export default function UpcomingSection() {
   const [upcoming, setUpComing] = useState([]);
   useEffect(() => {
@@ -13,7 +12,12 @@ export default function UpcomingSection() {
       });
   }, []);
   return (
-    <section style={{marginTop:10}} className="section section-upcoming" id="upcoming">
+    <section
+      style={{ marginTop: 35 ,display:"flex",flexDirection:"column",justifyContent:"flex-start"}}
+      className="section section-upcoming"
+      id="upcoming"
+
+    >
       {upcoming.length > 0 && (
         <CarouselRenderer
           finalQuery={upcoming}
