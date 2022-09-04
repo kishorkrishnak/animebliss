@@ -31,7 +31,7 @@
   text-align: left;
   width: 98.7%;
 
-  height: 450px;
+ 
   border-radius: 10px;
 }
 
@@ -48,28 +48,12 @@
   opacity: 0.8;
   transition: 500ms ease;
 }
-.anime-descr {
-  color: white;
-  width: 50%;
-  text-align: justify;
-}
-.anime-info {
-  color: white;
-  display: flex;
-  gap: 20px;
-}
+
+
 @media screen and (max-width: 1000px) {
   .brand-title {
     display: none;
   }
 }
-.anime-info-div {
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-}
-.anime-title {
-  font-size: 4rem;
-  color: white;
-}
+
+

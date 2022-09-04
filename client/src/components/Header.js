@@ -39,12 +39,10 @@ export default function Header({ setIsSearching }) {
     fetch("https://api.enime.moe/popular")
       .then((response) => response.json())
       .then((data) => {
-        console.log(data.data);
         setFinalResults(data.data);
       }, []);
   }, []);
 
-  
   return (
     <header className="header">
       <Navbar setInput={setInput}></Navbar>

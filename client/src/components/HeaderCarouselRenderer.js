@@ -20,14 +20,11 @@ export default function CarouselRenderer({ finalResults }) {
       {finalResults.map((item) => (
         <HeaderCarouselCard
           key={uuidv4()}
-          epcount={10}
-          year={item.releaseDate}
+          epcount={item.currentEpisode}
+          year={item.year}
           duration={item.duration}
           title={item.title.english}
-          description={item.description.replaceAll(
-            /<\/?[\w\s]*>|<.+[\W]>/g,
-            ""
-          )}
+          description={item.description}
           cover={item.bannerImage}
         ></HeaderCarouselCard>
       ))}

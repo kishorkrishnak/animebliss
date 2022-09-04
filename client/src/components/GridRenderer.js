@@ -5,7 +5,7 @@ import GridCard from "./GridCard";
 
 setConfiguration({ breakpoints: [1100, 1428, 1500, 1700, 1800, 1900] });
 
-export default function GridRenderer({ finalQuery }) {
+export default function GridRenderer({ finalQuery, height, width }) {
   return (
     <Container fluid={true}>
       <Row justify="center" gutterWidth={1}>
@@ -15,6 +15,8 @@ export default function GridRenderer({ finalQuery }) {
               title={query.title.english}
               image={query.image}
               key={uuidv4()}
+              height={height}
+              width={width}
               score={query.score}
             ></GridCard>
           </Col>

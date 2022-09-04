@@ -1,10 +1,5 @@
-export default function GridCard({
-  title,
-  image,
-  stretchedA,
-  stretchedB,
-  episodeNum,
-}) {
+export default function GridCard({ title, image, height, width, episodeNum }) {
+  console.log(`Height: ${height} Width: ${width}`);
   return (
     <div
       className="gridcard-wrapper"
@@ -20,8 +15,8 @@ export default function GridCard({
         style={{
           borderRadius: "15px",
           backgroundImage: `url(${image})`,
-          height: "480px",
-          width: "320px",
+          height: height,
+          width: width,
 
           backgroundPosition: "center",
           backgroundSize: "cover",

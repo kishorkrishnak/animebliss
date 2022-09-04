@@ -12,7 +12,7 @@ export default function PopularSection() {
       });
   }, []);
   return (
-    <section className="section section-popular" style={{paddingBottom:150}}>
+    <section className="section section-popular" style={{ paddingBottom: 150 }}>
       {popular.length > 0 && (
         <>
           <h1
@@ -20,7 +20,11 @@ export default function PopularSection() {
           >
             Most Popular
           </h1>
-          <GridRenderer api="anilist" finalQuery={popular}></GridRenderer>
+          <GridRenderer
+            height={480}
+            width={320}
+            finalQuery={popular}
+          ></GridRenderer>
         </>
       )}
     </section>
