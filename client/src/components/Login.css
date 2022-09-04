@@ -4,6 +4,7 @@
   background-position: center;
   display: flex;
   justify-content: center;
+
   align-items: center;
   background-size: auto;
   background-image: url("../assets/images/login-background.webp");
@@ -62,8 +63,7 @@ form {
   background-color: #10141e;
   padding: 25px;
   color: white;
-  height: fit-content;
-  width: fit-content;
+
   display: flex;
   flex-direction: column;
   justify-content: center;

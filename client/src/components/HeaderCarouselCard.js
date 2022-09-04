@@ -21,7 +21,6 @@ export default function CarouselCard({
   useEffect(() => {
     window.addEventListener("resize", () => {
       setWindowSize(window.innerWidth);
-      console.log(windowSize);
     });
   });
   let regexeddescription = description.replaceAll(/<\/?[\w\s]*>|<.+[\W]>/g, "");
@@ -38,7 +37,7 @@ export default function CarouselCard({
         background: ` linear-gradient( rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.3) ),url(${cover}),center`,
         backgroundPosition: "center",
         backgroundSize: "cover",
-        height: windowSize < 766? 330:450
+        height: /* windowSize < 766 ? 330 :*/ 450,
       }}
     >
       <div
@@ -91,7 +90,7 @@ export default function CarouselCard({
           ></TextTruncate>
         </p>
       </div>
-      <a  className="btn btn-watchnow" href="/login">
+      <a className="btn btn-watchnow" href="/login">
         {" "}
         <PlayCircleOutlined /> Watch Now
       </a>

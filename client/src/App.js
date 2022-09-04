@@ -1,27 +1,25 @@
 import Login from "./components/Login";
 import "./App.css";
-import { useState } from "react";
-import RecentSection from "./components/RecentSection";
-import TrendingSection from "./components/TrendingSection";
-import Header from "./components/Header";
-import TopAiring from "./components/TopAiring";
-import PopularSection from "./components/PopularSection";
+
+import Wallpapers from "./components/Wallpapers";
+
+import Home from "./components/Home";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import SearchResults from "./components/SearchResults";
 function App() {
-  const [isSearching, setIsSearching] = useState(false);
   return (
     <div className="App">
-      <Header setIsSearching={setIsSearching}></Header>
-
-      {!isSearching && (
+      <BrowserRouter>
         <>
-          <TrendingSection></TrendingSection>
-          <RecentSection></RecentSection>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/wallpapers" element={<Wallpapers />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/search" element={<SearchResults />} />
 
-          <TopAiring></TopAiring>
-
-          <PopularSection></PopularSection>
+          </Routes>
         </>
-      )}
+      </BrowserRouter>
     </div>
   );
 }

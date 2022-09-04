@@ -44,7 +44,7 @@ export default function CarouselCard({
 
       <a
         onClick={(e) => {
-          e.preventDefault()
+          e.preventDefault();
           console.log("Anime title clicked");
         }}
         href="/"

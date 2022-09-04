@@ -1,5 +1,5 @@
-export default function GridCard({ title, image, height, width, episodeNum }) {
-  console.log(`Height: ${height} Width: ${width}`);
+export default function GridCard({ title, image, height, width, episodeNum,test }) {
+ 
   return (
     <div
       className="gridcard-wrapper"

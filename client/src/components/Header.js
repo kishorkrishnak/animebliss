@@ -1,36 +1,45 @@
 import { useEffect, useState } from "react";
 import "./Header.css";
+import { useNavigate } from "react-router-dom";
 
 import "./Navbar.css";
 import SearchResults from "./SearchResults";
 import React from "react";
 import HeaderCarouselRenderer from "./HeaderCarouselRenderer";
 import Navbar from "./Navbar";
-
-export default function Header({ setIsSearching }) {
-  const [searchResults, setSearchResults] = useState([]);
+export default function Header() {
   const [finalResults, setFinalResults] = useState([]);
   const [input, setInput] = useState("");
-  const [showSearchPage, setShowSearchPage] = useState(false);
-  const [queries, setQueries] = useState([
-    "death note",
-    "steins gate",
-
-    "When Will Ayumu Make His Move?",
-  ]);
-
-  useEffect(() => {
-    if (input !== "") {
-      console.log("calling request with " + input);
-      fetch("https://api.jikan.moe/v4/anime?q=" + input)
-        .then((response) => response.json())
-        .then((data) => {
-          setShowSearchPage(true);
-          setIsSearching(true);
-          setSearchResults([...data.data]);
+  const [searchResults, setSearchResults] = useState([]);
+  const [isSearching, setIsSearching] = useState(false);
+  const navigate = useNavigate();
+  const searchAnime = async () => {
+    return fetch("https://api.jikan.moe/v4/anime?q=" + input)
+      .then((response) => {
+        return response.json();
+      })
+      .then((data) => {
+        navigate("/search", {
+          state: { finalResults: [...data.data], input: input },
         });
+      });
+  };
+  useEffect(() => {
+    setIsSearching(true);
+    if (input !== "") {
+      searchAnime();
+
+      // fetch("https://api.jikan.moe/v4/anime?q=" + input)
+      //   .then((response) => response.json())
+      //   .then((data) => {
+      //     setIsSearching(true);
+      //     setSearchResults([...data.data]);
+
+      //     navigate("/search", {
+      //       state: { finalResults: searchResults, input: input },
+      //     });
+      //   });
     } else {
-      setShowSearchPage(false);
       setIsSearching(false);
     }
   }, [input]);
@@ -53,12 +62,12 @@ export default function Header({ setIsSearching }) {
           ></HeaderCarouselRenderer>
         )}
 
-        {showSearchPage && (
+        {/* {isSearching && (
           <SearchResults
             finalResults={searchResults}
             input={input}
           ></SearchResults>
-        )}
+        )} */}
       </section>
     </header>
   );

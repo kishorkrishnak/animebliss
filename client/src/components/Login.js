@@ -7,8 +7,9 @@ export default function Login() {
         <h1 className="heading">Animebliss</h1>
         <div className="login-desc">
           <h2>Watch Anime</h2>
-          <h2 className="login-desc-noads">No Ads</h2>
         </div>
+        <h2 className="login-desc-noads">No Ads</h2>
+
         <h2>Login</h2>
         <form action="">
           <div className="input-sep">

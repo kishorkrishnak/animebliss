@@ -3,6 +3,7 @@ import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import logo from "../assets/images/image.png";
 
+import { Link } from "react-router-dom";
 import { useState } from "react";
 export default function Navbar({ setInput }) {
   const [query, setQuery] = useState("death note");
@@ -10,6 +11,7 @@ export default function Navbar({ setInput }) {
   const [active, setActive] = useState("nav__menu");
   const [icon, setIcon] = useState("nav__toggler");
   const [value, setValue] = useState("");
+
   const navToggle = () => {
     if (active === "nav__menu") {
       setActive("nav__menu nav__active");
@@ -42,7 +44,7 @@ export default function Navbar({ setInput }) {
           }}
           onKeyDown={(e) => {
             if (e.key === "Enter") {
-              setInput(e.target.value)
+              setInput(e.target.value);
             }
           }}
           placeholder="Search for anime"
@@ -65,9 +67,9 @@ export default function Navbar({ setInput }) {
             </a>
           </li>
           <li className="nav__item">
-            <a href="/home" className="nav__link">
-              Genres
-            </a>
+            <Link to="/wallpapers" style={{ color: "white", font: "inherit" }}>
+              Wallpapers
+            </Link>
           </li>
 
           <li className="nav__item">
@@ -76,13 +78,17 @@ export default function Navbar({ setInput }) {
             </a>
           </li>
           <li className="nav__item">
-            <a href="/home" className="nav__link">
-              Random
-            </a>
+            <Link to="/login" style={{ color: "white", font: "inherit" }}>
+              Login
+            </Link>
           </li>
 
           <li className="nav__item">
-            <a href="/home" className="nav__link nav__link-signout">
+            <a
+            
+              href="/home"
+              className="nav__link nav__link-signout"
+            >
               Signout
             </a>
           </li>

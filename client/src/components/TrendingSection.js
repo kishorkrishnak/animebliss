@@ -12,11 +12,15 @@ export default function TrendingSection() {
       });
   }, []);
   return (
-    <section className="section section-trending" id="trending">
+    <section
+      className="section section-trending"
+      id="trending"
+      style={{ backgroundColor: "red" }}
+    >
       {trending.length > 0 && (
         <CarouselRenderer
           finalQuery={trending}
-          api="anilist"
+     
           rowTitle="Trending"
           isTrending={true}
         ></CarouselRenderer>

@@ -6,10 +6,10 @@ import CarouselRenderer from "./CarouselRenderer";
 export default function TopAiring() {
   const [airing, setAiring] = useState([]);
   useEffect(() => {
-    fetch("https://consumet-api.herokuapp.com/anime/gogoanime/top-airing")
+    fetch("https://api.jikan.moe/v4/top/anime?filter=airing")
       .then((response) => response.json())
       .then((data) => {
-        setAiring(data.results);
+        setAiring(data.data);
       });
   }, []);
   return (
@@ -18,10 +18,8 @@ export default function TopAiring() {
         <CarouselRenderer
           finalQuery={airing}
           rowTitle="Top Airing"
-          api="enime"
           stretchedA={true}
-          isAiring={true}
-          initialActiveIndex={4}
+          initialActiveIndex={3}
         ></CarouselRenderer>
       )}
     </section>

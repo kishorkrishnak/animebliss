@@ -51,14 +51,9 @@ export default function CarouselRenderer({
       >
         {finalQuery.map((query, index) => (
           <CarouselCard
-            title={
-              api === "enime" || api === "zoro"
-                ? query.title
-                : query.title.english
-            }
-            image={query.image}
+            title={query.title}
+            image={query.images.jpg.large_image_url}
             key={uuidv4()}
-            id={query.id}
             api={api}
             stretchedA={stretchedA}
             rowTitle={rowTitle}
