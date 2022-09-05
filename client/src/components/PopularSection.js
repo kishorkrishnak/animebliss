@@ -13,7 +13,7 @@ import {
   faArrowRightLong,
 } from "@fortawesome/free-solid-svg-icons";
 
-const override =  = {
+const override   = {
   position: "fixed",
   zIndex: 1,
   left: 0,
