@@ -32,7 +32,7 @@ button.rec-dot:focus {
 
 @media screen and (max-width: 768px) {
   .header-card {
-    height: 400px !important;
+    height: 350px !important;
   }
   .anime-description {
     font-size: 1.5rem;
