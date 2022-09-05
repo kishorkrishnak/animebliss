@@ -1,4 +1,6 @@
 import { useEffect,useState } from "react";
+import TextTruncate from "react-text-truncate";
+
 export default function CarouselCard({
   title,
   image,
