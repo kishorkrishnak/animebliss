@@ -13,7 +13,7 @@ export default function TopAiring() {
       });
   }, []);
   return (
-    <section className="section section-topairing" >
+    <section className="section section-topairing">
       {airing.length > 0 && (
         <CarouselRenderer
           finalQuery={airing}

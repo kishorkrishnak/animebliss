@@ -6,7 +6,6 @@ import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { toast } from "react-toastify";
-
 export default function Navbar() {
   const [query, setQuery] = useState("death note");
   const [input, setInput] = useState("");
@@ -96,7 +95,8 @@ export default function Navbar() {
               Wallpapers
             </Link>
           </li>
-
+<li>
+</li>
           <li className="nav__item">
             <a href="/" className="nav__link">
               Watchlist

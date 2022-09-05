@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import GridRenderer from "./GridRenderer.js";
+import GridRenderer from "./GridRenderer.jsx";
 import { Audio, ProgressBar } from "react-loader-spinner";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -12,7 +12,7 @@ import {
   faArrowRightLong,
 } from "@fortawesome/free-solid-svg-icons";
 
-const override   = {
+const override = {
   position: "fixed",
   zIndex: 1,
   left: 0,
@@ -25,21 +25,22 @@ const override   = {
   borderColor: "red",
 };
 export default function PopularSection() {
+  const nopreviouspageerror = () => toast.warning("You are on the first page!");
+  const nonextpageerror = () => toast.warning("You are on the last page!");
+  const [popular, setPopular] = useState([]);
+  const [currpage, setCurrpage] = useState(1);
   const [windowSize, setWindowSize] = useState(null);
-
+  const [loading, setLoading] = useState(false);
+  const [hasNextPage, setHasNextPage] = useState(true);
   useEffect(() => {
     window.addEventListener("resize", () => {
       setWindowSize(window.innerWidth);
     });
   });
-  const nopreviouspageerror = () => toast.warning("You are on the first page!");
-  const nonextpageerror = () => toast.warning("You are on the last page!");
 
-  const [popular, setPopular] = useState([]);
-  const [currpage, setCurrpage] = useState(1);
 
-  const [loading, setLoading] = useState(false);
-  const [hasNextPage, setHasNextPage] = useState(true);
+
+  
   useEffect(() => {
     setLoading((prev) => !prev);
 
@@ -127,8 +128,8 @@ export default function PopularSection() {
                 }}
                 style={{
                   fontSize: "1.8rem",
-                  outline:"none",
-                  border:"none",
+                  outline: "none",
+                  border: "none",
                   color: "white",
                   width: 150,
                   backgroundColor: "transparent",
@@ -149,8 +150,8 @@ export default function PopularSection() {
                   color: "white",
                   width: 150,
                   fontSize: "1.8rem",
-                  outline:"none",
-                  border:"none",
+                  outline: "none",
+                  border: "none",
                   backgroundColor: "transparent",
                 }}
               >

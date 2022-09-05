@@ -1,5 +1,8 @@
 import React from "react";
-
+import Trailer from "./Trailer";
+import { useState } from "react";
+import ModalVideo from "react-modal-video";
+import "react-modal-video/scss/modal-video.scss";
 export default function CarouselCard({
   title,
   image,
@@ -7,9 +10,23 @@ export default function CarouselCard({
   rowTitle,
   episodeNum,
   id,
+  trailerVideoId,
 }) {
+  const [isPlaying, setIsPlaying] = useState(false);
+  const playTrailer = () => {
+    setIsPlaying(true);
+  };
+  const [trailerId, setTrailerId] = useState(trailerVideoId);
   return (
-    
+    <>
+     <ModalVideo
+        style={{ background: "red" }}
+        channel="youtube"
+        autoplay
+        isOpen={isPlaying}
+        videoId={trailerId}
+        onClose={() => setIsPlaying(false)}
+      />
     <div
       className="animecard-wrapper"
       style={{
@@ -43,7 +60,7 @@ export default function CarouselCard({
       <a
         onClick={(e) => {
           e.preventDefault();
-          console.log("Anime title clicked");
+          playTrailer();
         }}
         href="/"
         className="anime-card-title"
@@ -51,6 +68,9 @@ export default function CarouselCard({
       >
         {title}
       </a>
+     
     </div>
+
+    </>
   );
 }

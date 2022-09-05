@@ -58,6 +58,9 @@ export default function CarouselRenderer({
             stretchedA={stretchedA}
             rowTitle={rowTitle}
             episodeNum={isRecent ? query.episode : 0}
+            trailerVideoId={
+              query.trailer !== null ? query.trailer.youtube_id : 0
+            }
           ></CarouselCard>
         ))}
       </Carousel>
