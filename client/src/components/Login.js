@@ -37,7 +37,7 @@ export default function Login() {
 
         <div className="newtodiv">
           <p>New to animebliss?</p>
-          <a style={{ color: "red" }} href="/signup" className="link-signup">
+          <a className='btn-login' style={{ color: "red" }} href="/signup" className="link-signup">
             Sign up now
           </a>
         </div>

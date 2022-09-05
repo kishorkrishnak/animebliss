@@ -42,6 +42,17 @@
   border-radius: 10px;
   font-size: 2rem;
 }
+.btn-section{
+  font-size: 1.5rem;
+  border: none;
+  color: dodgerblue;
+  border-bottom: 1px solid grey;
+  outline: none;
+  background:transparent;
+}
+.btn-section:hover{
+  color: white;
+}
 
 .btn-watchnow:hover {
   opacity: 0.8;

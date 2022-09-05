@@ -13,7 +13,7 @@ export default function UpcomingSection() {
   }, []);
   return (
     <section
-      style={{ marginTop: 35 ,display:"flex",flexDirection:"column",justifyContent:"flex-start"}}
+      style={{ marginTop: 25 ,display:"flex",flexDirection:"column",justifyContent:"flex-start"}}
       className="section section-upcoming"
       id="upcoming"
 

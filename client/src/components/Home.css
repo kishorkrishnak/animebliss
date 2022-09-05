@@ -1,12 +1,7 @@
 html {
   scroll-behavior: smooth;
 }
-.section-recent,
-.section-popular,
-.section-topairing,
-.section-trending {
-  margin-top: 25px;
-}
+
 * {
   box-sizing: border-box;
 }

@@ -30,7 +30,7 @@ body {
   outline: none;
   border: none;
 }
-button {
+.btn-login {
   width: 330px;
   background-color: #fc4747;
   color: white;

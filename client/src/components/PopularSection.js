@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import GridRenderer from "./GridRenderer.js";
 import { Audio, ProgressBar } from "react-loader-spinner";
-import Rend from "./Rend.js";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { CSSProperties } from "react";
@@ -90,7 +89,7 @@ export default function PopularSection() {
 
           <GridRenderer
             height={windowSize > 700 ? 350 : 220}
-            width={windowSize > 700 ? 280 : 140}
+            width={windowSize > 700 ? 280 : 180}
             finalQuery={popular}
           ></GridRenderer>
 
@@ -128,7 +127,8 @@ export default function PopularSection() {
                 }}
                 style={{
                   fontSize: "1.8rem",
-
+                  outline:"none",
+                  border:"none",
                   color: "white",
                   width: 150,
                   backgroundColor: "transparent",
@@ -149,7 +149,8 @@ export default function PopularSection() {
                   color: "white",
                   width: 150,
                   fontSize: "1.8rem",
-
+                  outline:"none",
+                  border:"none",
                   backgroundColor: "transparent",
                 }}
               >
