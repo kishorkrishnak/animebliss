@@ -33,18 +33,14 @@ button.rec-dot:focus {
   background-color: #fc4747;
 }
 
-
-
 @media screen and (max-width: 768px) {
-  .header-card{
-    height:350px !important;
+  .header-card {
+    height: 420px !important;
   }
-  .anime-description{
-   font-size: 1.5rem;
-
+  .anime-description {
+    font-size: 1.5rem;
   }
 }
-
 
 @media screen and (max-width: 1770px) {
   .animecard-wrapper {
@@ -79,8 +75,6 @@ button.rec-dot:focus {
   }
 
   .animecard-wrapper div {
-    transform: scale(0.72,0.89);
+    transform: scale(0.72, 0.89);
   }
 }
-
-

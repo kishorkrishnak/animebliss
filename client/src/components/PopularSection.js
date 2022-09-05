@@ -13,7 +13,7 @@ import {
   faArrowRightLong,
 } from "@fortawesome/free-solid-svg-icons";
 
-const override = (CSSProperties = {
+const override =  = {
   position: "fixed",
   zIndex: 1,
   left: 0,
@@ -24,7 +24,7 @@ const override = (CSSProperties = {
   margin: "auto",
 
   borderColor: "red",
-});
+};
 export default function PopularSection() {
   const [windowSize, setWindowSize] = useState(null);
 
@@ -89,8 +89,8 @@ export default function PopularSection() {
           )}
 
           <GridRenderer
-            height={windowSize > 700 ? 480 : 220}
-            width={windowSize > 700 ? 320 : 180}
+            height={windowSize > 700 ? 350 : 220}
+            width={windowSize > 700 ? 280 : 140}
             finalQuery={popular}
           ></GridRenderer>
 

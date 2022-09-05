@@ -23,7 +23,7 @@ export default function CarouselRenderer({ finalResults }) {
       enableAutoPlay={true}
       showArrows={false}
       breakPoints={breakPoints}
-      pagination = {windowSize > 800 ? true:false}
+      pagination={windowSize > 800 ? true : false}
     >
       {finalResults.map((item) => (
         <HeaderCarouselCard
