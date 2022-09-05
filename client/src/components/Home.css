@@ -12,10 +12,7 @@ body {
   max-width: 100vw;
 }
 
-.section-favorite,
-.section-topairing {
-  margin-top: 10px;
-}
+
 
 button.rec-dot {
   background-color: #3f1e26;
@@ -35,7 +32,7 @@ button.rec-dot:focus {
 
 @media screen and (max-width: 768px) {
   .header-card {
-    height: 420px !important;
+    height: 400px !important;
   }
   .anime-description {
     font-size: 1.5rem;

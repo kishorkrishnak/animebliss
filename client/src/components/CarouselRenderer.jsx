@@ -25,7 +25,7 @@ export default function CarouselRenderer({
   const breakPoints = [
     { width: 1, itemsToShow: isTrending ? 2 : 3 },
 
-    { width: 590, itemsToShow: isTrending ? 2 : 4 },
+    { width: 670, itemsToShow: isTrending ? 3 : 4 },
 
     { width: 950, itemsToShow: isTrending ? 3 : 5 },
 
@@ -47,6 +47,8 @@ export default function CarouselRenderer({
       <Carousel
         initialActiveIndex={initialActiveIndex}
         enableTilt={true}
+        enableAutoPlay={true}
+        autoPlaySpeed={6000}
         pagination={windowSize < 800 ? false : true}
         showArrows={false}
         breakPoints={breakPoints}

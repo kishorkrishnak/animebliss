@@ -15,7 +15,7 @@ export default function UpcomingSection() {
   return (
     <section
       style={{
-        marginTop: 25,
+        marginTop: 30,
         display: "flex",
         flexDirection: "column",
         justifyContent: "flex-start",
@@ -35,7 +35,7 @@ export default function UpcomingSection() {
       <TrailerPlayer
         setIsPlaying={setIsPlaying}
         isPlaying={isPlaying}
-        trailerId = {trailerId}
+        trailerId={trailerId}
       ></TrailerPlayer>
     </section>
   );

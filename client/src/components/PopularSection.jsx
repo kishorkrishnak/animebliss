@@ -69,7 +69,6 @@ if (windowSize > 1500) return [500, 320];
       className="section section-popular "
       style={{
         paddingBottom: 40,
-        height: "fit-content",
       }}
     >
       <ToastContainer />
