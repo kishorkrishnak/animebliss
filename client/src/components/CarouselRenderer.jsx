@@ -12,6 +12,8 @@ export default function CarouselRenderer({
   api,
   stretchedA,
   initialActiveIndex,
+  setIsPlaying
+  ,setTrailerId
 }) {
   const [windowSize, setWindowSize] = useState(null);
 
@@ -51,6 +53,9 @@ export default function CarouselRenderer({
       >
         {finalQuery.map((query, index) => (
           <CarouselCard
+          setTrailerId = {setTrailerId}
+          setIsPlaying = {setIsPlaying}
+          
             title={query.title}
             image={query.images.jpg.large_image_url}
             key={uuidv4()}

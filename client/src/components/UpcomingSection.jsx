@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
-
 import CarouselRenderer from "./CarouselRenderer";
+import ModalVideo from "react-modal-video";
 
 export default function UpcomingSection() {
+  const [trailerId,setTrailerId] = useState("")
+  const [isPlaying,setIsPlaying] = useState(false)
   const [upcoming, setUpComing] = useState([]);
   useEffect(() => {
     fetch("https://api.jikan.moe/v4/top/anime?filter=upcoming")
@@ -27,9 +29,18 @@ export default function UpcomingSection() {
           finalQuery={upcoming}
           rowTitle="Upcoming"
           isTrending={true}
-          
+          setIsPlaying={setIsPlaying}
+          setTrailerId = {setTrailerId}
         ></CarouselRenderer>
       )}
+
+<ModalVideo
+        channel="youtube"
+        autoplay
+        isOpen={isPlaying}
+        videoId={trailerId}
+        onClose={() => setIsPlaying(false)}
+      />
     </section>
   );
 }
