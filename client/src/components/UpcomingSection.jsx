@@ -1,10 +1,9 @@
 import { useEffect, useState } from "react";
 import CarouselRenderer from "./CarouselRenderer";
-import ModalVideo from "react-modal-video";
-
+import TrailerPlayer from "./TrailerPlayer";
 export default function UpcomingSection() {
-  const [trailerId,setTrailerId] = useState("")
-  const [isPlaying,setIsPlaying] = useState(false)
+  const [trailerId, setTrailerId] = useState("");
+  const [isPlaying, setIsPlaying] = useState(false);
   const [upcoming, setUpComing] = useState([]);
   useEffect(() => {
     fetch("https://api.jikan.moe/v4/top/anime?filter=upcoming")
@@ -30,17 +29,14 @@ export default function UpcomingSection() {
           rowTitle="Upcoming"
           isTrending={true}
           setIsPlaying={setIsPlaying}
-          setTrailerId = {setTrailerId}
+          setTrailerId={setTrailerId}
         ></CarouselRenderer>
       )}
-
-<ModalVideo
-        channel="youtube"
-        autoplay
-        isOpen={isPlaying}
-        videoId={trailerId}
-        onClose={() => setIsPlaying(false)}
-      />
+      <TrailerPlayer
+        setIsPlaying={setIsPlaying}
+        isPlaying={isPlaying}
+        trailerId = {trailerId}
+      ></TrailerPlayer>
     </section>
   );
 }

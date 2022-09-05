@@ -1,15 +1,35 @@
-import React from "react";
+import { useEffect ,useState} from "react";
 
-export default function CarouselCard({
+export default function UpcomingCard({
   title,
   image,
 
   rowTitle,
   episodeNum,
+  trailerVideoId,
+  setIsPlaying,
+  setTrailerId,
   id,
 }) {
+  const [windowSize,setWindowSize] = useState(window.innerWidth)
+  useEffect(() => {
+    window.addEventListener("resize", () => {
+      setWindowSize(window.innerWidth);
+      console.log(windowSize);
+    });
+  });
+
+  const calculateSize = (windowSize) =>{
+    if(windowSize > 1850) return [240,430]
+      else  if (windowSize>1300 && windowSize < 1850)return [210,400]
+  }
   return (
     <div
+    onClick={(e) => {
+      e.preventDefault();
+      setTrailerId(trailerVideoId);
+      setIsPlaying(true);
+    }}
       className="animecard-wrapper"
       style={{
         display: "flex",
@@ -26,8 +46,8 @@ export default function CarouselCard({
         style={{
           borderRadius: "10px",
           backgroundImage: `url(${image})`,
-          height: "240px",
-          width: "430px",
+          height:calculateSize(windowSize)[0],
+          width: calculateSize(windowSize)[1],
           backgroundPosition: "center",
           backgroundSize: "cover",
         }}

@@ -1,3 +1,4 @@
+import { useState } from "react";
 export default function GridCard({
   title,
   image,
@@ -5,8 +6,10 @@ export default function GridCard({
   width,
   episodeNum,
   year,
-  score
+  score,
+  results,
 }) {
+  const [data, setData] = useState(results);
   return (
     <div
       className="gridcard-wrapper"

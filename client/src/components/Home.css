@@ -42,8 +42,7 @@ button.rec-dot:focus {
   }
 }
 
-
-@media screen and (max-width: 1770px) {
+/* @media screen and (max-width: 1770px) {
   .animecard-wrapper {
     transform: scale(0.9);
     transition: 5ms ease-in;
@@ -52,7 +51,7 @@ button.rec-dot:focus {
     transform: scale(0.9);
     transition: 2ms ease;
   }
-}
+} */
 
 @media screen and (max-width: 1450px) {
   .animecard-wrapper {
@@ -79,3 +78,6 @@ button.rec-dot:focus {
     transform: scale(0.72, 0.89);
   }
 }
+
+
+

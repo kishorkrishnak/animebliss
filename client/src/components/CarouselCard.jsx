@@ -1,26 +1,16 @@
 import React from "react";
-import Trailer from "./Trailer";
-import { useState } from "react";
-import ModalVideo from "react-modal-video";
 export default function CarouselCard({
   title,
   image,
-  stretchedA,
   rowTitle,
   episodeNum,
   id,
-  trailerVideoId,
-  setIsPlaying,
-  setTrailerId,
+
 }) {
   return (
     <>
       <div
-        onClick={(e) => {
-          e.preventDefault();
-          setTrailerId(trailerVideoId);
-          setIsPlaying(true);
-        }}
+       
         className="animecard-wrapper"
         style={{
           display: "flex",
@@ -37,8 +27,8 @@ export default function CarouselCard({
           style={{
             borderRadius: "10px",
             backgroundImage: `url(${image})`,
-            height: stretchedA ? "340px" : "240px",
-            width: stretchedA ? "230px" : "430px",
+            height: "340px",
+            width: "230px",
             backgroundPosition: "center",
             backgroundSize: "cover",
           }}

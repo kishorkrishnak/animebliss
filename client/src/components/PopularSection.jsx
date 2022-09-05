@@ -1,10 +1,8 @@
 import { useEffect, useState } from "react";
 import GridRenderer from "./GridRenderer.jsx";
-import { Audio, ProgressBar } from "react-loader-spinner";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { CSSProperties } from "react";
-import RingLoader from "react-spinners/RingLoader";
+import MoonLoader from "react-spinners/MoonLoader";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import {
@@ -29,23 +27,24 @@ export default function PopularSection() {
   const nonextpageerror = () => toast.warning("You are on the last page!");
   const [popular, setPopular] = useState([]);
   const [currpage, setCurrpage] = useState(1);
-  const [windowSize, setWindowSize] = useState(null);
+  const [windowSize, setWindowSize] = useState(window.innerWidth);
   const [loading, setLoading] = useState(false);
   const [hasNextPage, setHasNextPage] = useState(true);
   useEffect(() => {
     window.addEventListener("resize", () => {
       setWindowSize(window.innerWidth);
+      console.log(window.innerWidth);
+
     });
   });
 
-
-
-  
   useEffect(() => {
     setLoading((prev) => !prev);
 
     fetch(
-      "https://consumet-api.herokuapp.com/meta/anilist/popular?page=" + currpage
+      "https://consumet-api.herokuapp.com/meta/anilist/popular?page=" +
+        currpage +
+        "&perPage=16"
     )
       .then((response) => response.json())
       .then((data) => {
@@ -56,11 +55,15 @@ export default function PopularSection() {
         }
 
         setPopular(data.results);
-
         setLoading((prev) => !prev);
       });
   }, [currpage]);
+  const calculateSize = (windowSize) => {
+if (windowSize > 1500) return [500, 320];
 
+    else if(windowSize <1500 && windowSize > 1168)return [250, 210];
+      else return [220,180]
+  };
   return (
     <section
       className="section section-popular "
@@ -80,8 +83,8 @@ export default function PopularSection() {
           </h1>
 
           {loading && (
-            <RingLoader
-              color={"rgb(192, 202, 51)"}
+            <MoonLoader
+              color={"dodgerblue"}
               loading={loading}
               cssOverride={override}
               size={80}
@@ -89,8 +92,8 @@ export default function PopularSection() {
           )}
 
           <GridRenderer
-            height={windowSize > 700 ? 350 : 220}
-            width={windowSize > 700 ? 280 : 180}
+            height={calculateSize(windowSize)[0]}
+            width={calculateSize(windowSize)[1]}
             finalQuery={popular}
           ></GridRenderer>
 
