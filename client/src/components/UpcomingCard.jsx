@@ -1,4 +1,4 @@
-import { useEffect ,useState} from "react";
+import { useEffect, useState } from "react";
 
 export default function UpcomingCard({
   title,
@@ -11,7 +11,7 @@ export default function UpcomingCard({
   setTrailerId,
   id,
 }) {
-  const [windowSize,setWindowSize] = useState(window.innerWidth)
+  const [windowSize, setWindowSize] = useState(window.innerWidth);
   useEffect(() => {
     window.addEventListener("resize", () => {
       setWindowSize(window.innerWidth);
@@ -19,17 +19,18 @@ export default function UpcomingCard({
     });
   });
 
-  const calculateSize = (windowSize) =>{
-    if(windowSize > 1850) return [240,430]
-      else  if (windowSize>1300 && windowSize < 1850)return [210,400]
-  }
+  const calculateSize = (windowSize) => {
+    if (windowSize > 1850) return [240, 430];
+    else if (windowSize > 1700 && windowSize < 1850) return [210, 400];
+    else return [130, 225];
+  };
   return (
     <div
-    onClick={(e) => {
-      e.preventDefault();
-      setTrailerId(trailerVideoId);
-      setIsPlaying(true);
-    }}
+      onClick={(e) => {
+        e.preventDefault();
+        setTrailerId(trailerVideoId);
+        setIsPlaying(true);
+      }}
       className="animecard-wrapper"
       style={{
         display: "flex",
@@ -46,7 +47,7 @@ export default function UpcomingCard({
         style={{
           borderRadius: "10px",
           backgroundImage: `url(${image})`,
-          height:calculateSize(windowSize)[0],
+          height: calculateSize(windowSize)[0],
           width: calculateSize(windowSize)[1],
           backgroundPosition: "center",
           backgroundSize: "cover",
