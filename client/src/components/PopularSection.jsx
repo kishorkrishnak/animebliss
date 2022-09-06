@@ -73,6 +73,7 @@ export default function PopularSection() {
 
         setPopular(data.results);
         setLoading((prev) => !prev);
+        document.querySelector(".section-popular").scrollIntoView()
       });
   }, [currpage]);
 
@@ -124,7 +125,8 @@ export default function PopularSection() {
                 alignItems: "center",
                 paddingLeft: "2%",
                 paddingRight: "2%",
-                borderBottom: "1px solid dodgerblue",
+                marginTop:20,
+                borderTop: "1px solid dodgerblue",
                 justifyContent: "space-between",
               }}
             >
@@ -148,20 +150,21 @@ export default function PopularSection() {
                 }}
               >
                 <FontAwesomeIcon icon={faArrowLeftLong}></FontAwesomeIcon>{" "}
-                &nbsp; Previous
+                &nbsp;Previous
               </button>
 
-              <div style={{ display: "flex", gap: 40 }}>
+              <div style={{ display: "flex", gap: 35,flexWrap:"wrap" ,justifyContent:"center"}} className="pageindex">
                 {pageNumbers.map((pageNumber) => (
-                  <div
+                  <button
+                  className="btn-pageindex"
                     key={uuidv4()}
                     onClick={() => {
                       setCurrpage(pageNumber);
                     }}
-                    style={{ color: "white", display: "flex" }}
+                    style={{ border:"none",padding:"4px 8px",borderRadius:5,color: "white", background:"none",fontSize:14,backgroundColor:currpage === pageNumber?"rgb(244, 67, 54)":"none" }}
                   >
                     {pageNumber}
-                  </div>
+                  </button>
                 ))}
               </div>
 
@@ -185,7 +188,7 @@ export default function PopularSection() {
                   backgroundColor: "transparent",
                 }}
               >
-                Next&nbsp;{" "}
+             Next&nbsp;
                 <FontAwesomeIcon icon={faArrowRightLong}></FontAwesomeIcon>
               </button>
             </div>

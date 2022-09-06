@@ -40,6 +40,30 @@ button.rec-dot:focus {
     font-size: 1.5rem;
   }
 }
+@media screen and (max-width: 1000px) {
+.pageindex{
+  gap: 1px !important;
+  font-size: 2rem !important;
+  margin-top: 20px;
+}
+
+.pagination{
+  margin-top: 5px;
+}
+.previousPageButton *{
+  order: 1;
+}
+.nextPageButton,.previousPageButton{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.pageindex button{
+  font-size: 1.7rem !important;
+  
+}
+}
 
 /* @media screen and (max-width: 1770px) {
   .animecard-wrapper {
@@ -80,3 +104,13 @@ button.rec-dot:focus {
 
 
  */
+
+ .btn-index{
+  cursor: pointer;
+ }
+ .btn-pageindex:hover{
+  border: 1px solid dodgerblue !important;
+  
+
+ }
+
