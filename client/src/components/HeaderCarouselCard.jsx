@@ -55,7 +55,7 @@ export default function CarouselCard({
         <h1
           className="anime-title"
           style={{
-            fontSize: windowSize < 766 ? "3rem" : "4rem",
+            fontSize: windowSize < 766 ? "2.5rem" : "4rem",
             color: "white",
           }}
         >
@@ -84,6 +84,8 @@ export default function CarouselCard({
           style={{
             textAlign: "justify",
             color: "white",
+            fontSize:windowSize <766 ? "1.4rem" : "",
+
             width: windowSize < 766 ? "100%" : "50%",
           }}
         >
