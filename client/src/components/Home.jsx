@@ -12,7 +12,7 @@ export default function Home() {
     <>
       <Header></Header>
       <UpcomingSection></UpcomingSection>
-      <RecentSection></RecentSection>
+      {/* <RecentSection></RecentSection> */}
       <TrendingSection></TrendingSection>
       <PopularSection></PopularSection>
 

@@ -4,6 +4,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import MoonLoader from "react-spinners/MoonLoader";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { v4 as uuidv4 } from "uuid";
 
 import {
   faArrowLeftLong,
@@ -29,15 +30,38 @@ export default function PopularSection() {
   const [currpage, setCurrpage] = useState(1);
   const [loading, setLoading] = useState(false);
   const [hasNextPage, setHasNextPage] = useState(true);
+  const [pageNumbers, setPageNumbers] = useState([
+    1, 2, 3, 4, 5, 6, 7, 8, 9, 10,
+  ]);
+  const updatePageNumberButtons = (e) => {
+    if (e.target.classList.contains("nextPageButton")) {
+      if (currpage % 10 === 0) {
+        let temp = [];
+        for (let i = 1; i <= 10; i++) {
+          temp.push(currpage + i);
+        }
 
+        setPageNumbers(temp);
+      }
+    }
 
+    if (e.target.classList.contains("previousPageButton")) {
+      if (currpage % 10 === 1) {
+        let temp = [];
+        for (let i = 10; i >= 1; i--) {
+          temp.push(currpage - i);
+        }
+        setPageNumbers(temp);
+      }
+    }
+  };
   useEffect(() => {
     setLoading((prev) => !prev);
 
     fetch(
       "https://consumet-api.herokuapp.com/meta/anilist/popular?page=" +
         currpage +
-        "&perPage=16"
+        "&perPage=18"
     )
       .then((response) => response.json())
       .then((data) => {
@@ -78,10 +102,7 @@ export default function PopularSection() {
             />
           )}
 
-          <GridRenderer
-          
-            finalQuery={popular}
-          ></GridRenderer>
+          <GridRenderer finalQuery={popular}></GridRenderer>
 
           <div
             className="pagination-wrapper"
@@ -108,15 +129,17 @@ export default function PopularSection() {
               }}
             >
               <button
-                onClick={() => {
+                className="previousPageButton"
+                onClick={(e) => {
                   if (currpage <= 1) {
                     nopreviouspageerror();
                   } else {
+                    updatePageNumberButtons(e);
                     setCurrpage((prev) => prev - 1);
                   }
                 }}
                 style={{
-                  fontSize: "1.8rem",
+                  fontSize: "15px",
                   outline: "none",
                   border: "none",
                   color: "white",
@@ -127,9 +150,26 @@ export default function PopularSection() {
                 <FontAwesomeIcon icon={faArrowLeftLong}></FontAwesomeIcon>{" "}
                 &nbsp; Previous
               </button>
+
+              <div style={{ display: "flex", gap: 40 }}>
+                {pageNumbers.map((pageNumber) => (
+                  <div
+                    key={uuidv4()}
+                    onClick={() => {
+                      setCurrpage(pageNumber);
+                    }}
+                    style={{ color: "white", display: "flex" }}
+                  >
+                    {pageNumber}
+                  </div>
+                ))}
+              </div>
+
               <button
-                onClick={() => {
+                className="nextPageButton"
+                onClick={(e) => {
                   if (hasNextPage) {
+                    updatePageNumberButtons(e);
                     setCurrpage((curr) => curr + 1);
                   } else {
                     nonextpageerror.error();
@@ -138,15 +178,15 @@ export default function PopularSection() {
                 style={{
                   color: "white",
                   width: 150,
-                  background:"red",
-                  fontSize: "1.8rem",
+                  background: "red",
+                  fontSize: "15px",
                   outline: "none",
                   border: "none",
                   backgroundColor: "transparent",
                 }}
               >
                 Next&nbsp;{" "}
-                <FontAwesomeIcon  icon={faArrowRightLong}></FontAwesomeIcon>
+                <FontAwesomeIcon icon={faArrowRightLong}></FontAwesomeIcon>
               </button>
             </div>
           </div>
