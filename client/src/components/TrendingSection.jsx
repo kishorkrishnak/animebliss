@@ -12,10 +12,7 @@ export default function TrendingSection() {
       });
   }, []);
   return (
-    <section
-      className="section section-trending"
-      id="trending"
-    >
+    <section className="section section-trending" id="trending">
       {trending.length > 0 && (
         <CarouselRenderer
           finalQuery={trending}
