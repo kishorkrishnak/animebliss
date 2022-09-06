@@ -15,8 +15,7 @@ export default function CarouselCard({
     else if (windowSize > 1300 && windowSize < 1600) return [200, 310];
     else if (windowSize > 800 && windowSize < 1300) return [180, 270];
     else if (windowSize > 450 && windowSize < 800) return [130, 225];
-
-    else return [130, 200];
+    else return [100, 190]; //very small displays < 400px
   };
   const [windowSize, setWindowSize] = useState(window.innerWidth);
   useEffect(() => {
@@ -62,10 +61,7 @@ export default function CarouselCard({
           className="anime-card-title"
           style={{ color: "white", fontWeight: "lighter" }}
         >
-         <TextTruncate text={title}
-          
-            line={2}
-          ></TextTruncate>
+          <TextTruncate text={title} line={2}></TextTruncate>
         </a>
       </div>
     </>
