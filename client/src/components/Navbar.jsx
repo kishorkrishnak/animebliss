@@ -8,7 +8,18 @@ import { useState, useEffect } from "react";
 import { toast } from "react-toastify";
 export default function Navbar() {
   const [input, setInput] = useState("");
-
+  const calculateSize = (windowSize) => {
+    if (windowSize > 450) return 330;
+    else if(windowSize>380 && windowSize <450)return 230
+    else return 200
+  };
+  const [windowSize, setWindowSize] = useState(window.innerWidth);
+  useEffect(() => {
+    window.addEventListener("resize", () => {
+      setWindowSize(window.innerWidth);
+      console.log(windowSize);
+    });
+  });
   const navigate = useNavigate();
   const searchAnime = async () => {
     return fetch("https://api.jikan.moe/v4/anime?q=" + input)
@@ -68,6 +79,7 @@ export default function Navbar() {
               setInput(e.target.value);
             }
           }}
+          style={{ width: calculateSize(windowSize) }}
           placeholder="Search for anime"
           className="searchbar"
           type="text"

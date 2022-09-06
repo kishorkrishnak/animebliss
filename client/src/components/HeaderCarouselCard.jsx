@@ -41,7 +41,7 @@ export default function CarouselCard({
             : ` linear-gradient( rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.3) ),url(${coversmall}),center`,
         backgroundPosition: "center",
         backgroundSize: "cover",
-        height: /* windowSize < 766 ? 330 :*/ 450,
+        height: /* windowSizne < 766 ? 330 :*/ 450,
       }}
     >
       <div

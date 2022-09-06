@@ -11,11 +11,15 @@ export default function CarouselCard({
 }) {
   const calculateSize = (windowSize) => {
     if (windowSize > 1700) return [340, 230];
-    else if (windowSize > 1600 && windowSize < 1850) return [230, 360];
+    else if (windowSize > 1600 && windowSize < 1700) return [230, 360];
     else if (windowSize > 1300 && windowSize < 1600) return [200, 310];
-    else if (windowSize > 800 && windowSize < 1300) return [180, 270];
-    else if (windowSize > 450 && windowSize < 800) return [130, 225];
-    else return [100, 190]; //very small displays < 400px
+    else if (windowSize >= 800 && windowSize < 1300) return [180, 270];
+    else if (windowSize >= 475 && windowSize < 800) return [130, 225];
+    else if (windowSize >= 440 && windowSize < 475) return [130, 210];
+    else if (windowSize >= 420 && windowSize < 440) return [130, 185];
+    else if (windowSize >= 390 && windowSize < 420) return [110, 175];
+    else if (windowSize >= 360 && windowSize < 390) return [110, 165];
+    else return [90, 150];
   };
   const [windowSize, setWindowSize] = useState(window.innerWidth);
   useEffect(() => {

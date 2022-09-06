@@ -23,7 +23,6 @@ a {
   display: flex;
   align-items: center;
   justify-content: center;
-
   padding-right: 25px;
   height: 65px;
   padding-left: 25px;
@@ -126,7 +125,6 @@ a {
   padding: 10px;
   border-radius: 0.4em;
 
-  width: 330px;
   border: none;
   font-size: 1.5rem;
   color: #9aa2ae;

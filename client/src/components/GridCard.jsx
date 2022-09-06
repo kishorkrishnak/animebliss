@@ -11,9 +11,16 @@ export default function GridCard({
 
   const calculateSize = (windowSize) => {
     if (windowSize > 1500) return [380, 280];
-    else if (windowSize < 1500 && windowSize > 1168) return [250, 210];
-    else if (windowSize > 350 && windowSize < 800) return [250, 225];
-    else return [250, 200];
+    else if (windowSize > 1168 && windowSize < 1500) return [250, 210];
+    else if (windowSize > 450 && windowSize < 1168) return [250, 225];
+    else if (windowSize > 380 && windowSize < 450) return [230, 175];
+    else if (windowSize > 360 && windowSize < 380) return [230, 165];
+    else if (windowSize >= 475 && windowSize < 1168) return [230, 225];
+    else if (windowSize >= 440 && windowSize < 475) return [230, 210];
+    else if (windowSize >= 420 && windowSize < 440) return [225, 185];
+    else if (windowSize >= 390 && windowSize < 420) return [225, 175];
+    else if (windowSize >= 360 && windowSize < 390) return [220, 165];
+    else return [230, 150];
   };
   useEffect(() => {
     window.addEventListener("resize", () => {
