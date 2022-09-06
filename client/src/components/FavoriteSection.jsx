@@ -17,7 +17,6 @@ export default function FavoriteSection() {
         <CarouselRenderer
           finalQuery={favorite}
           rowTitle="Favorite"
-  
           stretchedA={true}
         ></CarouselRenderer>
       )}

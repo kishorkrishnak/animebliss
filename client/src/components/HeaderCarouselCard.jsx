@@ -15,8 +15,9 @@ export default function CarouselCard({
   year,
   description,
   epcount,
+  coversmall,
 }) {
-  const [windowSize, setWindowSize] = useState(null);
+  const [windowSize, setWindowSize] = useState(window.innerWidth);
 
   useEffect(() => {
     window.addEventListener("resize", () => {
@@ -34,7 +35,10 @@ export default function CarouselCard({
     <div
       className="header-card"
       style={{
-        background: ` linear-gradient( rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.3) ),url(${cover}),center`,
+        background:
+          windowSize > 800
+            ? ` linear-gradient( rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.3) ),url(${cover}),center`
+            : ` linear-gradient( rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.3) ),url(${coversmall}),center`,
         backgroundPosition: "center",
         backgroundSize: "cover",
         height: /* windowSize < 766 ? 330 :*/ 450,

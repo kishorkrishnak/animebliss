@@ -27,11 +27,10 @@ export default function CarouselRenderer({
 
     { width: 670, itemsToShow: isTrending ? 3 : 3 },
 
-    { width: 950, itemsToShow: isTrending ? 3 : 3},
+    { width: 950, itemsToShow: isTrending ? 3 : 3 },
 
     { width: 1200, itemsToShow: isTrending ? 4 : 4 },
     { width: 1673, itemsToShow: isTrending ? 4 : 7 },
-
   ];
 
   return (
@@ -60,15 +59,12 @@ export default function CarouselRenderer({
             <CarouselCard
               setTrailerId={setTrailerId}
               setIsPlaying={setIsPlaying}
-              title={query.title}
-              image={query.images.jpg.large_image_url}
+              title={query.title.english}
+              image={query.image}
               key={uuidv4()}
-              api={api}
+              rating={query.rating}
               rowTitle={rowTitle}
               episodeNum={isRecent ? query.episode : 0}
-              trailerVideoId={
-                query.trailer !== null ? query.trailer.youtube_id : 0
-              }
             ></CarouselCard>
           ) : (
             <UpcomingCard

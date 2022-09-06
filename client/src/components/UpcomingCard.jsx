@@ -21,11 +21,12 @@ export default function UpcomingCard({
 
   const calculateSize = (windowSize) => {
     if (windowSize > 1750) return [240, 430];
-    else if (windowSize > 1600 && windowSize < 1750) return [230, 360];
-    else if(windowSize >1300&& windowSize <1600) return [200, 310];
-    else if(windowSize >800 && windowSize <1300) return [180, 270];
-    
-    else  return [130, 225];
+    else if (windowSize > 1600 && windowSize < 1850) return [230, 360];
+    else if (windowSize > 1300 && windowSize < 1600) return [200, 310];
+    else if (windowSize > 800 && windowSize < 1300) return [180, 270];
+    else if (windowSize > 350 && windowSize < 800) return [130, 225];
+
+    else return [130, 200];
   };
   return (
     <div
@@ -72,10 +73,7 @@ export default function UpcomingCard({
         className="anime-card-title"
         style={{ color: "white", fontWeight: "lighter" }}
       >
-        <TextTruncate
-            text={title}
-            line={2}
-          ></TextTruncate>
+        <TextTruncate text={title} line={2}></TextTruncate>
       </a>
     </div>
   );

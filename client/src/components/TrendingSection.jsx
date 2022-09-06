@@ -15,14 +15,12 @@ export default function TrendingSection() {
     <section
       className="section section-trending"
       id="trending"
-      style={{ backgroundColor: "red" }}
     >
       {trending.length > 0 && (
         <CarouselRenderer
           finalQuery={trending}
-     
+          stretchedA={true}
           rowTitle="Trending"
-          isTrending={true}
         ></CarouselRenderer>
       )}
     </section>

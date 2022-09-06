@@ -2,11 +2,16 @@ import GridRenderer from "./GridRenderer";
 import { Container, Row, Col } from "react-grid-system";
 import GridCard from "./GridCard";
 import { v4 as uuidv4 } from "uuid";
+import { setConfiguration } from "react-grid-system";
+
 import { useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 
+
 import Navbar from "./Navbar";
+setConfiguration({ breakpoints: [768, 1200, 1500, 1700, 1800, 1900] });
+
 export default function SearchResults() {
   const location = useLocation();
   console.log(location.state.finalResults);
@@ -26,16 +31,11 @@ export default function SearchResults() {
             )
               return (
                 <Col
-                  align="center"
-                  xxl={2.4}
-                  md={3}
-                  sm={4}
-                  xs={5}
-                  key={uuidv4()}
+                align="center" xxl={2.3} md={2.4} sm={3} xs={6} key={uuidv4()}
                 >
                   <GridCard
-                    height={400}
-                    width={320}
+                    height={300}
+                    width={210}
                     title={query.title}
                     image={query.images.jpg.large_image_url}
                     key={uuidv4()}
@@ -43,6 +43,7 @@ export default function SearchResults() {
                   ></GridCard>
                 </Col>
               );
+            else return null;
           })}
         </Row>
         <ToastContainer></ToastContainer>

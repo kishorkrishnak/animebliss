@@ -30,7 +30,7 @@ export default function CarouselRenderer({ finalResults }) {
         clearTimeout(resetTimeout);
         resetTimeout = setTimeout(() => {
           carouselRef?.current?.goTo(0);
-        }, 4000); // same time
+        }, 4000); 
       }}
       pagination={windowSize > 800 ? true : false}
     >
@@ -43,6 +43,7 @@ export default function CarouselRenderer({ finalResults }) {
           title={item.title.english}
           description={item.description}
           cover={item.bannerImage}
+          coversmall = {item.coverImage}
         ></HeaderCarouselCard>
       ))}
     </Carousel>

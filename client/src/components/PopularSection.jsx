@@ -27,15 +27,9 @@ export default function PopularSection() {
   const nonextpageerror = () => toast.warning("You are on the last page!");
   const [popular, setPopular] = useState([]);
   const [currpage, setCurrpage] = useState(1);
-  const [windowSize, setWindowSize] = useState(window.innerWidth);
   const [loading, setLoading] = useState(false);
   const [hasNextPage, setHasNextPage] = useState(true);
-  useEffect(() => {
-    window.addEventListener("resize", () => {
-      setWindowSize(window.innerWidth);
-      console.log(window.innerWidth);
-    });
-  });
+
 
   useEffect(() => {
     setLoading((prev) => !prev);
@@ -57,11 +51,7 @@ export default function PopularSection() {
         setLoading((prev) => !prev);
       });
   }, [currpage]);
-  const calculateSize = (windowSize) => {
-    if (windowSize > 1500) return [500, 320];
-    else if (windowSize < 1500 && windowSize > 1168) return [250, 210];
-    else return [220, 180];
-  };
+
   return (
     <section
       className="section section-popular "
@@ -89,8 +79,7 @@ export default function PopularSection() {
           )}
 
           <GridRenderer
-            height={calculateSize(windowSize)[0]}
-            width={calculateSize(windowSize)[1]}
+          
             finalQuery={popular}
           ></GridRenderer>
 
@@ -149,6 +138,7 @@ export default function PopularSection() {
                 style={{
                   color: "white",
                   width: 150,
+                  background:"red",
                   fontSize: "1.8rem",
                   outline: "none",
                   border: "none",
@@ -156,7 +146,7 @@ export default function PopularSection() {
                 }}
               >
                 Next&nbsp;{" "}
-                <FontAwesomeIcon icon={faArrowRightLong}></FontAwesomeIcon>
+                <FontAwesomeIcon  icon={faArrowRightLong}></FontAwesomeIcon>
               </button>
             </div>
           </div>

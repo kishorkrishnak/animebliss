@@ -6,11 +6,11 @@ export default function RecentSection() {
   const [recent, setRecent] = useState([]);
 
   useEffect(() => {
-    fetch("https://api.enime.moe/recent")
+    fetch("https://consumet-api.herokuapp.com/meta/anilist/recent-episodes")
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
-        setRecent(data.data);
+        setRecent(data.results);
       });
   }, []);
   return (

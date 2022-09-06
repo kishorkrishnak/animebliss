@@ -13,6 +13,7 @@ export default function Header() {
       .then((response) => response.json())
       .then((data) => {
         setFinalResults(data.data);
+        console.log(data.data);
       }, []);
   }, []);
 
@@ -32,7 +33,7 @@ export default function Header() {
    
    
    
-      {/* <div className="sectiontabs" style={{border:"1px solid cyan",width:"fit-content",marginTop:20,justifyContent:"center",display:"flex",gap:10,color:"dodgerblue",backgroundColor:"#282828",height:32,marginLeft:"3%",borderRadius:2}}>
+      <div className="sectiontabs" style={{border:"1px solid cyan",width:"fit-content",marginTop:20,justifyContent:"center",display:"flex",gap:10,color:"dodgerblue",backgroundColor:"#282828",height:32,marginLeft:"3%",borderRadius:2}}>
         <button className="btn-section">All</button>
         <button className="btn-section">Popular</button>
 
@@ -43,7 +44,7 @@ export default function Header() {
 
         <button className="btn-section">Wallpapers</button>
 
-      </div> */}
+      </div>
 
     </header>
   );
