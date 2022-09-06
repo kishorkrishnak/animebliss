@@ -23,13 +23,15 @@ export default function CarouselRenderer({
     });
   });
   const breakPoints = [
-    { width: 1, itemsToShow: isTrending ? 2 : 3 },
+    { width: 1, itemsToShow: isTrending ? 2 : 2 },
 
-    { width: 670, itemsToShow: isTrending ? 3 : 4 },
+    { width: 670, itemsToShow: isTrending ? 3 : 3 },
 
-    { width: 950, itemsToShow: isTrending ? 3 : 5 },
+    { width: 950, itemsToShow: isTrending ? 3 : 3},
 
-    { width: 1200, itemsToShow: isTrending ? 4 : 7 },
+    { width: 1200, itemsToShow: isTrending ? 4 : 4 },
+    { width: 1673, itemsToShow: isTrending ? 4 : 7 },
+
   ];
 
   return (

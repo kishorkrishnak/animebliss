@@ -34,7 +34,6 @@ export default function PopularSection() {
     window.addEventListener("resize", () => {
       setWindowSize(window.innerWidth);
       console.log(window.innerWidth);
-
     });
   });
 
@@ -59,10 +58,9 @@ export default function PopularSection() {
       });
   }, [currpage]);
   const calculateSize = (windowSize) => {
-if (windowSize > 1500) return [500, 320];
-
-    else if(windowSize <1500 && windowSize > 1168)return [250, 210];
-      else return [220,180]
+    if (windowSize > 1500) return [500, 320];
+    else if (windowSize < 1500 && windowSize > 1168) return [250, 210];
+    else return [220, 180];
   };
   return (
     <section

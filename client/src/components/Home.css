@@ -12,7 +12,9 @@ body {
   max-width: 100vw;
 }
 
-
+.section-topairing,.section-favorite{
+  margin-top: 15px;
+}
 
 button.rec-dot {
   background-color: #3f1e26;

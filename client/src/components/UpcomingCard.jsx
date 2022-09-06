@@ -20,8 +20,8 @@ export default function UpcomingCard({
   });
 
   const calculateSize = (windowSize) => {
-    if (windowSize > 1850) return [240, 430];
-    else if (windowSize > 1600 && windowSize < 1850) return [230, 360];
+    if (windowSize > 1750) return [240, 430];
+    else if (windowSize > 1600 && windowSize < 1750) return [230, 360];
     else if(windowSize >1300&& windowSize <1600) return [200, 310];
     else if(windowSize >800 && windowSize <1300) return [180, 270];
     

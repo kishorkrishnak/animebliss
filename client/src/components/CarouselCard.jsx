@@ -1,4 +1,4 @@
-import { useEffect,useState } from "react";
+import { useEffect, useState } from "react";
 import TextTruncate from "react-text-truncate";
 
 export default function CarouselCard({
@@ -8,6 +8,13 @@ export default function CarouselCard({
   episodeNum,
   id,
 }) {
+  const calculateSize = (windowSize) => {
+    if (windowSize > 1700) return [340, 230];
+    else if (windowSize > 1600 && windowSize < 1850) return [230, 360];
+    else if (windowSize > 1300 && windowSize < 1600) return [200, 310];
+    else if (windowSize > 800 && windowSize < 1300) return [180, 270];
+    else return [130, 225];
+  };
   const [windowSize, setWindowSize] = useState(window.innerWidth);
   useEffect(() => {
     window.addEventListener("resize", () => {
@@ -34,8 +41,8 @@ export default function CarouselCard({
           style={{
             borderRadius: "10px",
             backgroundImage: `url(${image})`,
-            height: "340px",
-            width: "230px",
+            height: calculateSize(windowSize)[0],
+            width: calculateSize(windowSize)[1],
             backgroundPosition: "center",
             backgroundSize: "cover",
           }}
@@ -52,7 +59,10 @@ export default function CarouselCard({
           className="anime-card-title"
           style={{ color: "white", fontWeight: "lighter" }}
         >
-          {title}
+         <TextTruncate text={title}
+          
+            line={2}
+          ></TextTruncate>
         </a>
       </div>
     </>
