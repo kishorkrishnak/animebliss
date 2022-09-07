@@ -68,9 +68,10 @@ button.rec-dot:focus {
 }
 
 .customModal {
-  background: dodgerblue !important;
+  border-radius: 20 !important;
   width: 80vw !important;
-  height: 80vh !important;
+  height: fit-content !important;
+  padding: 0 !important;
 }
 
 .btn-index {

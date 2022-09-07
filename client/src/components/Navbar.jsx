@@ -10,8 +10,8 @@ export default function Navbar() {
   const [input, setInput] = useState("");
   const calculateSize = (windowSize) => {
     if (windowSize > 450) return 330;
-    else if(windowSize>380 && windowSize <450)return 230
-    else return 200
+    else if (windowSize > 380 && windowSize < 450) return 230;
+    else return 200;
   };
   const [windowSize, setWindowSize] = useState(window.innerWidth);
   useEffect(() => {
@@ -100,7 +100,7 @@ export default function Navbar() {
           </li>
           <li className="nav__item">
             <Link to="/wallpapers" style={{ color: "white", font: "inherit" }}>
-              Wallpapers
+              Trending
             </Link>
           </li>
 

@@ -1,14 +1,28 @@
 import { useState, useEffect } from "react";
+import axios from "axios";
 export default function GridCard({
   title,
   image,
   episodeNum,
   year,
   rating,
+  setAnimeInfo,
+  onOpenModal,
+  id,
   results,
 }) {
   const [windowSize, setWindowSize] = useState(window.innerWidth);
-
+  async function fetchVideo(id) {
+    return await axios
+      .get("https://consumet-api.herokuapp.com/meta/anilist/info/" + id)
+      .then((res) => {
+        setAnimeInfo(res.data);
+        onOpenModal();
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  }
   const calculateSize = (windowSize) => {
     if (windowSize > 1500) return [380, 280];
     else if (windowSize > 1168 && windowSize < 1500) return [250, 210];
@@ -31,6 +45,9 @@ export default function GridCard({
   return (
     <div
       className="gridcard-wrapper"
+      onClick={() => {
+        fetchVideo(id);
+      }}
       style={{
         display: "flex",
         marginTop: "20px",

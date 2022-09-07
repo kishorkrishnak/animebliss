@@ -5,7 +5,7 @@ import GridCard from "./GridCard";
 
 setConfiguration({ breakpoints: [768, 1200, 1500, 1700, 1800, 1900] });
 
-export default function GridRenderer({ finalQuery }) {
+export default function GridRenderer({ finalQuery,setAnimeInfo,onOpenModal}) {
   return (
   
     <Container fluid={true}>
@@ -14,7 +14,10 @@ export default function GridRenderer({ finalQuery }) {
         {finalQuery.map((query, index) => (
           <Col align="center" xxl={2} md={2.4} sm={3} xs={6} key={uuidv4()}>
             <GridCard
+            setAnimeInfo={setAnimeInfo}
+            onOpenModal={onOpenModal}
               title={query.title.english}
+              id = {query.id}
               image={query.image}
               key={uuidv4()}
               rating={query.rating}

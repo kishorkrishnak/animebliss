@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import TextTruncate from "react-text-truncate";
 import axios from "axios";
-import HlsPLayer from "./HlsPlayer";
 import { useNavigate } from "react-router-dom";
 import AnimePlayerModal from "./AnimePlayerModal";
 export default function CarouselCard({
-  setUrl,
+  setAnimeInfo,
+
   onOpenModal,
   title,
   image,
@@ -20,9 +20,6 @@ export default function CarouselCard({
       setWindowSize(window.innerWidth);
     });
   });
-  const [link, setLink] = useState("");
-  const [animeInfo, setAnimeInfo] = useState(null);
-  const [episodes, setEpisodes] = useState(null);
   const [windowSize, setWindowSize] = useState(window.innerWidth);
   const [videoIsLoading, setVideoIsLoading] = useState(false);
 
@@ -39,25 +36,13 @@ export default function CarouselCard({
     else return [90, 150];
   };
 
-  async function fetchVideoById(url) {
-    return await axios.get(url).then((response) => {
-      setEpisodes(response.data);
-      setLink(response.data.sources[1].url);
-      setUrl(response.data.sources[1].url);
-      onOpenModal();
-    });
-  }
   async function fetchVideo(id) {
     setVideoIsLoading(true);
     return await axios
       .get("https://consumet-api.herokuapp.com/meta/anilist/info/" + id)
       .then((res) => {
         setAnimeInfo(res.data);
-
-        fetchVideoById(
-          " https://consumet-api.herokuapp.com/meta/anilist/watch/" +
-            res.data.episodes[0].id
-        );
+        onOpenModal();
       })
       .catch((e) => {
         console.log(e);

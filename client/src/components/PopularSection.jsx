@@ -6,7 +6,7 @@ import MoonLoader from "react-spinners/MoonLoader";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { v4 as uuidv4 } from "uuid";
 import AnimePlayerModal from "./AnimePlayerModal";
-
+import Test from "./AnimePlayer.jsx";
 import {
   faArrowLeftLong,
   faArrowRightLong,
@@ -24,19 +24,19 @@ const override = {
 
   borderColor: "red",
 };
-export default function PopularSection() {
+export default function PopularSection({ setAnimeInfo, onOpenModal }) {
   const nopreviouspageerror = () => toast.warning("You are on the first page!");
   const nonextpageerror = () => toast.warning("You are on the last page!");
   const [popular, setPopular] = useState([]);
   const [currpage, setCurrpage] = useState(1);
   const [loading, setLoading] = useState(false);
   const [hasNextPage, setHasNextPage] = useState(true);
-  const [pageNumbers, setPageNumbers] = useState([1, 2, 3, 4, 5, 6]);
+  const [pageNumbers, setPageNumbers] = useState([1, 2, 3, 4, 5]);
   const updatePageNumberButtons = (e) => {
     if (e.target.classList.contains("nextPageButton")) {
-      if (currpage % 10 === 0) {
+      if (currpage % 5 === 0) {
         let temp = [];
-        for (let i = 1; i <= 10; i++) {
+        for (let i = 1; i <= 5; i++) {
           temp.push(currpage + i);
         }
 
@@ -45,9 +45,9 @@ export default function PopularSection() {
     }
 
     if (e.target.classList.contains("previousPageButton")) {
-      if (currpage % 10 === 1) {
+      if (currpage % 5 === 1) {
         let temp = [];
-        for (let i = 10; i >= 1; i--) {
+        for (let i = 5; i >= 1; i--) {
           temp.push(currpage - i);
         }
         setPageNumbers(temp);
@@ -102,7 +102,8 @@ export default function PopularSection() {
             />
           )}
 
-          <GridRenderer finalQuery={popular}></GridRenderer>
+          <GridRenderer setAnimeInfo={setAnimeInfo}
+        onOpenModal={onOpenModal} finalQuery={popular}></GridRenderer>
 
           <div
             className="pagination-wrapper"
@@ -155,7 +156,7 @@ export default function PopularSection() {
               <div
                 style={{
                   display: "flex",
-                  gap: 35,
+                  gap: 40,
                   flexWrap: "wrap",
                   justifyContent: "center",
                 }}
@@ -209,7 +210,6 @@ export default function PopularSection() {
               </button>
             </div>
           </div>
-
         </>
       )}
     </section>

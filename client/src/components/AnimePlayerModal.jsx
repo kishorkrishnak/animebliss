@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import ReactDOM from "react-dom";
 import "react-responsive-modal/styles.css";
 import { Modal } from "react-responsive-modal";
-import HlsPLayer from "./HlsPlayer";
+import Test from "./AnimePlayer";
 const AnimePlayerModal = ({ url }) => {
   const [open, setOpen] = useState(false);
 
@@ -20,7 +20,7 @@ const AnimePlayerModal = ({ url }) => {
         onClose={onCloseModal}
         center
       >
-        <HlsPLayer></HlsPLayer>
+        <Test></Test>
       </Modal>
     </div>
   );
