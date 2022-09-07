@@ -65,17 +65,17 @@ export default function CarouselCard({
           className="anime-info"
           style={{ color: "white", display: "flex", gap: "20px" }}
         >
-          <p>
+          <p style={{fontSize:windowSize <766 ? "1.4rem" : ""}}>
             {" "}
             <PlayCircleOutlined /> TV
           </p>
-          <p>
+          <p style={{fontSize:windowSize <766 ? "1.4rem" : "",}}>
             <FontAwesomeIcon icon={faListOl} /> {epcount} Episodes
           </p>
-          <p>
+          <p style={{fontSize:windowSize <766 ? "1.4rem" : "",}}>
             <ClockCircleOutlined /> {duration} Minutes
           </p>
-          <p>
+          <p style={{fontSize:windowSize <766 ? "1.4rem" : "",}}>
             <CalendarOutlined /> {year}
           </p>
         </div>

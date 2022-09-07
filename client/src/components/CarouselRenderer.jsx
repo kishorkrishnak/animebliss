@@ -5,6 +5,8 @@ import CarouselCard from "./CarouselCard";
 import { useState, useEffect } from "react";
 import UpcomingCard from "./UpcomingCard";
 export default function CarouselRenderer({
+  setUrl,
+  onOpenModal,
   finalQuery,
   rowTitle,
   isRecent,
@@ -57,12 +59,15 @@ export default function CarouselRenderer({
         {finalQuery.map((query, index) =>
           stretchedA ? (
             <CarouselCard
+              onOpenModal={onOpenModal}
+              setUrl={setUrl}
               setTrailerId={setTrailerId}
               setIsPlaying={setIsPlaying}
               title={query.title.english}
               image={query.image}
               key={uuidv4()}
               rating={query.rating}
+              id={query.id}
               rowTitle={rowTitle}
               episodeNum={isRecent ? query.episode : 0}
             ></CarouselCard>

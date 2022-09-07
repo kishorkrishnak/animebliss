@@ -5,6 +5,7 @@ import "react-toastify/dist/ReactToastify.css";
 import MoonLoader from "react-spinners/MoonLoader";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { v4 as uuidv4 } from "uuid";
+import AnimePlayerModal from "./AnimePlayerModal";
 
 import {
   faArrowLeftLong,
@@ -30,9 +31,7 @@ export default function PopularSection() {
   const [currpage, setCurrpage] = useState(1);
   const [loading, setLoading] = useState(false);
   const [hasNextPage, setHasNextPage] = useState(true);
-  const [pageNumbers, setPageNumbers] = useState([
-    1, 2, 3, 4, 5, 6, 7, 8, 9, 10,
-  ]);
+  const [pageNumbers, setPageNumbers] = useState([1, 2, 3, 4, 5, 6]);
   const updatePageNumberButtons = (e) => {
     if (e.target.classList.contains("nextPageButton")) {
       if (currpage % 10 === 0) {
@@ -73,7 +72,7 @@ export default function PopularSection() {
 
         setPopular(data.results);
         setLoading((prev) => !prev);
-        document.querySelector(".section-popular").scrollIntoView()
+        document.querySelector(".section-popular").scrollIntoView();
       });
   }, [currpage]);
 
@@ -89,14 +88,14 @@ export default function PopularSection() {
       {popular.length > 0 && (
         <>
           <h1
-            style={{ color: "#fdba74", fontSize: "3rem", marginLeft: "35px" }}
+            style={{ color: "#fdba74", fontSize: "3rem", marginLeft: "20px" }}
           >
-            Most Popular
+            Top Anime
           </h1>
 
           {loading && (
             <MoonLoader
-              color={"dodgerblue"}
+              color={"white"}
               loading={loading}
               cssOverride={override}
               size={80}
@@ -125,7 +124,7 @@ export default function PopularSection() {
                 alignItems: "center",
                 paddingLeft: "2%",
                 paddingRight: "2%",
-                marginTop:20,
+                marginTop: 20,
                 borderTop: "1px solid dodgerblue",
                 justifyContent: "space-between",
               }}
@@ -153,15 +152,32 @@ export default function PopularSection() {
                 &nbsp;Previous
               </button>
 
-              <div style={{ display: "flex", gap: 35,flexWrap:"wrap" ,justifyContent:"center"}} className="pageindex">
+              <div
+                style={{
+                  display: "flex",
+                  gap: 35,
+                  flexWrap: "wrap",
+                  justifyContent: "center",
+                }}
+                className="pageindex"
+              >
                 {pageNumbers.map((pageNumber) => (
                   <button
-                  className="btn-pageindex"
+                    className="btn-pageindex"
                     key={uuidv4()}
                     onClick={() => {
                       setCurrpage(pageNumber);
                     }}
-                    style={{ border:"none",padding:"4px 8px",borderRadius:5,color: "white", background:"none",fontSize:14,backgroundColor:currpage === pageNumber?"rgb(244, 67, 54)":"none" }}
+                    style={{
+                      border: "none",
+                      padding: "4px 8px",
+                      borderRadius: 5,
+                      color: "white",
+                      background: "none",
+                      fontSize: 14,
+                      backgroundColor:
+                        currpage === pageNumber ? "rgb(244, 67, 54)" : "none",
+                    }}
                   >
                     {pageNumber}
                   </button>
@@ -188,11 +204,12 @@ export default function PopularSection() {
                   backgroundColor: "transparent",
                 }}
               >
-             Next&nbsp;
+                Next&nbsp;
                 <FontAwesomeIcon icon={faArrowRightLong}></FontAwesomeIcon>
               </button>
             </div>
           </div>
+
         </>
       )}
     </section>

@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
 import CarouselRenderer from "./CarouselRenderer";
 import TrailerPlayer from "./TrailerPlayer";
+import axios from "axios";
 export default function UpcomingSection() {
   const [trailerId, setTrailerId] = useState("");
   const [isPlaying, setIsPlaying] = useState(false);
   const [upcoming, setUpComing] = useState([]);
+
   useEffect(() => {
     fetch("https://api.jikan.moe/v4/top/anime?filter=upcoming")
       .then((response) => response.json())

@@ -17,7 +17,6 @@ export default function Navbar() {
   useEffect(() => {
     window.addEventListener("resize", () => {
       setWindowSize(window.innerWidth);
-      console.log(windowSize);
     });
   });
   const navigate = useNavigate();

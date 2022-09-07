@@ -12,7 +12,6 @@ export default function Header() {
       .then((response) => response.json())
       .then((data) => {
         setFinalResults(data.data);
-        console.log(data.data);
       }, []);
   }, []);
 

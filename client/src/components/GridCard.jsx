@@ -4,7 +4,7 @@ export default function GridCard({
   image,
   episodeNum,
   year,
-  score,
+  rating,
   results,
 }) {
   const [windowSize, setWindowSize] = useState(window.innerWidth);
@@ -25,7 +25,6 @@ export default function GridCard({
   useEffect(() => {
     window.addEventListener("resize", () => {
       setWindowSize(window.innerWidth);
-      console.log(windowSize);
     });
   });
   const [data, setData] = useState(results);
@@ -37,7 +36,6 @@ export default function GridCard({
         marginTop: "20px",
         flexDirection: "column",
         alignItems: "center",
-        justifyContent: "flex-start",
       }}
     >
       <div
@@ -57,9 +55,17 @@ export default function GridCard({
           Episode {episodeNum}
         </h5>
       )}
-      <div className="gridcardinfo">
-        <p>{score}</p>
-      </div>
+      {rating && year && (
+        <div
+          style={{ display: "flex", gap: 10, marginTop: 8 }}
+          className="gridcardinfo"
+        >
+          <p style={{ color: "white", fontSize: "1.35rem" }}>{year}</p>
+          <p style={{ color: "white", fontSize: "1.35rem" }}>
+            Rating: {rating}
+          </p>
+        </div>
+      )}
 
       <h4
         className="grid-card-title"
@@ -67,7 +73,6 @@ export default function GridCard({
           textAlign: "center",
           color: "white",
           fontWeight: "lighter",
-          marginTop: 8,
         }}
       >
         {title}

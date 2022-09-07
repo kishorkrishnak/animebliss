@@ -1,7 +1,12 @@
 import { useEffect, useState } from "react";
 import TextTruncate from "react-text-truncate";
-
+import axios from "axios";
+import HlsPLayer from "./HlsPlayer";
+import { useNavigate } from "react-router-dom";
+import AnimePlayerModal from "./AnimePlayerModal";
 export default function CarouselCard({
+  setUrl,
+  onOpenModal,
   title,
   image,
   rowTitle,
@@ -9,6 +14,18 @@ export default function CarouselCard({
   rating,
   id,
 }) {
+  const navigate = useNavigate();
+  useEffect(() => {
+    window.addEventListener("resize", () => {
+      setWindowSize(window.innerWidth);
+    });
+  });
+  const [link, setLink] = useState("");
+  const [animeInfo, setAnimeInfo] = useState(null);
+  const [episodes, setEpisodes] = useState(null);
+  const [windowSize, setWindowSize] = useState(window.innerWidth);
+  const [videoIsLoading, setVideoIsLoading] = useState(false);
+
   const calculateSize = (windowSize) => {
     if (windowSize > 1700) return [340, 230];
     else if (windowSize > 1600 && windowSize < 1700) return [230, 360];
@@ -21,16 +38,37 @@ export default function CarouselCard({
     else if (windowSize >= 360 && windowSize < 390) return [110, 165];
     else return [90, 150];
   };
-  const [windowSize, setWindowSize] = useState(window.innerWidth);
-  useEffect(() => {
-    window.addEventListener("resize", () => {
-      setWindowSize(window.innerWidth);
-      console.log(windowSize);
+
+  async function fetchVideoById(url) {
+    return await axios.get(url).then((response) => {
+      setEpisodes(response.data);
+      setLink(response.data.sources[1].url);
+      setUrl(response.data.sources[1].url);
+      onOpenModal();
     });
-  });
+  }
+  async function fetchVideo(id) {
+    setVideoIsLoading(true);
+    return await axios
+      .get("https://consumet-api.herokuapp.com/meta/anilist/info/" + id)
+      .then((res) => {
+        setAnimeInfo(res.data);
+
+        fetchVideoById(
+          " https://consumet-api.herokuapp.com/meta/anilist/watch/" +
+            res.data.episodes[0].id
+        );
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  }
   return (
     <>
       <div
+        onClick={() => {
+          fetchVideo(id);
+        }}
         className="animecard-wrapper"
         style={{
           display: "flex",

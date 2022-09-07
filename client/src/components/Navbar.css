@@ -122,8 +122,8 @@ a {
 .searchbar {
   outline: none;
   display: inline-block;
-  padding: 10px;
-  border-radius: 0.4em;
+  padding: 10px 15px;
+  border-radius: 0.7rem;
 
   border: none;
   font-size: 1.5rem;
@@ -131,7 +131,8 @@ a {
   background-color: #374151;
 }
 .searchbar::placeholder {
-  color: grey;
+  color: white;
+  font-family: inherit;
 }
 
 .searchbar:hover,

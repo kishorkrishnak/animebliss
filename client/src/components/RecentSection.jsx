@@ -9,7 +9,6 @@ export default function RecentSection() {
     fetch("https://consumet-api.herokuapp.com/meta/anilist/recent-episodes")
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
         setRecent(data.results);
       });
   }, []);

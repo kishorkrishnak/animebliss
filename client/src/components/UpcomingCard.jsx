@@ -75,7 +75,6 @@ export default function UpcomingCard({
       <a
         onClick={(e) => {
           e.preventDefault();
-          console.log("Anime title clicked");
         }}
         href="/"
         className="anime-card-title"

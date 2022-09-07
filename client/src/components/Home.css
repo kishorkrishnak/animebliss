@@ -14,9 +14,8 @@ body {
 
 .section-topairing,
 .section-favorite,
-.section-trending ,
-.section-popular
-{
+.section-trending,
+.section-popular {
   margin-top: 15px;
 }
 
@@ -48,7 +47,6 @@ button.rec-dot:focus {
   .pageindex {
     gap: 1px !important;
     font-size: 2rem !important;
-    margin-top: 20px;
   }
 
   .pagination {
@@ -69,45 +67,11 @@ button.rec-dot:focus {
   }
 }
 
-/* @media screen and (max-width: 1770px) {
-  .animecard-wrapper {
-    transform: scale(0.9);
-    transition: 5ms ease-in;
-  }
-  .animecard-wrapper div {
-    transform: scale(0.9);
-    transition: 2ms ease;
-  }
-} */
-
-/* @media screen and (max-width: 1450px) {
-  .animecard-wrapper {
-    transform: scale(0.85);
-  }
-  .animecard-wrapper div {
-    transform: scale(0.85);
-  }
+.customModal {
+  background: dodgerblue !important;
+  width: 80vw !important;
+  height: 80vh !important;
 }
-
-@media screen and (max-width: 720px) {
-  .animecard-wrapper:not(.section-upcoming .animecard-wrapper) {
-    transform: scale(0.8);
-  }
-  .animecard-wrapper div:not(.section-upcoming .animecard-wrapper div) {
-    transform: scale(0.8);
-  }
-
-  .animecard-wrapper {
-    transform: scale(0.72);
-  }
-
-  .animecard-wrapper div {
-    transform: scale(0.72, 0.89);
-  }
-}
-
-
- */
 
 .btn-index {
   cursor: pointer;
