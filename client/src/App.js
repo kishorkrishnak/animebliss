@@ -4,7 +4,6 @@ import AnimePlay from "./components/Initial";
 import Home from "./components/Home";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import SearchResults from "./components/SearchResults";
-import AnimePlayerModal from "./components/AnimePlayerModal";
 function App() {
   return (
     <div className="App">
