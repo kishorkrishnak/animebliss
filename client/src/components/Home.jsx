@@ -8,10 +8,7 @@ import MoviesSection from "./MoviesSection";
 import UpcomingSection from "./UpcomingSection";
 import PopularSection from "./PopularSection";
 import AnimePlayer from "./AnimePlayer";
-import FavoriteSection from "./FavoriteSection";
-import RecentSection from "./RecentSection";
 import TrendingSection from "./TrendingSection";
-import AnimePlayerModal from "./AnimePlayerModal";
 export default function Home() {
   const [open, setOpen] = useState(false);
   const [animeInfo, setAnimeInfo] = useState(null);
@@ -21,7 +18,7 @@ export default function Home() {
 
   return (
     <>
-      <Header></Header>
+      <Header onOpenModal={onOpenModal} setAnimeInfo={setAnimeInfo}></Header>
       <UpcomingSection></UpcomingSection>
       <div>
         <Modal

@@ -5,8 +5,7 @@ import "react-toastify/dist/ReactToastify.css";
 import MoonLoader from "react-spinners/MoonLoader";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { v4 as uuidv4 } from "uuid";
-import AnimePlayerModal from "./AnimePlayerModal";
-import Test from "./AnimePlayer.jsx";
+
 import {
   faArrowLeftLong,
   faArrowRightLong,
@@ -102,8 +101,11 @@ export default function PopularSection({ setAnimeInfo, onOpenModal }) {
             />
           )}
 
-          <GridRenderer setAnimeInfo={setAnimeInfo}
-        onOpenModal={onOpenModal} finalQuery={popular}></GridRenderer>
+          <GridRenderer
+            setAnimeInfo={setAnimeInfo}
+            onOpenModal={onOpenModal}
+            finalQuery={popular}
+          ></GridRenderer>
 
           <div
             className="pagination-wrapper"

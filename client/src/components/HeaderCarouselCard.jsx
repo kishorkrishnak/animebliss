@@ -3,22 +3,40 @@ import {
   CalendarOutlined,
   ClockCircleOutlined,
 } from "@ant-design/icons";
+import axios from "axios";
 import { useState, useEffect } from "react";
 import { faListOl } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import TextTruncate from "react-text-truncate";
 
 export default function CarouselCard({
+  onOpenModal,
+  setAnimeInfo,
   duration,
   cover,
   title,
+  id,
   year,
   description,
   epcount,
   coversmall,
 }) {
-  const [windowSize, setWindowSize] = useState(window.innerWidth);
+  const [videoIsLoading, setVideoIsLoading] = useState(false);
 
+  const [windowSize, setWindowSize] = useState(window.innerWidth);
+  async function fetchVideo(id) {
+    setVideoIsLoading(true);
+    return await axios
+      .get("https://consumet-api.herokuapp.com/meta/anilist/info/" + id)
+      .then((res) => {
+        setAnimeInfo(res.data);
+        onOpenModal();
+        setVideoIsLoading(false);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  }
   useEffect(() => {
     window.addEventListener("resize", () => {
       setWindowSize(window.innerWidth);
@@ -65,17 +83,17 @@ export default function CarouselCard({
           className="anime-info"
           style={{ color: "white", display: "flex", gap: "20px" }}
         >
-          <p style={{fontSize:windowSize <766 ? "1.4rem" : ""}}>
+          <p style={{ fontSize: windowSize < 766 ? "1.4rem" : "" }}>
             {" "}
             <PlayCircleOutlined /> TV
           </p>
-          <p style={{fontSize:windowSize <766 ? "1.4rem" : "",}}>
+          <p style={{ fontSize: windowSize < 766 ? "1.4rem" : "" }}>
             <FontAwesomeIcon icon={faListOl} /> {epcount} Episodes
           </p>
-          <p style={{fontSize:windowSize <766 ? "1.4rem" : "",}}>
+          <p style={{ fontSize: windowSize < 766 ? "1.4rem" : "" }}>
             <ClockCircleOutlined /> {duration} Minutes
           </p>
-          <p style={{fontSize:windowSize <766 ? "1.4rem" : "",}}>
+          <p style={{ fontSize: windowSize < 766 ? "1.4rem" : "" }}>
             <CalendarOutlined /> {year}
           </p>
         </div>
@@ -84,7 +102,7 @@ export default function CarouselCard({
           style={{
             textAlign: "justify",
             color: "white",
-            fontSize:windowSize <766 ? "1.4rem" : "",
+            fontSize: windowSize < 766 ? "1.4rem" : "",
 
             width: windowSize < 766 ? "100%" : "50%",
           }}
@@ -96,7 +114,14 @@ export default function CarouselCard({
           ></TextTruncate>
         </p>
       </div>
-      <a className="btn btn-watchnow" href="/login">
+      <a
+        onClick={(e) => {
+          e.preventDefault();
+          fetchVideo(id);
+        }}
+        className="btn btn-watchnow"
+        href="/login"
+      >
         {" "}
         <PlayCircleOutlined /> Watch Now
       </a>

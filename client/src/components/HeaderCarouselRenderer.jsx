@@ -10,8 +10,12 @@ const breakPoints = [
   { width: 1200, itemsToShow: 1 },
 ];
 
-export default function CarouselRenderer({ finalResults }) {
-  const [windowSize, setWindowSize] = useState(null);
+const HeaderCarouselRenderer = ({
+  finalResults,
+  onOpenModal,
+  setAnimeInfo,
+}) => {
+  const [windowSize, setWindowSize] = useState(window.innerWidth);
   const carouselRef = useRef(null);
   let resetTimeout;
   useEffect(() => {
@@ -30,22 +34,27 @@ export default function CarouselRenderer({ finalResults }) {
         clearTimeout(resetTimeout);
         resetTimeout = setTimeout(() => {
           carouselRef?.current?.goTo(0);
-        }, 4000); 
+        }, 4000);
       }}
       pagination={windowSize > 800 ? true : false}
     >
       {finalResults.map((item) => (
         <HeaderCarouselCard
+          onOpenModal={onOpenModal}
+          setAnimeInfo={setAnimeInfo}
           key={uuidv4()}
-          epcount={item.currentEpisode}
-          year={item.year}
+          id={item.id}
+          epcount={item.totalEpisodes}
+          year={item.releaseDate}
           duration={item.duration}
           title={item.title.english}
           description={item.description}
-          cover={item.bannerImage}
-          coversmall = {item.coverImage}
+          cover={item.cover}
+          coversmall={item.image}
         ></HeaderCarouselCard>
       ))}
     </Carousel>
   );
-}
+};
+
+export default HeaderCarouselRenderer;

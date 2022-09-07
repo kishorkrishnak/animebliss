@@ -11,13 +11,12 @@ export default function CarouselRenderer({
   rowTitle,
   isRecent,
   isTrending,
-  api,
   stretchedA,
   initialActiveIndex,
   setIsPlaying,
   setTrailerId,
 }) {
-  const [windowSize, setWindowSize] = useState(null);
+  const [windowSize, setWindowSize] = useState(window.innerWidth);
 
   useEffect(() => {
     window.addEventListener("resize", () => {
@@ -36,7 +35,7 @@ export default function CarouselRenderer({
   ];
 
   return (
-    <div className="carouselinstance">
+    <div className="carouselinstance" >
       <h1
         style={{
           color: "#fdba74",
@@ -59,6 +58,7 @@ export default function CarouselRenderer({
         {finalQuery.map((query, index) =>
           stretchedA ? (
             <CarouselCard
+
               onOpenModal={onOpenModal}
               setTrailerId={setTrailerId}
               setIsPlaying={setIsPlaying}
@@ -79,7 +79,6 @@ export default function CarouselRenderer({
               title={query.title}
               image={query.images.jpg.large_image_url}
               key={uuidv4()}
-              api={api}
               rowTitle={rowTitle}
               episodeNum={isRecent ? query.episode : 0}
               trailerVideoId={

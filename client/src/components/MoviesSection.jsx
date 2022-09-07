@@ -16,7 +16,7 @@ export default function MoviesSection({
       });
   }, []);
   return (
-    <section className="section section-novies">
+    <section className="section section-movies">
       {movies.length > 0 && (
         <CarouselRenderer
           finalQuery={movies}

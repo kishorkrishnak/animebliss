@@ -4,14 +4,14 @@ import "./Navbar.css";
 import React from "react";
 import HeaderCarouselRenderer from "./HeaderCarouselRenderer";
 import Navbar from "./Navbar";
-export default function Header() {
+const Header = ({ onOpenModal, setAnimeInfo }) => {
   const [finalResults, setFinalResults] = useState([]);
 
   useEffect(() => {
-    fetch("https://api.enime.moe/popular")
+    fetch("https://consumet-api.herokuapp.com/meta/anilist/popular")
       .then((response) => response.json())
       .then((data) => {
-        setFinalResults(data.data);
+        setFinalResults(data.results);
       }, []);
   }, []);
 
@@ -21,6 +21,8 @@ export default function Header() {
       <section className="section section-carousel">
         {finalResults.length > 0 && (
           <HeaderCarouselRenderer
+          onOpenModal={onOpenModal}
+          setAnimeInfo={setAnimeInfo}
             finalResults={finalResults}
           ></HeaderCarouselRenderer>
         )}
@@ -62,4 +64,7 @@ export default function Header() {
       </div> */}
     </header>
   );
-}
+};
+
+
+export default Header

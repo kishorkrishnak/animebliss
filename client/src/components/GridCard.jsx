@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import MoonLoader from "react-spinners/MoonLoader";
+
 export default function GridCard({
   title,
   image,
@@ -13,16 +15,31 @@ export default function GridCard({
 }) {
   const [windowSize, setWindowSize] = useState(window.innerWidth);
   async function fetchVideo(id) {
+    setVideoIsLoading(true);
     return await axios
       .get("https://consumet-api.herokuapp.com/meta/anilist/info/" + id)
       .then((res) => {
         setAnimeInfo(res.data);
         onOpenModal();
+        setVideoIsLoading(false);
       })
       .catch((e) => {
         console.log(e);
       });
   }
+  const [videoIsLoading, setVideoIsLoading] = useState(false);
+  const override = {
+    position: "fixed",
+    zIndex: 1,
+    left: 0,
+    right: 0,
+    top: 0,
+    bottom: 0,
+
+    margin: "auto",
+
+    borderColor: "red",
+  };
   const calculateSize = (windowSize) => {
     if (windowSize > 1500) return [380, 280];
     else if (windowSize > 1168 && windowSize < 1500) return [250, 210];
@@ -43,57 +60,66 @@ export default function GridCard({
   });
   const [data, setData] = useState(results);
   return (
-    <div
-      className="gridcard-wrapper"
-      onClick={() => {
-        fetchVideo(id);
-      }}
-      style={{
-        display: "flex",
-        marginTop: "20px",
-        flexDirection: "column",
-        alignItems: "center",
-      }}
-    >
+    <>
       <div
-        style={{
-          borderRadius: "15px",
-          backgroundImage: `url(${image})`,
-          height: calculateSize(windowSize)[0],
-          width: calculateSize(windowSize)[1],
-
-          backgroundPosition: "center",
-          backgroundSize: "cover",
+        className="gridcard-wrapper"
+        onClick={() => {
+          fetchVideo(id);
         }}
-      ></div>
-
-      {episodeNum > 0 && (
-        <h5 style={{ color: "white", fontWeight: "lighter" }}>
-          Episode {episodeNum}
-        </h5>
-      )}
-      {rating && year && (
-        <div
-          style={{ display: "flex", gap: 10, marginTop: 8 }}
-          className="gridcardinfo"
-        >
-          <p style={{ color: "white", fontSize: "1.35rem" }}>{year}</p>
-          <p style={{ color: "white", fontSize: "1.35rem" }}>
-            Rating: {rating}
-          </p>
-        </div>
-      )}
-
-      <h4
-        className="grid-card-title"
         style={{
-          textAlign: "center",
-          color: "white",
-          fontWeight: "lighter",
+          display: "flex",
+          marginTop: "20px",
+          flexDirection: "column",
+          alignItems: "center",
         }}
       >
-        {title}
-      </h4>
-    </div>
+        <div
+          style={{
+            borderRadius: "15px",
+            backgroundImage: `url(${image})`,
+            height: calculateSize(windowSize)[0],
+            width: calculateSize(windowSize)[1],
+
+            backgroundPosition: "center",
+            backgroundSize: "cover",
+          }}
+        ></div>
+
+        {episodeNum > 0 && (
+          <h5 style={{ color: "white", fontWeight: "lighter" }}>
+            Episode {episodeNum}
+          </h5>
+        )}
+        {rating && year && (
+          <div
+            style={{ display: "flex", gap: 10, marginTop: 8 }}
+            className="gridcardinfo"
+          >
+            <p style={{ color: "white", fontSize: "1.35rem" }}>{year}</p>
+            <p style={{ color: "white", fontSize: "1.35rem" }}>
+              Rating: {rating}
+            </p>
+          </div>
+        )}
+
+        <h4
+          className="grid-card-title"
+          style={{
+            textAlign: "center",
+            color: "white",
+            fontWeight: "lighter",
+          }}
+        >
+          {title}
+        </h4>
+      </div>
+
+      <MoonLoader
+        color={"white"}
+        loading={videoIsLoading}
+        cssOverride={override}
+        size={80}
+      />
+    </>
   );
 }

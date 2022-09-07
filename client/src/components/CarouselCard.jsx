@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import TextTruncate from "react-text-truncate";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import AnimePlayerModal from "./AnimePlayerModal";
 import MoonLoader from "react-spinners/MoonLoader";
 
 export default function CarouselCard({
@@ -79,7 +78,7 @@ export default function CarouselCard({
         className="animecard-wrapper"
         style={{
           display: "flex",
-
+          marginTop:5,
           flexDirection: "column",
           alignItems: "center",
           height: "fit-content",
@@ -108,7 +107,7 @@ export default function CarouselCard({
         <a
           href="/"
           className="anime-card-title"
-          style={{ color: "white", fontWeight: "lighter" }}
+          style={{ color: "white", fontWeight: "lighter" ,marginTop:5}}
         >
           <TextTruncate text={title} line={2}></TextTruncate>
         </a>

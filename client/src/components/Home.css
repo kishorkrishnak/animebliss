@@ -15,7 +15,8 @@ body {
 .section-topairing,
 .section-favorite,
 .section-trending,
-.section-popular {
+.section-popular,
+.section-movies {
   margin-top: 15px;
 }
 
@@ -41,6 +42,14 @@ button.rec-dot:focus {
   }
   .anime-description {
     font-size: 1.5rem;
+  }
+.curranimeinfo{
+  display: flex !important;
+  justify-content: "center" !important;
+  align-items: "center" !important;
+}
+  .curranime{
+   font-size: 1.2rem !important;
   }
 }
 @media screen and (max-width: 1000px) {

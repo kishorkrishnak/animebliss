@@ -2,15 +2,26 @@ import ShakaPlayer from "shaka-player-react";
 import "shaka-player-react/dist/controls.css";
 import Select from "react-select";
 import { useEffect, useState } from "react";
+import TextTruncate from "react-text-truncate";
 import axios from "axios";
-export default function AnimePlay({ animeInfo, onOpenModal }) {
+const AnimePlayer = ({ animeInfo, onOpenModal }) => {
   const [anime, setAnime] = useState(animeInfo);
   const [allEpisodes, setAllEpisodes] = useState(animeInfo.episodes);
   const [epcount, setEpCount] = useState(animeInfo.episodes.length);
   const [selectedOption, setSelectedOption] = useState({ value: 1, label: 1 });
   let [currentStreamUrl, setCurrentStreamUrl] = useState(null);
   const [currentId, setCurrentId] = useState(allEpisodes[0].id);
+
   const options = [];
+  const selectStyles = {
+    menuList: (styles) => {
+      console.log("menuList:", styles);
+      return {
+        ...styles,
+        maxHeight: 180,
+      };
+    },
+  };
 
   async function fetchVideoById(url) {
     return await axios.get(url).then((response) => {
@@ -38,6 +49,17 @@ export default function AnimePlay({ animeInfo, onOpenModal }) {
       label: i,
     });
   }
+  let regexeddescription = anime.description.replaceAll(
+    /<\/?[\w\s]*>|<.+[\W]>/g,
+    ""
+  );
+  regexeddescription = regexeddescription.substring(
+    0,
+    regexeddescription.indexOf("("),
+    4
+  );
+
+
 
   return (
     <>
@@ -71,22 +93,26 @@ export default function AnimePlay({ animeInfo, onOpenModal }) {
           </span>
         </div>
 
-        <form style={{ marginTop: 5 }}>
-          <div style={{ width: 200 }}>
+        <form style={{ marginTop: 10 }}>
+          <div style={{ width: 100 }}>
             <Select
               defaultValue={selectedOption}
               onChange={setSelectedOption}
               options={options}
+              styles={selectStyles}
             />
           </div>
         </form>
         <h3 style={{ color: "red", marginTop: 10 }}>Summary</h3>
         <p style={{ textAlign: "justify", color: "white" }}>
-          {anime.description}
+          <TextTruncate
+            text={regexeddescription}
+            line={window.innerWidth < 800 ? 4 : 8}
+          ></TextTruncate>
         </p>
         <br />
-        <h4 style={{ color: "red" }}>Genres: </h4>
-        <h4 style={{ color: "red" }}>Studios: </h4>
+        <h4 style={{ color: "red" }}>Genres:&nbsp;<span style={{color:"white"}}>{anime.genres.join(", ")}</span></h4>
+        <h4 style={{ color: "red" }}>Studios:&nbsp;<span style={{color:"white"}}>{anime.studios.join(", ")}</span></h4>
 
         <h4 style={{ color: "red" }}>Adapation: </h4>
 
@@ -94,4 +120,6 @@ export default function AnimePlay({ animeInfo, onOpenModal }) {
       </div>
     </>
   );
-}
+};
+
+export default AnimePlayer;
