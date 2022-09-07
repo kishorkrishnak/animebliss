@@ -47,12 +47,12 @@ export default function AnimePlay({ animeInfo, onOpenModal }) {
 
       <div
         className="curranime"
-        style={{ padding: 30, backgroundColor: "#10141e" }}
+        style={{ height: "100%", padding: 30, backgroundColor: "#10141e" }}
       >
         <h3 style={{ color: "red" }}>{animeInfo.title.english}</h3>
         <div
           className="curranimeinfo"
-          style={{ marginTop: 10, display: "flex", gap: 25 }}
+          style={{ marginTop: 5, display: "flex", gap: 25 }}
         >
           <span style={{ color: "white" }} className="curranime-platform">
             TV Show
@@ -71,7 +71,7 @@ export default function AnimePlay({ animeInfo, onOpenModal }) {
           </span>
         </div>
 
-        <form style={{ marginTop: 15 }}>
+        <form style={{ marginTop: 5 }}>
           <div style={{ width: 200 }}>
             <Select
               defaultValue={selectedOption}
@@ -80,9 +80,17 @@ export default function AnimePlay({ animeInfo, onOpenModal }) {
             />
           </div>
         </form>
+        <h3 style={{ color: "red", marginTop: 10 }}>Summary</h3>
         <p style={{ textAlign: "justify", color: "white" }}>
           {anime.description}
         </p>
+        <br />
+        <h4 style={{ color: "red" }}>Genres: </h4>
+        <h4 style={{ color: "red" }}>Studios: </h4>
+
+        <h4 style={{ color: "red" }}>Adapation: </h4>
+
+        <h4 style={{ color: "red" }}>Sequel: </h4>
       </div>
     </>
   );

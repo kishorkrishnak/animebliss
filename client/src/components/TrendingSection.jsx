@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 
 import CarouselRenderer from "./CarouselRenderer";
 
-export default function TrendingSection({onOpenModal,setAnimeInfo}) {
+export default function TrendingSection({ onOpenModal, setAnimeInfo }) {
   const [trending, setTrending] = useState([]);
   useEffect(() => {
     fetch("https://consumet-api.herokuapp.com/meta/anilist/trending")
@@ -15,8 +15,8 @@ export default function TrendingSection({onOpenModal,setAnimeInfo}) {
     <section className="section section-trending" id="trending">
       {trending.length > 0 && (
         <CarouselRenderer
-        onOpenModal = {onOpenModal}
-        setAnimeInfo = {setAnimeInfo}
+          onOpenModal={onOpenModal}
+          setAnimeInfo={setAnimeInfo}
           finalQuery={trending}
           stretchedA={true}
           rowTitle="Trending"

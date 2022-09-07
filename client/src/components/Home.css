@@ -68,10 +68,13 @@ button.rec-dot:focus {
 }
 
 .customModal {
+
   border-radius: 20 !important;
   width: 80vw !important;
   height: fit-content !important;
   padding: 0 !important;
+  z-index: 1000;
+  overflow-y: hidden !important;
 }
 
 .btn-index {

@@ -3,6 +3,8 @@ import TextTruncate from "react-text-truncate";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import AnimePlayerModal from "./AnimePlayerModal";
+import MoonLoader from "react-spinners/MoonLoader";
+
 export default function CarouselCard({
   setAnimeInfo,
 
@@ -14,7 +16,18 @@ export default function CarouselCard({
   rating,
   id,
 }) {
-  const navigate = useNavigate();
+  const override = {
+    position: "fixed",
+    zIndex: 1,
+    left: 0,
+    right: 0,
+    top: 0,
+    bottom: 0,
+
+    margin: "auto",
+
+    borderColor: "red",
+  };
   useEffect(() => {
     window.addEventListener("resize", () => {
       setWindowSize(window.innerWidth);
@@ -43,6 +56,7 @@ export default function CarouselCard({
       .then((res) => {
         setAnimeInfo(res.data);
         onOpenModal();
+        setVideoIsLoading(false);
       })
       .catch((e) => {
         console.log(e);
@@ -50,6 +64,14 @@ export default function CarouselCard({
   }
   return (
     <>
+      {videoIsLoading && (
+        <MoonLoader
+          color={"white"}
+          loading={videoIsLoading}
+          cssOverride={override}
+          size={80}
+        />
+      )}
       <div
         onClick={() => {
           fetchVideo(id);

@@ -99,7 +99,10 @@ export default function Navbar() {
             </a>
           </li>
           <li className="nav__item">
-            <Link to="/wallpapers" style={{ color: "white", font: "inherit" }}>
+            <Link onClick={(e)=>{
+              e.preventDefault()
+              document.querySelector(".section-trending").scrollIntoView()
+            }} to="/wallpapers" style={{ color: "white", font: "inherit" }}>
               Trending
             </Link>
           </li>

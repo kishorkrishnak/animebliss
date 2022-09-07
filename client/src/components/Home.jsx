@@ -4,7 +4,7 @@ import "react-responsive-modal/styles.css";
 import { Modal } from "react-responsive-modal";
 import ScrollToTop from "react-scroll-to-top";
 import Header from "./Header";
-import TopAiringSection from "./TopAiringSection";
+import MoviesSection from "./MoviesSection";
 import UpcomingSection from "./UpcomingSection";
 import PopularSection from "./PopularSection";
 import AnimePlayer from "./AnimePlayer";
@@ -42,6 +42,11 @@ export default function Home() {
         setAnimeInfo={setAnimeInfo}
         onOpenModal={onOpenModal}
       ></TrendingSection>
+      <MoviesSection
+        setAnimeInfo={setAnimeInfo}
+        onOpenModal={onOpenModal}
+      ></MoviesSection>
+
       <PopularSection
         setAnimeInfo={setAnimeInfo}
         onOpenModal={onOpenModal}
