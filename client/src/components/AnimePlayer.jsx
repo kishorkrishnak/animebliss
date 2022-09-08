@@ -60,64 +60,75 @@ const AnimePlayer = ({ animeInfo, onOpenModal }) => {
   );
 
 
-
+  
   return (
     <>
       {currentStreamUrl !== null && (
-        <ShakaPlayer autoPlay src={currentStreamUrl} />
-      )}
+        <>
+          <ShakaPlayer autoPlay src={currentStreamUrl} />
 
-      <div
-        className="curranime"
-        style={{ height: "100%", padding: 30, backgroundColor: "#10141e" }}
-      >
-        <h3 style={{ color: "red" }}>{animeInfo.title.english}</h3>
-        <div
-          className="curranimeinfo"
-          style={{ marginTop: 5, display: "flex", gap: 25 }}
-        >
-          <span style={{ color: "white" }} className="curranime-platform">
-            TV Show
-          </span>
-          <span style={{ color: "white" }} className="curranime-score">
-            Rating: {anime.rating}
-          </span>
-          <span style={{ color: "white" }} className="curranime-epaired">
-            Episodes Aired: {anime.episodes.length}
-          </span>
-          <span style={{ color: "white" }} className="curranime-releaseyear">
-            {anime.releaseDate}
-          </span>
-          <span style={{ color: "white" }} className="curranime-status">
-            {anime.status}
-          </span>
-        </div>
+          <div
+            className="curranime"
+            style={{ height: "100%", padding: 30, backgroundColor: "#10141e" }}
+          >
+            <h3 style={{ color: "red" }}>{animeInfo.title.english}</h3>
+            <div
+              className="curranimeinfo"
+              style={{ marginTop: 5, display: "flex", gap: 25 }}
+            >
+              <span style={{ color: "white" }} className="curranime-platform">
+                TV Show
+              </span>
+              <span style={{ color: "white" }} className="curranime-score">
+                Rating: {anime.rating}
+              </span>
+              <span style={{ color: "white" }} className="curranime-epaired">
+                Episodes Aired: {anime.episodes.length}
+              </span>
+              <span
+                style={{ color: "white" }}
+                className="curranime-releaseyear"
+              >
+                {anime.releaseDate}
+              </span>
+              <span style={{ color: "white" }} className="curranime-status">
+                {anime.status}
+              </span>
+            </div>
 
-        <form style={{ marginTop: 10 }}>
-          <div style={{ width: 100 }}>
-            <Select
-              defaultValue={selectedOption}
-              onChange={setSelectedOption}
-              options={options}
-              styles={selectStyles}
-            />
+            <form style={{ marginTop: 10 }}>
+              <div style={{ width: 100 }}>
+                <Select
+                  defaultValue={selectedOption}
+                  onChange={setSelectedOption}
+                  options={options}
+                  styles={selectStyles}
+                />
+              </div>
+            </form>
+            <h3 style={{ color: "red", marginTop: 10 }}>Summary</h3>
+            <p style={{ textAlign: "justify", color: "white" }}>
+              <TextTruncate
+                text={regexeddescription}
+                line={window.innerWidth < 800 ? 4 : 8}
+              ></TextTruncate>
+            </p>
+            <br />
+            <h4 style={{ color: "red" }}>
+              Genres:&nbsp;
+              <span style={{ color: "white" }}>{anime.genres.join(", ")}</span>
+            </h4>
+            <h4 style={{ color: "red" }}>
+              Studios:&nbsp;
+              <span style={{ color: "white" }}>{anime.studios.join(", ")}</span>
+            </h4>
+
+            <h4 style={{ color: "red" }}>Adapation: </h4>
+
+            <h4 style={{ color: "red" }}>Sequel: </h4>
           </div>
-        </form>
-        <h3 style={{ color: "red", marginTop: 10 }}>Summary</h3>
-        <p style={{ textAlign: "justify", color: "white" }}>
-          <TextTruncate
-            text={regexeddescription}
-            line={window.innerWidth < 800 ? 4 : 8}
-          ></TextTruncate>
-        </p>
-        <br />
-        <h4 style={{ color: "red" }}>Genres:&nbsp;<span style={{color:"white"}}>{anime.genres.join(", ")}</span></h4>
-        <h4 style={{ color: "red" }}>Studios:&nbsp;<span style={{color:"white"}}>{anime.studios.join(", ")}</span></h4>
-
-        <h4 style={{ color: "red" }}>Adapation: </h4>
-
-        <h4 style={{ color: "red" }}>Sequel: </h4>
-      </div>
+        </>
+      )}
     </>
   );
 };

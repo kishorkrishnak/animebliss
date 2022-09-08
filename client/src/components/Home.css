@@ -43,13 +43,13 @@ button.rec-dot:focus {
   .anime-description {
     font-size: 1.5rem;
   }
-.curranimeinfo{
-  display: flex !important;
-  justify-content: "center" !important;
-  align-items: "center" !important;
-}
-  .curranime{
-   font-size: 1.2rem !important;
+  .curranimeinfo {
+    display: flex !important;
+    justify-content: "center" !important;
+    align-items: "center" !important;
+  }
+  .curranime {
+    font-size: 1.2rem !important;
   }
 }
 @media screen and (max-width: 1000px) {
@@ -77,15 +77,33 @@ button.rec-dot:focus {
 }
 
 .customModal {
-
-  border-radius: 20 !important;
   width: 80vw !important;
+  background-color: black !important;
   height: fit-content !important;
   padding: 0 !important;
-  z-index: 1000;
+  border-radius: 10px !important;
   overflow-y: hidden !important;
 }
 
+
+
+
+@keyframes customEnterModalAnimation {
+  0% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+@keyframes customLeaveModalAnimation {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(0);
+  }
+}
 .btn-index {
   cursor: pointer;
 }
