@@ -46,8 +46,10 @@ export default function Navbar() {
   const navToggle = () => {
     if (active === "nav__menu") {
       setActive("nav__menu nav__active");
+      document.querySelector(".separatorhr").hidden = false;
     } else {
       setActive("nav__menu");
+      document.querySelector(".separatorhr").hidden = true;
     }
 
     if (icon === "nav__toggler") {
@@ -99,10 +101,14 @@ export default function Navbar() {
             </a>
           </li>
           <li className="nav__item">
-            <Link onClick={(e)=>{
-              e.preventDefault()
-              document.querySelector(".section-trending").scrollIntoView()
-            }} to="/wallpapers" style={{ color: "white", font: "inherit" }}>
+            <Link
+              onClick={(e) => {
+                e.preventDefault();
+                document.querySelector(".section-trending").scrollIntoView();
+              }}
+              to="/wallpapers"
+              style={{ color: "white", font: "inherit" }}
+            >
               Trending
             </Link>
           </li>
@@ -117,7 +123,7 @@ export default function Navbar() {
               Login
             </Link>
           </li>
-
+          <hr className="separatorhr" hidden style={{ width: "100vh" }} />
           <li className="nav__item">
             <a href="/" className="nav__link nav__link-signout">
               Signout

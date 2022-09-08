@@ -4,6 +4,7 @@ import Select from "react-select";
 import { useEffect, useState } from "react";
 import TextTruncate from "react-text-truncate";
 import axios from "axios";
+import CarouselRenderer from "./CarouselRenderer";
 const AnimePlayer = ({ animeInfo, onOpenModal }) => {
   const [anime, setAnime] = useState(animeInfo);
   const [allEpisodes, setAllEpisodes] = useState(animeInfo.episodes);
@@ -11,7 +12,7 @@ const AnimePlayer = ({ animeInfo, onOpenModal }) => {
   const [selectedOption, setSelectedOption] = useState({ value: 1, label: 1 });
   let [currentStreamUrl, setCurrentStreamUrl] = useState(null);
   const [currentId, setCurrentId] = useState(allEpisodes[0].id);
-
+  console.log(animeInfo);
   const options = [];
   const selectStyles = {
     menuList: (styles) => {
@@ -34,7 +35,6 @@ const AnimePlayer = ({ animeInfo, onOpenModal }) => {
   };
 
   useEffect(() => {
-    console.log(currentId);
     fetchVideoById(
       " https://consumet-api.herokuapp.com/meta/anilist/watch/" + currentId
     );
@@ -59,8 +59,6 @@ const AnimePlayer = ({ animeInfo, onOpenModal }) => {
     4
   );
 
-
-  
   return (
     <>
       {currentStreamUrl !== null && (
@@ -126,6 +124,17 @@ const AnimePlayer = ({ animeInfo, onOpenModal }) => {
             <h4 style={{ color: "red" }}>Adapation: </h4>
 
             <h4 style={{ color: "red" }}>Sequel: </h4>
+
+            <br />
+            <div className="recommendations">
+              <h3 style={{ color: "red" }}>Recommendations</h3>
+
+              <CarouselRenderer
+                type={"reco"}
+                finalQuery={anime.recommendations}
+                stretchedA={true}
+              ></CarouselRenderer>
+            </div>
           </div>
         </>
       )}

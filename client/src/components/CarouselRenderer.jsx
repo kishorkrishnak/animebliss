@@ -12,6 +12,7 @@ export default function CarouselRenderer({
   isRecent,
   isTrending,
   stretchedA,
+  type = "",
   initialActiveIndex,
   setIsPlaying,
   setTrailerId,
@@ -47,6 +48,7 @@ export default function CarouselRenderer({
         {rowTitle}
       </h1>
       <Carousel
+        justify="stretch"
         initialActiveIndex={initialActiveIndex}
         enableTilt={true}
         enableAutoPlay={true}
@@ -54,6 +56,7 @@ export default function CarouselRenderer({
         pagination={windowSize < 800 ? false : true}
         showArrows={false}
         breakPoints={breakPoints}
+        itemPosition={"CENTER"}
       >
         {finalQuery.map((query, index) =>
           stretchedA ? (
@@ -64,6 +67,7 @@ export default function CarouselRenderer({
               title={query.title.english}
               image={query.image}
               key={uuidv4()}
+              type={type}
               rating={query.rating}
               id={query.id}
               rowTitle={rowTitle}

@@ -125,8 +125,7 @@ export default function PopularSection({ setAnimeInfo, onOpenModal }) {
 
                 display: "flex",
                 alignItems: "center",
-                paddingLeft: "2%",
-                paddingRight: "2%",
+              
                 marginTop: 20,
                 borderTop: "1px solid dodgerblue",
                 justifyContent: "space-between",

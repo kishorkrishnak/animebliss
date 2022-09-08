@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import TextTruncate from "react-text-truncate";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
 import MoonLoader from "react-spinners/MoonLoader";
 
 export default function CarouselCard({
@@ -12,6 +11,7 @@ export default function CarouselCard({
   image,
   rowTitle,
   episodeNum,
+  type = "",
   rating,
   id,
 }) {
@@ -30,6 +30,7 @@ export default function CarouselCard({
   useEffect(() => {
     window.addEventListener("resize", () => {
       setWindowSize(window.innerWidth);
+      console.log(windowSize);
     });
   });
   const [windowSize, setWindowSize] = useState(window.innerWidth);
@@ -40,7 +41,12 @@ export default function CarouselCard({
     else if (windowSize > 1600 && windowSize < 1700) return [230, 360];
     else if (windowSize > 1300 && windowSize < 1600) return [200, 310];
     else if (windowSize >= 800 && windowSize < 1300) return [180, 270];
-    else if (windowSize >= 475 && windowSize < 800) return [130, 225];
+    else if (windowSize >= 475 && windowSize < 800 && type!=="reco") {
+      
+      return [230, 225];
+    } else if (windowSize >= 475 && windowSize < 800 && type==="reco") {
+      return [100,140]
+    }
     else if (windowSize >= 440 && windowSize < 475) return [130, 210];
     else if (windowSize >= 420 && windowSize < 440) return [130, 185];
     else if (windowSize >= 390 && windowSize < 420) return [110, 175];
@@ -78,7 +84,7 @@ export default function CarouselCard({
         className="animecard-wrapper"
         style={{
           display: "flex",
-          marginTop:5,
+          marginTop: 5,
           flexDirection: "column",
           alignItems: "center",
           height: "fit-content",
@@ -107,7 +113,7 @@ export default function CarouselCard({
         <a
           href="/"
           className="anime-card-title"
-          style={{ color: "white", fontWeight: "lighter" ,marginTop:5}}
+          style={{ color: "white", fontWeight: "lighter", marginTop: 5 }}
         >
           <TextTruncate text={title} line={2}></TextTruncate>
         </a>

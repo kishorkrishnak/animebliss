@@ -16,8 +16,11 @@ body {
 .section-favorite,
 .section-trending,
 .section-popular,
-.section-movies {
+.section-movies{
   margin-top: 15px;
+}
+.section-carousel {
+  margin-top: 50px;
 }
 
 button.rec-dot {
@@ -60,6 +63,7 @@ button.rec-dot:focus {
 
   .pagination {
     margin-top: 5px;
+    justify-content: space-between;
   }
   .previousPageButton * {
     order: 1;
@@ -77,6 +81,7 @@ button.rec-dot:focus {
 }
 
 .customModal {
+  margin-top: 80px !important;
   width: 80vw !important;
   background-color: black !important;
   height: fit-content !important;

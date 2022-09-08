@@ -28,24 +28,25 @@ export default function Home() {
     <>
       <Header onOpenModal={onOpenModal} setAnimeInfo={setAnimeInfo}></Header>
       <UpcomingSection></UpcomingSection>
-        <Modal
-          classNames={{
-            modal: "customModal",
+      <Modal
+        classNames={{
+          modal: "customModal",
 
-            modalAnimationIn: "customEnterModalAnimation",
-            modalAnimationOut: "customLeaveModalAnimation",
-          }}
-          open={open}
-          onClose={onCloseModal}
-          center
-          showCloseIcon ={true}
-          animationDuration={600}
-        >
-          <AnimePlayer
-            onOpenModal={onOpenModal}
-            animeInfo={animeInfo}
-          ></AnimePlayer>
-        </Modal>
+          modalAnimationIn: "customEnterModalAnimation",
+          modalAnimationOut: "customLeaveModalAnimation",
+        }}
+        open={open}
+        onClose={onCloseModal}
+        center
+        showCloseIcon={true}
+        closeIcon={closeIcon}
+        animationDuration={600}
+      >
+        <AnimePlayer
+          onOpenModal={onOpenModal}
+          animeInfo={animeInfo}
+        ></AnimePlayer>
+      </Modal>
       <TrendingSection
         setAnimeInfo={setAnimeInfo}
         onOpenModal={onOpenModal}

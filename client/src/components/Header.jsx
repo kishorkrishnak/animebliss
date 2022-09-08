@@ -16,17 +16,20 @@ const Header = ({ onOpenModal, setAnimeInfo }) => {
   }, []);
 
   return (
-    <header className="header">
+    <>
       <Navbar></Navbar>
+
+    <header className="header">
       <section className="section section-carousel">
         {finalResults.length > 0 && (
           <HeaderCarouselRenderer
-          onOpenModal={onOpenModal}
-          setAnimeInfo={setAnimeInfo}
+            onOpenModal={onOpenModal}
+            setAnimeInfo={setAnimeInfo}
             finalResults={finalResults}
           ></HeaderCarouselRenderer>
         )}
       </section>
+
       {/* 
       <div
         className="sectiontabs"
@@ -63,8 +66,10 @@ const Header = ({ onOpenModal, setAnimeInfo }) => {
         <button className="btn-section">Wallpapers</button>
       </div> */}
     </header>
+
+    </>
   );
+  
 };
 
-
-export default Header
+export default Header;

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import TextTruncate from "react-text-truncate";
 
-export default function UpcomingCard({
+const UpcomingCard = ({
   title,
   image,
 
@@ -11,7 +11,7 @@ export default function UpcomingCard({
   setIsPlaying,
   setTrailerId,
   id,
-}) {
+}) => {
   const [windowSize, setWindowSize] = useState(window.innerWidth);
   useEffect(() => {
     window.addEventListener("resize", () => {
@@ -79,4 +79,6 @@ export default function UpcomingCard({
       </a>
     </div>
   );
-}
+};
+
+export default UpcomingCard;
