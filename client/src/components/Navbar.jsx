@@ -6,7 +6,8 @@ import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { toast } from "react-toastify";
-export default function Navbar() {
+
+export default function Navbar({ onOpenModal, setAnimeInfo }) {
   const [input, setInput] = useState("");
   const calculateSize = (windowSize) => {
     if (windowSize > 450) return 330;
@@ -21,13 +22,20 @@ export default function Navbar() {
   });
   const navigate = useNavigate();
   const searchAnime = async () => {
-    return fetch("https://api.jikan.moe/v4/anime?q=" + input)
+    return fetch("https://consumet-api.herokuapp.com/meta/anilist/" + input)
       .then((response) => {
         return response.json();
       })
       .then((data) => {
+        console.log(data);
         navigate("/search", {
-          state: { finalResults: [...data.data], input: input },
+          state: {
+            finalResults: data.results,
+            input: input,
+   
+
+
+          },
         });
       });
   };
@@ -121,7 +129,10 @@ export default function Navbar() {
               Login
             </Link>
           </li>
-          <hr className="separatorhr" style={{color:"white",width:"100%"}} />
+          <hr
+            className="separatorhr"
+            style={{ color: "white", width: "100%" }}
+          />
           <li className="nav__item">
             <a href="/" className="nav__link nav__link-signout">
               Signout
@@ -138,3 +149,4 @@ export default function Navbar() {
     </nav>
   );
 }
+

@@ -16,7 +16,7 @@ body {
 .section-favorite,
 .section-trending,
 .section-popular,
-.section-movies{
+.section-movies {
   margin-top: 15px;
 }
 .section-carousel {
@@ -89,9 +89,6 @@ button.rec-dot:focus {
   border-radius: 10px !important;
   overflow-y: hidden !important;
 }
-
-
-
 
 @keyframes customEnterModalAnimation {
   0% {

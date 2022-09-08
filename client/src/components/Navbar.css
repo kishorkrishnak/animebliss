@@ -129,7 +129,7 @@ a {
 }
 @media screen and (max-width: 500px) {
   .nav__menu {
-    top: 6.8vh !important;
+    top: 6.5vh !important;
   }
 }
 

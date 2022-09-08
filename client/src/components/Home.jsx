@@ -9,6 +9,7 @@ import UpcomingSection from "./UpcomingSection";
 import PopularSection from "./PopularSection";
 import AnimePlayer from "./AnimePlayer";
 import TrendingSection from "./TrendingSection";
+export const AnimeInfoContext = React.createContext();
 export default function Home() {
   const [open, setOpen] = useState(false);
   const [animeInfo, setAnimeInfo] = useState(null);
@@ -25,42 +26,46 @@ export default function Home() {
     </svg>
   );
   return (
-    <>
-      <Header onOpenModal={onOpenModal} setAnimeInfo={setAnimeInfo}></Header>
-      <UpcomingSection></UpcomingSection>
-      <Modal
-        classNames={{
-          modal: "customModal",
+    <AnimeInfoContext.Provider
+      value={{ setAnimeInfo: setAnimeInfo, onOpenModal: onOpenModal,data: "kishor"}}
+    >
+      <>
+        <Header onOpenModal={onOpenModal} setAnimeInfo={setAnimeInfo}></Header>
+        <UpcomingSection></UpcomingSection>
+        <Modal
+          classNames={{
+            modal: "customModal",
 
-          modalAnimationIn: "customEnterModalAnimation",
-          modalAnimationOut: "customLeaveModalAnimation",
-        }}
-        open={open}
-        onClose={onCloseModal}
-        center
-        showCloseIcon={true}
-        closeIcon={closeIcon}
-        animationDuration={600}
-      >
-        <AnimePlayer
+            modalAnimationIn: "customEnterModalAnimation",
+            modalAnimationOut: "customLeaveModalAnimation",
+          }}
+          open={open}
+          onClose={onCloseModal}
+          center
+          showCloseIcon={true}
+          closeIcon={closeIcon}
+          animationDuration={600}
+        >
+          <AnimePlayer
+            onOpenModal={onOpenModal}
+            animeInfo={animeInfo}
+          ></AnimePlayer>
+        </Modal>
+        <TrendingSection
+          setAnimeInfo={setAnimeInfo}
           onOpenModal={onOpenModal}
-          animeInfo={animeInfo}
-        ></AnimePlayer>
-      </Modal>
-      <TrendingSection
-        setAnimeInfo={setAnimeInfo}
-        onOpenModal={onOpenModal}
-      ></TrendingSection>
-      <MoviesSection
-        setAnimeInfo={setAnimeInfo}
-        onOpenModal={onOpenModal}
-      ></MoviesSection>
+        ></TrendingSection>
+        <MoviesSection
+          setAnimeInfo={setAnimeInfo}
+          onOpenModal={onOpenModal}
+        ></MoviesSection>
 
-      <PopularSection
-        setAnimeInfo={setAnimeInfo}
-        onOpenModal={onOpenModal}
-      ></PopularSection>
-      <ScrollToTop top={1500} smooth color="#6f00ff" />
-    </>
+        <PopularSection
+          setAnimeInfo={setAnimeInfo}
+          onOpenModal={onOpenModal}
+        ></PopularSection>
+        <ScrollToTop top={1500} smooth color="#6f00ff" />
+      </>
+    </AnimeInfoContext.Provider>
   );
 }

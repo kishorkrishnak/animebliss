@@ -15,6 +15,7 @@ export default function GridCard({
 }) {
   const [windowSize, setWindowSize] = useState(window.innerWidth);
   async function fetchVideo(id) {
+    console.log(id);
     setVideoIsLoading(true);
     return await axios
       .get("https://consumet-api.herokuapp.com/meta/anilist/info/" + id)

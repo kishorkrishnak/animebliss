@@ -1,12 +1,14 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState,useContext } from "react";
 import "./Header.css";
 import "./Navbar.css";
 import React from "react";
 import HeaderCarouselRenderer from "./HeaderCarouselRenderer";
 import Navbar from "./Navbar";
+import {AnimeInfoContext}  from "./Home";
 const Header = ({ onOpenModal, setAnimeInfo }) => {
   const [finalResults, setFinalResults] = useState([]);
-
+  const test = useContext(AnimeInfoContext)
+  console.log(test);
   useEffect(() => {
     fetch("https://consumet-api.herokuapp.com/meta/anilist/popular")
       .then((response) => response.json())
@@ -17,7 +19,9 @@ const Header = ({ onOpenModal, setAnimeInfo }) => {
 
   return (
     <>
-      <Navbar></Navbar>
+      <Navbar
+      onOpenModal={onOpenModal} setAnimeInfo={setAnimeInfo}
+      ></Navbar>
 
     <header className="header">
       <section className="section section-carousel">

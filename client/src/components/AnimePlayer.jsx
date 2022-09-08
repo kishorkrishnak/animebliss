@@ -63,7 +63,7 @@ const AnimePlayer = ({ animeInfo, onOpenModal }) => {
     <>
       {currentStreamUrl !== null && (
         <>
-          <ShakaPlayer autoPlay src={currentStreamUrl} />
+          <ShakaPlayer  autoPlay src={currentStreamUrl} />
 
           <div
             className="curranime"

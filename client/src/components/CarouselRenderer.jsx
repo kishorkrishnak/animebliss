@@ -48,7 +48,6 @@ export default function CarouselRenderer({
         {rowTitle}
       </h1>
       <Carousel
-        justify="stretch"
         initialActiveIndex={initialActiveIndex}
         enableTilt={true}
         enableAutoPlay={true}
@@ -56,7 +55,6 @@ export default function CarouselRenderer({
         pagination={windowSize < 800 ? false : true}
         showArrows={false}
         breakPoints={breakPoints}
-        itemPosition={"CENTER"}
       >
         {finalQuery.map((query, index) =>
           stretchedA ? (
