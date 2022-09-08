@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import MoonLoader from "react-spinners/MoonLoader";
+import MoonLoader from "react-spinners/ClockLoader";
 
 export default function GridCard({
   title,
@@ -44,7 +44,6 @@ export default function GridCard({
     if (windowSize > 1500) return [380, 280];
     else if (windowSize > 1168 && windowSize < 1500) return [250, 210];
     else if (windowSize >= 800 && windowSize < 1300) return [180, 270];
-
     else if (windowSize >= 475 && windowSize < 800) return [230, 225];
     else if (windowSize >= 440 && windowSize < 475) return [230, 200];
     else if (windowSize >= 420 && windowSize < 440) return [225, 185];
@@ -60,6 +59,15 @@ export default function GridCard({
   const [data, setData] = useState(results);
   return (
     <>
+      {videoIsLoading && (
+        <MoonLoader
+          color={"white"}
+          loading={videoIsLoading}
+          cssOverride={override}
+          size={80}
+        />
+      )}
+
       <div
         className="gridcard-wrapper"
         onClick={() => {
@@ -112,13 +120,6 @@ export default function GridCard({
           {title}
         </h4>
       </div>
-
-      <MoonLoader
-        color={"white"}
-        loading={videoIsLoading}
-        cssOverride={override}
-        size={80}
-      />
     </>
   );
 }

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import TextTruncate from "react-text-truncate";
 import axios from "axios";
-import MoonLoader from "react-spinners/MoonLoader";
+import ClockLoader from "react-spinners/ClockLoader";
 
 export default function CarouselCard({
   setAnimeInfo,
@@ -41,13 +41,11 @@ export default function CarouselCard({
     else if (windowSize > 1600 && windowSize < 1700) return [230, 360];
     else if (windowSize > 1300 && windowSize < 1600) return [200, 310];
     else if (windowSize >= 800 && windowSize < 1300) return [180, 270];
-    else if (windowSize >= 475 && windowSize < 800 && type!=="reco") {
-      
+    else if (windowSize >= 475 && windowSize < 800 && type !== "reco") {
       return [230, 225];
-    } else if (windowSize >= 475 && windowSize < 800 && type==="reco") {
-      return [100,140]
-    }
-    else if (windowSize >= 440 && windowSize < 475) return [130, 210];
+    } else if (windowSize >= 475 && windowSize < 800 && type === "reco") {
+      return [100, 140];
+    } else if (windowSize >= 440 && windowSize < 475) return [130, 210];
     else if (windowSize >= 420 && windowSize < 440) return [130, 185];
     else if (windowSize >= 390 && windowSize < 420) return [110, 175];
     else if (windowSize >= 360 && windowSize < 390) return [110, 165];
@@ -70,7 +68,7 @@ export default function CarouselCard({
   return (
     <>
       {videoIsLoading && (
-        <MoonLoader
+        <ClockLoader
           color={"white"}
           loading={videoIsLoading}
           cssOverride={override}

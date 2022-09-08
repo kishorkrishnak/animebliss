@@ -125,7 +125,7 @@ export default function Navbar() {
           </li>
           <hr className="separatorhr" hidden style={{ width: "100vh" }} />
           <li className="nav__item">
-            <a href="/" className="nav__link nav__link-signout">
+            <a style={{width:"100vw",paddingTop:15,display:"block",borderTop:"1px solid white"}} href="/" className="nav__link nav__link-signout">
               Signout
             </a>
           </li>

@@ -3,13 +3,12 @@ import Login from "./Login";
 
 import CarouselRenderer from "./CarouselRenderer";
 
-export default function MoviesSection({
-  setAnimeInfo,
-        onOpenModal
-}) {
+const MoviesSection = ({ setAnimeInfo, onOpenModal }) => {
   const [movies, setMovies] = useState([]);
   useEffect(() => {
-    fetch("https://consumet-api.herokuapp.com/meta/anilist/advanced-search?format=MOVIE")
+    fetch(
+      "https://consumet-api.herokuapp.com/meta/anilist/advanced-search?format=MOVIE"
+    )
       .then((response) => response.json())
       .then((data) => {
         setMovies(data.results);
@@ -24,9 +23,11 @@ export default function MoviesSection({
           stretchedA={true}
           initialActiveIndex={2}
           setAnimeInfo={setAnimeInfo}
-        onOpenModal={onOpenModal}
+          onOpenModal={onOpenModal}
         ></CarouselRenderer>
       )}
     </section>
   );
-}
+};
+
+export default MoviesSection;

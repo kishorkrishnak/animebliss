@@ -69,7 +69,7 @@ const AnimePlayer = ({ animeInfo, onOpenModal }) => {
             className="curranime"
             style={{ height: "100%", padding: 30, backgroundColor: "#10141e" }}
           >
-            <h3 style={{ color: "red" }}>{animeInfo.title.english}</h3>
+            <h2 style={{ color: "red" }}>{animeInfo.title.english}</h2>
             <div
               className="curranimeinfo"
               style={{ marginTop: 5, display: "flex", gap: 25 }}

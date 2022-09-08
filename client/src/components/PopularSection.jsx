@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import GridRenderer from "./GridRenderer.jsx";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import MoonLoader from "react-spinners/MoonLoader";
+import ClockLoader from "react-spinners/ClockLoader";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { v4 as uuidv4 } from "uuid";
 
@@ -54,7 +54,7 @@ export default function PopularSection({ setAnimeInfo, onOpenModal }) {
     }
   };
   useEffect(() => {
-    setLoading((prev) => !prev);
+    setLoading(true);
 
     fetch(
       "https://consumet-api.herokuapp.com/meta/anilist/popular?page=" +
@@ -70,149 +70,149 @@ export default function PopularSection({ setAnimeInfo, onOpenModal }) {
         }
 
         setPopular(data.results);
-        setLoading((prev) => !prev);
+        setLoading(false);
         document.querySelector(".section-popular").scrollIntoView();
       });
   }, [currpage]);
 
   return (
-    <section
-      className="section section-popular "
-      style={{
-        paddingBottom: 40,
-      }}
-    >
-      <ToastContainer />
+    <>
+      <ClockLoader
+        color={"white"}
+        loading={loading}
+        cssOverride={override}
+        size={80}
+      />
 
-      {popular.length > 0 && (
-        <>
-          <h1
-            style={{ color: "#fdba74", fontSize: "3rem", marginLeft: "20px" }}
-          >
-            Top Anime
-          </h1>
+      <section
+        className="section section-popular "
+        style={{
+          paddingBottom: 40,
+        }}
+      >
+        <ToastContainer />
 
-          {loading && (
-            <MoonLoader
-              color={"white"}
-              loading={loading}
-              cssOverride={override}
-              size={80}
-            />
-          )}
+        {popular.length > 0 && (
+          <>
+            <h1
+              style={{ color: "#fdba74", fontSize: "3rem", marginLeft: "20px" }}
+            >
+              Top Anime
+            </h1>
 
-          <GridRenderer
-            setAnimeInfo={setAnimeInfo}
-            onOpenModal={onOpenModal}
-            finalQuery={popular}
-          ></GridRenderer>
+            <GridRenderer
+              setAnimeInfo={setAnimeInfo}
+              onOpenModal={onOpenModal}
+              finalQuery={popular}
+            ></GridRenderer>
 
-          <div
-            className="pagination-wrapper"
-            style={{
-              marginTop: 20,
-              display: "flex",
-              alignItems: "center",
-              width: "100vw",
-              justifyContent: "center",
-            }}
-          >
             <div
-              className="pagination"
+              className="pagination-wrapper"
               style={{
-                height: 60,
-                width: "96%",
-
+                marginTop: 20,
                 display: "flex",
                 alignItems: "center",
-              
-                marginTop: 20,
-                borderTop: "1px solid dodgerblue",
-                justifyContent: "space-between",
+                width: "100vw",
+                justifyContent: "center",
               }}
             >
-              <button
-                className="previousPageButton"
-                onClick={(e) => {
-                  if (currpage <= 1) {
-                    nopreviouspageerror();
-                  } else {
-                    updatePageNumberButtons(e);
-                    setCurrpage((prev) => prev - 1);
-                  }
-                }}
-                style={{
-                  fontSize: "15px",
-                  outline: "none",
-                  border: "none",
-                  color: "white",
-                  width: 150,
-                  backgroundColor: "transparent",
-                }}
-              >
-                <FontAwesomeIcon icon={faArrowLeftLong}></FontAwesomeIcon>{" "}
-                &nbsp;Previous
-              </button>
-
               <div
+                className="pagination"
                 style={{
-                  display: "flex",
-                  gap: 40,
-                  flexWrap: "wrap",
-                  justifyContent: "center",
-                }}
-                className="pageindex"
-              >
-                {pageNumbers.map((pageNumber) => (
-                  <button
-                    className="btn-pageindex"
-                    key={uuidv4()}
-                    onClick={() => {
-                      setCurrpage(pageNumber);
-                    }}
-                    style={{
-                      border: "none",
-                      padding: "4px 8px",
-                      borderRadius: 5,
-                      color: "white",
-                      background: "none",
-                      fontSize: 14,
-                      backgroundColor:
-                        currpage === pageNumber ? "rgb(244, 67, 54)" : "none",
-                    }}
-                  >
-                    {pageNumber}
-                  </button>
-                ))}
-              </div>
+                  height: 60,
+                  width: "96%",
 
-              <button
-                className="nextPageButton"
-                onClick={(e) => {
-                  if (hasNextPage) {
-                    updatePageNumberButtons(e);
-                    setCurrpage((curr) => curr + 1);
-                  } else {
-                    nonextpageerror.error();
-                  }
-                }}
-                style={{
-                  color: "white",
-                  width: 150,
-                  background: "red",
-                  fontSize: "15px",
-                  outline: "none",
-                  border: "none",
-                  backgroundColor: "transparent",
+                  display: "flex",
+                  alignItems: "center",
+
+                  marginTop: 20,
+                  borderTop: "1px solid dodgerblue",
+                  justifyContent: "space-between",
                 }}
               >
-                Next&nbsp;
-                <FontAwesomeIcon icon={faArrowRightLong}></FontAwesomeIcon>
-              </button>
+                <button
+                  className="previousPageButton"
+                  onClick={(e) => {
+                    if (currpage <= 1) {
+                      nopreviouspageerror();
+                    } else {
+                      updatePageNumberButtons(e);
+                      setCurrpage((prev) => prev - 1);
+                    }
+                  }}
+                  style={{
+                    fontSize: "15px",
+                    outline: "none",
+                    border: "none",
+                    color: "white",
+                    width: 150,
+                    backgroundColor: "transparent",
+                  }}
+                >
+                  <FontAwesomeIcon icon={faArrowLeftLong}></FontAwesomeIcon>{" "}
+                  &nbsp;Previous
+                </button>
+
+                <div
+                  style={{
+                    display: "flex",
+                    gap: 40,
+                    flexWrap: "wrap",
+                    justifyContent: "center",
+                  }}
+                  className="pageindex"
+                >
+                  {pageNumbers.map((pageNumber) => (
+                    <button
+                      className="btn-pageindex"
+                      key={uuidv4()}
+                      onClick={() => {
+                        setCurrpage(pageNumber);
+                      }}
+                      style={{
+                        border: "none",
+                        padding: "4px 8px",
+                        borderRadius: 5,
+                        color: "white",
+                        background: "none",
+                        fontSize: 14,
+                        backgroundColor:
+                          currpage === pageNumber ? "rgb(244, 67, 54)" : "none",
+                      }}
+                    >
+                      {pageNumber}
+                    </button>
+                  ))}
+                </div>
+
+                <button
+                  className="nextPageButton"
+                  onClick={(e) => {
+                    if (hasNextPage) {
+                      updatePageNumberButtons(e);
+                      setCurrpage((curr) => curr + 1);
+                    } else {
+                      nonextpageerror.error();
+                    }
+                  }}
+                  style={{
+                    color: "white",
+                    width: 150,
+                    background: "red",
+                    fontSize: "15px",
+                    outline: "none",
+                    border: "none",
+                    backgroundColor: "transparent",
+                  }}
+                >
+                  Next&nbsp;
+                  <FontAwesomeIcon icon={faArrowRightLong}></FontAwesomeIcon>
+                </button>
+              </div>
             </div>
-          </div>
-        </>
-      )}
-    </section>
+          </>
+        )}
+      </section>
+    </>
   );
 }

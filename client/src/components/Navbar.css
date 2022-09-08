@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Merriweather+Sans:wght@500&display=swap");
+
 *,
 *::after,
 *::before {
@@ -17,11 +19,14 @@ a {
   text-decoration: none;
   color: black;
 }
-
+.separatorhr {
+  display: none;
+}
 .nav {
   width: 100%;
   position: fixed;
   display: flex;
+
   background-color: #10141e;
   top: 0;
   left: 0;
@@ -89,20 +94,22 @@ a {
     display: none;
   }
 
-
   .nav__menu {
+    font-size: 6rem !important;
     position: fixed;
     z-index: 1;
     gap: 2rem;
-    top: 8vh;
+    top: 7vh;
     right: 0;
-    
+
     width: 100vw;
     height: 38vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding-bottom: 60px;
+    padding-bottom: 40px;
+    text-align: center;
+    padding-right: 30px;
     border: 1px solid hsl(248, 24%, 10%);
     background-color: #10141e;
     border-radius: 5px;

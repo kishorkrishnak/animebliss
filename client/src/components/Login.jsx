@@ -1,6 +1,6 @@
 import "./Login.css";
 import { Link } from "react-router-dom";
-export default function Login() {
+const Login = () => {
   return (
     <div className="login-div-container">
       <div className="login-div">
@@ -37,11 +37,18 @@ export default function Login() {
 
         <div className="newtodiv">
           <p>New to animebliss?</p>
-          <a className='btn-login' style={{ color: "red" }} href="/signup" className="link-signup">
+          <a
+            className="btn-login"
+            style={{ color: "red" }}
+            href="/signup"
+            className="link-signup"
+          >
             Sign up now
           </a>
         </div>
       </div>
     </div>
   );
-}
+};
+
+export default Login;
