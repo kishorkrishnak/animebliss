@@ -46,10 +46,8 @@ export default function Navbar() {
   const navToggle = () => {
     if (active === "nav__menu") {
       setActive("nav__menu nav__active");
-      document.querySelector(".separatorhr").hidden = false;
     } else {
       setActive("nav__menu");
-      document.querySelector(".separatorhr").hidden = true;
     }
 
     if (icon === "nav__toggler") {
@@ -123,9 +121,9 @@ export default function Navbar() {
               Login
             </Link>
           </li>
-          <hr className="separatorhr" hidden style={{ width: "100vh" }} />
+          <hr className="separatorhr" style={{color:"white",width:"100%"}} />
           <li className="nav__item">
-            <a style={{width:"100vw",paddingTop:15,display:"block",borderTop:"1px solid white"}} href="/" className="nav__link nav__link-signout">
+            <a href="/" className="nav__link nav__link-signout">
               Signout
             </a>
           </li>

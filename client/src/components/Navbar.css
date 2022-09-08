@@ -75,9 +75,6 @@ a {
   transition: 0.3s ease-in;
 }
 
-.nav__link-signout {
-  margin-right: auto;
-}
 @media screen and (max-width: 1050px) {
   .magnify-icon {
     display: none;
@@ -88,10 +85,14 @@ a {
   .nav__toggler {
     display: block;
     cursor: pointer;
+    border-radius: 5px;
   }
 
   .searchbar {
     display: none;
+  }
+  .separatorhr {
+    display: initial !important;
   }
 
   .nav__menu {
@@ -103,7 +104,7 @@ a {
     right: 0;
 
     width: 100vw;
-    height: 38vh;
+    height: fit-content;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -120,6 +121,15 @@ a {
   }
   .nav__item {
     font-size: 1.8rem;
+  }
+}
+
+.separatorhr {
+  display: none;
+}
+@media screen and (max-width: 500px) {
+  .nav__menu {
+    top: 6.8vh !important;
   }
 }
 
