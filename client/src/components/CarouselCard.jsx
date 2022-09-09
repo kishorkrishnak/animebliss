@@ -1,7 +1,6 @@
 import { useEffect, useState, useContext } from "react";
 import TextTruncate from "react-text-truncate";
 import axios from "axios";
-import ClockLoader from "react-spinners/ClockLoader";
 import { SharedState } from "../App";
 
 export default function CarouselCard({

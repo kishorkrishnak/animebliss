@@ -1,31 +1,18 @@
-import { useEffect, useState } from "react";
-import Login from "./Login";
+import InfiniteSection from "./InfiniteSection";
+import Navbar from "./Navbar";
+import React from "react";
 
-import CarouselRenderer from "./CarouselRenderer";
-
-const MoviesSection = ({ setAnimeInfo, onOpenModal }) => {
-  const [movies, setMovies] = useState([]);
-  useEffect(() => {
-    fetch(
-      "https://consumet-api.herokuapp.com/meta/anilist/advanced-search?format=MOVIE"
-    )
-      .then((response) => response.json())
-      .then((data) => {
-        setMovies(data.results);
-      });
-  }, []);
+const MoviesSection = () => {
   return (
-    <section className="section section-movies">
-      {movies.length > 0 && (
-        <CarouselRenderer
-          finalQuery={movies}
-          rowTitle="Top Movies"
-          stretchedA={true}
-          initialActiveIndex={2}
-         
-        ></CarouselRenderer>
-      )}
-    </section>
+    <>
+      <InfiniteSection
+        url={
+          "https://consumet-api.herokuapp.com/meta/anilist/advanced-search?format=MOVIE"
+        }
+        itemlimit={18}
+        sectiontitle={"Top Anime Movies"}
+      ></InfiniteSection>
+    </>
   );
 };
 

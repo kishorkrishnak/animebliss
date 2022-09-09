@@ -4,7 +4,6 @@ import "./Navbar.css";
 import React from "react";
 import HeaderCarouselRenderer from "./HeaderCarouselRenderer";
 import Navbar from "./Navbar";
-import { SharedState } from "./Home";
 const Header = ({ navstate }) => {
   const [finalResults, setFinalResults] = useState([]);
 

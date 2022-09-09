@@ -5,8 +5,6 @@ import CarouselCard from "./CarouselCard";
 import { useState, useEffect } from "react";
 import UpcomingCard from "./UpcomingCard";
 export default function CarouselRenderer({
-  onOpenModal,
-  setAnimeInfo,
   finalQuery,
   rowTitle,
   isRecent,
@@ -68,7 +66,7 @@ export default function CarouselRenderer({
               rating={query.rating}
               id={query.id}
               rowTitle={rowTitle}
-              episodeNum={isRecent ? query.episode : 0}
+              episodeNum={query.episode ? query.episode : 0}
             ></CarouselCard>
           ) : (
             <UpcomingCard

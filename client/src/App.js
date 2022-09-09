@@ -6,7 +6,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import AnimePlayer from "./components/AnimePlayer";
 import { Modal } from "react-responsive-modal";
 import ClockLoader from "react-spinners/ClockLoader";
-
+import MoviesSection from "./components/MoviesSection";
 import SearchResults from "./components/SearchResults";
 export const SharedState = React.createContext();
 const App = () => {
@@ -83,6 +83,8 @@ const App = () => {
               <Route path="/login" element={<Login />} />
 
               <Route path="/" element={<Home navstate={navstate} />} />
+              <Route path="/movies" element={<MoviesSection></MoviesSection>} />
+
               <Route
                 path="/search"
                 element={

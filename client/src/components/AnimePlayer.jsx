@@ -24,6 +24,8 @@ const AnimePlayer = ({ animeInfo, onOpenModal }) => {
 
   async function fetchVideoById(url) {
     return await axios.get(url).then((response) => {
+      console.log("hello");
+      console.log(response);
       setCurrentStreamUrl(response.data.sources[1].url);
     });
   }

@@ -19,9 +19,7 @@ a {
   text-decoration: none;
   color: black;
 }
-.separatorhr {
-  display: none;
-}
+
 .nav {
   width: 100%;
   position: fixed;
@@ -32,7 +30,7 @@ a {
   left: 0;
   right: 0;
   align-items: center;
-  justify-content: center;
+  justify-content:center;
   padding-right: 25px;
   height: 65px;
   z-index: 2000;
@@ -47,6 +45,10 @@ a {
 }
 .nav__link {
   color: white;
+}
+.signoutli {
+  display: fixed !important;
+  right: 40 !important;
 }
 .nav__brand {
   display: flex;
@@ -92,7 +94,6 @@ a {
     display: none;
   }
 
-
   .nav__menu {
     font-size: 6rem !important;
     position: fixed;
@@ -121,7 +122,6 @@ a {
     font-size: 1.8rem;
   }
 }
-
 
 @media screen and (max-width: 500px) {
   .nav__menu {

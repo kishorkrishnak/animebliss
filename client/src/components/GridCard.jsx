@@ -1,6 +1,5 @@
 import { useState, useEffect, useContext } from "react";
 import axios from "axios";
-import MoonLoader from "react-spinners/ClockLoader";
 import { SharedState } from "../App";
 
 export default function GridCard({

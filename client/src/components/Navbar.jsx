@@ -104,12 +104,12 @@ export default function Navbar({ navstate }) {
             <Link
               onClick={(e) => {
                 e.preventDefault();
-                document.querySelector(".section-trending").scrollIntoView();
+                navigate("/movies");
               }}
               to="/wallpapers"
               style={{ color: "white", font: "inherit" }}
             >
-              Trending
+              Top Movies
             </Link>
           </li>
 
@@ -123,11 +123,8 @@ export default function Navbar({ navstate }) {
               Login
             </Link>
           </li>
-          <hr
-            className="separatorhr"
-            style={{ color: "white", width: "100%" }}
-          />
-          <li className="nav__item">
+      
+          <li className="nav__item signoutli">
             <a href="/" className="nav__link nav__link-signout">
               Signout
             </a>
