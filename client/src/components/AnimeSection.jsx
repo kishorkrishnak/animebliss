@@ -18,7 +18,7 @@ export default function AnimeSection({
       });
   }, []);
   return (
-    <section className="section section-trending" id={id}>
+    <section className="section section-anime" id={id}>
       {fetchedData.length > 0 && (
         <CarouselRenderer
           finalQuery={fetchedData}

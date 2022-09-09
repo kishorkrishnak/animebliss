@@ -74,9 +74,8 @@ export default function InfiniteSection({
         setFetchedData(data.results);
         setLoading(false);
         console.log(document.querySelector("#" + id));
-        if(currpage>1){
+        if (currpage > 1) {
           document.querySelector("#" + id).scrollIntoView();
-
         }
       });
   }, [currpage]);
