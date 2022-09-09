@@ -15,25 +15,12 @@ export default function CarouselCard({
 }) {
   const animestate = useContext(SharedState);
 
-  const override = {
-    position: "fixed",
-    zIndex: 1,
-    left: 0,
-    right: 0,
-    top: 0,
-    bottom: 0,
-
-    margin: "auto",
-
-    borderColor: "red",
-  };
   useEffect(() => {
     window.addEventListener("resize", () => {
       setWindowSize(window.innerWidth);
     });
   });
   const [windowSize, setWindowSize] = useState(window.innerWidth);
-  const [videoIsLoading, setVideoIsLoading] = useState(false);
 
   const calculateSize = (windowSize) => {
     if (windowSize > 1700) return [340, 230];
@@ -52,14 +39,15 @@ export default function CarouselCard({
   };
 
   async function fetchVideo(id) {
-    setVideoIsLoading(true);
-    
+    animestate.setVideoIsLoading(true);
+    animestate.setActive("nav__menu");
+    animestate.setIcon("nav__toggler");
     return await axios
       .get("https://consumet-api.herokuapp.com/meta/anilist/info/" + id)
       .then((res) => {
         animestate.setAnimeInfo(res.data);
         animestate.onOpenModal();
-        setVideoIsLoading(false);
+        animestate.setVideoIsLoading(false);
       })
       .catch((e) => {
         console.log(e);
@@ -67,14 +55,6 @@ export default function CarouselCard({
   }
   return (
     <>
-      {videoIsLoading && (
-        <ClockLoader
-          color={"white"}
-          loading={videoIsLoading}
-          cssOverride={override}
-          size={80}
-        />
-      )}
       <div
         onClick={() => {
           fetchVideo(id);

@@ -11,9 +11,14 @@ import Navbar from "./Navbar";
 import { SharedState } from "../App";
 setConfiguration({ breakpoints: [768, 1170, 1500, 1700, 1800, 1900] });
 
-export default function SearchResults({ setAnimeInfo, onOpenModal }) {
+export default function SearchResults({
+  setAnimeInfo,
+  onOpenModal,
+  setVideoIsLoading,
+}) {
   const location = useLocation();
   const navstate = useContext(SharedState);
+
   const [windowSize, setWindowSize] = useState(window.innerWidth);
   useEffect(() => {
     window.addEventListener("resize", () => {
@@ -53,6 +58,7 @@ export default function SearchResults({ setAnimeInfo, onOpenModal }) {
             return (
               <Col align="center" xxl={2} md={2.4} sm={4} xs={6} key={uuidv4()}>
                 <GridCard
+                navstate = {navstate}
                   setAnimeInfo={setAnimeInfo}
                   onOpenModal={onOpenModal}
                   title={query.title.english}

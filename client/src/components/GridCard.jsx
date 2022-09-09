@@ -12,44 +12,47 @@ export default function GridCard({
   setAnimeInfo,
   onOpenModal,
   id,
+  navstate,
   results,
 }) {
   const animestate = useContext(SharedState);
 
   const [windowSize, setWindowSize] = useState(window.innerWidth);
   async function fetchVideo(id) {
-    setVideoIsLoading(true);
+    if (!navstate) {
+      animestate.setVideoIsLoading(true);
+      animestate.setActive("nav__menu");
+      animestate.setIcon("nav__toggler");
+    } else {
+      navstate.setVideoIsLoading(true);
+      navstate.setActive("nav__menu");
+      navstate.setIcon("nav__toggler");
+    }
     return await axios
       .get("https://consumet-api.herokuapp.com/meta/anilist/info/" + id)
       .then((res) => {
         if (!onOpenModal) {
           animestate.setAnimeInfo(res.data);
 
+          animestate.setActive("nav__menu");
           animestate.onOpenModal();
         } else {
           setAnimeInfo(res.data);
+          animestate.setActive("nav__menu");
+
           onOpenModal();
         }
-
-        setVideoIsLoading(false);
+        if (!navstate) {
+          animestate.setVideoIsLoading(false);
+        } else {
+          navstate.setVideoIsLoading(false);
+        }
       })
       .catch((e) => {
         console.log(e);
       });
   }
-  const [videoIsLoading, setVideoIsLoading] = useState(false);
-  const override = {
-    position: "fixed",
-    zIndex: 1,
-    left: 0,
-    right: 0,
-    top: 0,
-    bottom: 0,
 
-    margin: "auto",
-
-    borderColor: "red",
-  };
   const calculateSize = (windowSize) => {
     if (windowSize > 1500) return [380, 280];
     else if (windowSize > 1168 && windowSize < 1500) return [250, 210];
@@ -66,18 +69,8 @@ export default function GridCard({
       setWindowSize(window.innerWidth);
     });
   });
-  const [data, setData] = useState(results);
   return (
     <>
-      {videoIsLoading && (
-        <MoonLoader
-          color={"white"}
-          loading={videoIsLoading}
-          cssOverride={override}
-          size={80}
-        />
-      )}
-
       <div
         className="gridcard-wrapper"
         onClick={() => {

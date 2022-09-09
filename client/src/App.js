@@ -5,15 +5,29 @@ import React, { useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import AnimePlayer from "./components/AnimePlayer";
 import { Modal } from "react-responsive-modal";
+import ClockLoader from "react-spinners/ClockLoader";
 
 import SearchResults from "./components/SearchResults";
 export const SharedState = React.createContext();
 const App = () => {
   const [open, setOpen] = useState(false);
   const [animeInfo, setAnimeInfo] = useState(null);
+  const [videoIsLoading, setVideoIsLoading] = useState(false);
+
   const [active, setActive] = useState("nav__menu");
   const [icon, setIcon] = useState("nav__toggler");
+  const override = {
+    position: "fixed",
+    zIndex: 1,
+    left: 0,
+    right: 0,
+    top: 0,
+    bottom: 0,
 
+    margin: "auto",
+
+    borderColor: "red",
+  };
   const onOpenModal = () => setOpen(true);
   const onCloseModal = () => setOpen(false);
   const navstate = {
@@ -29,6 +43,8 @@ const App = () => {
         onOpenModal,
         setActive,
         setIcon,
+        setVideoIsLoading,
+
         active,
 
         icon,
@@ -53,6 +69,14 @@ const App = () => {
             animeInfo={animeInfo}
           ></AnimePlayer>
         </Modal>
+        {videoIsLoading && (
+          <ClockLoader
+            color={"white"}
+            loading={videoIsLoading}
+            cssOverride={override}
+            size={80}
+          />
+        )}
         <BrowserRouter>
           <>
             <Routes>
@@ -65,6 +89,8 @@ const App = () => {
                   <SearchResults
                     onOpenModal={onOpenModal}
                     setAnimeInfo={setAnimeInfo}
+                    setVideoIsLoading={setVideoIsLoading}
+                    navstate={navstate}
                   />
                 }
               />
