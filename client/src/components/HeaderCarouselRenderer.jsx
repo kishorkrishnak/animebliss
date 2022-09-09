@@ -10,10 +10,7 @@ const breakPoints = [
   { width: 1200, itemsToShow: 1 },
 ];
 
-const HeaderCarouselRenderer = ({
-  finalResults,
- 
-}) => {
+const HeaderCarouselRenderer = ({ finalResults }) => {
   const [windowSize, setWindowSize] = useState(window.innerWidth);
   const carouselRef = useRef(null);
   let resetTimeout;
@@ -39,7 +36,6 @@ const HeaderCarouselRenderer = ({
     >
       {finalResults.map((item) => (
         <HeaderCarouselCard
-         
           key={uuidv4()}
           id={item.id}
           epcount={item.totalEpisodes}

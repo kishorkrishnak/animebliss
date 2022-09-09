@@ -1,6 +1,5 @@
 import { useEffect, useState, useContext } from "react";
 import "./Header.css";
-import "./Navbar.css";
 import React from "react";
 import HeaderCarouselRenderer from "./HeaderCarouselRenderer";
 import Navbar from "./Navbar";
@@ -18,7 +17,6 @@ const Header = ({ navstate }) => {
   return (
     <>
       <Navbar navstate={navstate}></Navbar>
-
       <header className="header">
         <section className="section section-carousel">
           {finalResults.length > 0 && (
@@ -28,8 +26,7 @@ const Header = ({ navstate }) => {
           )}
         </section>
 
-        {/* 
-      <div
+        {/* <div
         className="sectiontabs"
         style={{
           border: "1px solid cyan",

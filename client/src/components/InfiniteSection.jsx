@@ -61,7 +61,7 @@ export default function InfiniteSection({
   };
   useEffect(() => {
     setLoading(true);
-    
+
     fetch(url + querytype + "page=" + currpage + "&perPage=" + itemlimit)
       .then((response) => response.json())
       .then((data) => {
@@ -73,7 +73,11 @@ export default function InfiniteSection({
 
         setFetchedData(data.results);
         setLoading(false);
-        document.querySelector("#" + id).scrollIntoView();
+        console.log(document.querySelector("#" + id));
+        if(currpage>1){
+          document.querySelector("#" + id).scrollIntoView();
+
+        }
       });
   }, [currpage]);
 

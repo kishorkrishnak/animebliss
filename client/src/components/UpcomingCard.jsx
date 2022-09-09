@@ -1,6 +1,9 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import TextTruncate from "react-text-truncate";
 
+
+import { motion } from "framer-motion"
+import { SharedState } from "../App";
 const UpcomingCard = ({
   title,
   image,
@@ -19,6 +22,8 @@ const UpcomingCard = ({
     });
   });
 
+  const navstate = useContext(SharedState);
+
   const calculateSize = (windowSize) => {
     if (windowSize > 1750) return [240, 430];
     else if (windowSize >= 1600 && windowSize < 1750) return [230, 360];
@@ -33,10 +38,11 @@ const UpcomingCard = ({
   };
   return (
     <>
-      <div
+      <motion.div
         onClick={(e) => {
           e.preventDefault();
           setTrailerId(trailerVideoId);
+
           setIsPlaying(true);
         }}
         className="animecard-wrapper"
@@ -78,7 +84,7 @@ const UpcomingCard = ({
         >
           <TextTruncate text={title} line={2}></TextTruncate>
         </a>
-      </div>
+    </motion.div>
     </>
   );
 };

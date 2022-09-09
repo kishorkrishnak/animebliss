@@ -39,7 +39,7 @@ a {
 
 .nav-side-div {
   align-items: center;
-
+  justify-content: center;
   gap: 20px;
   display: flex;
 }
@@ -99,7 +99,7 @@ a {
     position: fixed;
     z-index: 1;
     gap: 2rem;
-    top: 7vh;
+    top: 64px !important;
     right: 0;
 
     width: 100vw;

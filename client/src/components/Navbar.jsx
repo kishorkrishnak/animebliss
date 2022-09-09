@@ -61,11 +61,11 @@ export default function Navbar({ navstate }) {
   return (
     <nav className="nav">
       <div className="nav-side-div">
-        <a href="/" className="nav__brand ">
+          <div style={{gap:10,display:"flex",alignItems:"center",color:"white",justifyContent:"center"}}>
           <img height="40" src={logo} style={{ color: "white" }} alt="" />
 
-          <h5 className="brand-title">Animebliss</h5>
-        </a>
+          <h3 className="brand-title">Animebliss</h3>
+          </div>
         <FontAwesomeIcon
           className="magnify-icon"
           icon={faMagnifyingGlass}

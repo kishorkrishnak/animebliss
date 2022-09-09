@@ -16,21 +16,18 @@ export default function Home({ navstate }) {
   const [icon, setIcon] = useState("nav__toggler");
   const location = useLocation();
 
-  useEffect(() => {
-    const onPageLoad = () => {
-      if (location.state.scrollTo !== null) {
-        console.log(location.state.scrollTo);
-        document.querySelector(location.state.scrollTo).scrollIntoView();
-      }
-    };
+  // useEffect(() => {
+  //   const onPageLoad = () => {
+  //     document.querySelector("#popular").scrollIntoView();
+  //   };
 
-    if (document.readyState === "complete") {
-      onPageLoad();
-    } else {
-      window.addEventListener("load", onPageLoad);
-      return () => window.removeEventListener("load", onPageLoad);
-    }
-  }, []);
+  //   if (document.readyState === "complete") {
+  //     onPageLoad();
+  //   } else {
+  //     window.addEventListener("load", onPageLoad);
+  //     return () => window.removeEventListener("load", onPageLoad);
+  //   }
+  // }, []);
 
   return (
     <SharedState.Provider
