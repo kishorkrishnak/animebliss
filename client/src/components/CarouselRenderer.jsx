@@ -66,7 +66,7 @@ export default function CarouselRenderer({
               rating={query.rating}
               id={query.id}
               rowTitle={rowTitle}
-              episodeNum={query.episode ? query.episode : 0}
+              episodeNumber={query.episodeNumber ? query.episodeNumber : 0}
             ></CarouselCard>
           ) : (
             <UpcomingCard

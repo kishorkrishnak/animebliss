@@ -7,11 +7,12 @@ export default function CarouselCard({
   title,
   image,
   rowTitle,
-  episodeNum,
+  episodeNumber,
   type = "",
   rating,
   id,
 }) {
+  console.log(episodeNumber);
   const animestate = useContext(SharedState);
 
   useEffect(() => {
@@ -81,9 +82,9 @@ export default function CarouselCard({
           }}
         ></div>
 
-        {episodeNum > 0 && (
-          <h5 style={{ color: "white", fontWeight: "lighter" }}>
-            Episode {episodeNum}
+        {episodeNumber > 0 && (
+          <h5 style={{ color: "white", marginTop: 5 }}>
+            Episode {episodeNumber}
           </h5>
         )}
 

@@ -7,7 +7,7 @@ import Header from "./Header";
 import MoviesSection from "./MoviesSection";
 import UpcomingSection from "./UpcomingSection";
 import PopularSection from "./PopularSection";
-import TrendingSection from "./TrendingSection";
+import AnimeSection from "./AnimeSection";
 import RecentSection from "./RecentSection";
 export const SharedState = React.createContext();
 export default function Home({ navstate }) {
@@ -26,11 +26,20 @@ export default function Home({ navstate }) {
     >
       <>
         <Header navstate={navstate}></Header>
-        <UpcomingSection></UpcomingSection>
 
-        <TrendingSection></TrendingSection>
-        {/* <MoviesSection></MoviesSection> */}
-        <RecentSection></RecentSection>
+        <UpcomingSection></UpcomingSection>
+        <AnimeSection
+          url={
+            "https://consumet-api.herokuapp.com/meta/anilist/recent-episodes"
+          }
+          id={"recent"}
+          sectiontitle={"Recent Episodes"}
+        ></AnimeSection>
+        <AnimeSection
+          url={"https://consumet-api.herokuapp.com/meta/anilist/trending"}
+          id={"trending"}
+          sectiontitle={"Trending"}
+        ></AnimeSection>
        
         <PopularSection></PopularSection>
         <ScrollToTop top={1500} smooth color="#6f00ff" />

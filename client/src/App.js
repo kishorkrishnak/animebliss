@@ -16,6 +16,7 @@ const App = () => {
 
   const [active, setActive] = useState("nav__menu");
   const [icon, setIcon] = useState("nav__toggler");
+
   const override = {
     position: "fixed",
     zIndex: 1,
