@@ -23,10 +23,16 @@ const override = {
 
   borderColor: "red",
 };
-export default function InfiniteSection({ url, sectiontitle, itemlimit }) {
+export default function InfiniteSection({
+  url,
+  sectiontitle,
+  itemlimit,
+  id,
+  querytype,
+}) {
   const nopreviouspageerror = () => toast.warning("You are on the first page!");
   const nonextpageerror = () => toast.warning("You are on the last page!");
-  const [popular, setPopular] = useState([]);
+  const [fetchedData, setFetchedData] = useState([]);
   const [currpage, setCurrpage] = useState(1);
   const [loading, setLoading] = useState(false);
   const [hasNextPage, setHasNextPage] = useState(true);
@@ -55,8 +61,8 @@ export default function InfiniteSection({ url, sectiontitle, itemlimit }) {
   };
   useEffect(() => {
     setLoading(true);
-
-    fetch(url + "&page=" + currpage + "&perPage=" + itemlimit)
+    
+    fetch(url + querytype + "page=" + currpage + "&perPage=" + itemlimit)
       .then((response) => response.json())
       .then((data) => {
         if (data.hasNextPage) {
@@ -65,9 +71,9 @@ export default function InfiniteSection({ url, sectiontitle, itemlimit }) {
           setHasNextPage(false);
         }
 
-        setPopular(data.results);
+        setFetchedData(data.results);
         setLoading(false);
-        document.querySelector(".section-popular").scrollIntoView();
+        document.querySelector("#" + id).scrollIntoView();
       });
   }, [currpage]);
 
@@ -81,14 +87,16 @@ export default function InfiniteSection({ url, sectiontitle, itemlimit }) {
       />
 
       <section
-        className="section section-popular "
+        id={id}
+        className="section section-infinite"
         style={{
           paddingBottom: 40,
+          marginTop: querytype === "&" ? 80 : "",
         }}
       >
         <ToastContainer />
 
-        {popular.length > 0 && (
+        {fetchedData.length > 0 && (
           <>
             <h1
               style={{ color: "#fdba74", fontSize: "3rem", marginLeft: "20px" }}
@@ -96,7 +104,7 @@ export default function InfiniteSection({ url, sectiontitle, itemlimit }) {
               {sectiontitle}
             </h1>
 
-            <GridRenderer finalQuery={popular}></GridRenderer>
+            <GridRenderer finalQuery={fetchedData}></GridRenderer>
 
             <div
               className="pagination-wrapper"

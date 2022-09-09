@@ -32,52 +32,54 @@ const UpcomingCard = ({
     else return [90, 150];
   };
   return (
-    <div
-      onClick={(e) => {
-        e.preventDefault();
-        setTrailerId(trailerVideoId);
-        setIsPlaying(true);
-      }}
-      className="animecard-wrapper"
-      style={{
-        display: "flex",
-
-        flexDirection: "column",
-        alignItems: "center",
-        height: "fit-content",
-
-        justifyContent: "center",
-        textAlign: "center",
-      }}
-    >
+    <>
       <div
-        style={{
-          borderRadius: "10px",
-          backgroundImage: `url(${image})`,
-          height: calculateSize(windowSize)[0],
-          width: calculateSize(windowSize)[1],
-          backgroundPosition: "center",
-          backgroundSize: "cover",
-        }}
-      ></div>
-
-      {episodeNum > 0 && (
-        <h5 style={{ color: "white", fontWeight: "lighter" }}>
-          Episode {episodeNum}
-        </h5>
-      )}
-
-      <a
         onClick={(e) => {
           e.preventDefault();
+          setTrailerId(trailerVideoId);
+          setIsPlaying(true);
         }}
-        href="/"
-        className="anime-card-title"
-        style={{ color: "white", fontWeight: "lighter", marginTop: 5 }}
+        className="animecard-wrapper"
+        style={{
+          display: "flex",
+
+          flexDirection: "column",
+          alignItems: "center",
+          height: "fit-content",
+
+          justifyContent: "center",
+          textAlign: "center",
+        }}
       >
-        <TextTruncate text={title} line={2}></TextTruncate>
-      </a>
-    </div>
+        <div
+          style={{
+            borderRadius: "10px",
+            backgroundImage: `url(${image})`,
+            height: calculateSize(windowSize)[0],
+            width: calculateSize(windowSize)[1],
+            backgroundPosition: "center",
+            backgroundSize: "cover",
+          }}
+        ></div>
+
+        {episodeNum > 0 && (
+          <h5 style={{ color: "white", fontWeight: "lighter" }}>
+            Episode {episodeNum}
+          </h5>
+        )}
+
+        <a
+          onClick={(e) => {
+            e.preventDefault();
+          }}
+          href="/"
+          className="anime-card-title"
+          style={{ color: "white", fontWeight: "lighter", marginTop: 5 }}
+        >
+          <TextTruncate text={title} line={2}></TextTruncate>
+        </a>
+      </div>
+    </>
   );
 };
 

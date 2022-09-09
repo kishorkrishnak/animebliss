@@ -2,12 +2,13 @@ import "./Navbar.css";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import logo from "../assets/images/image.png";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { toast } from "react-toastify";
 export default function Navbar({ navstate }) {
+  const location = useLocation();
   const [input, setInput] = useState("");
   const calculateSize = (windowSize) => {
     if (windowSize > 450) return 330;
@@ -92,7 +93,9 @@ export default function Navbar({ navstate }) {
             <a
               onClick={(e) => {
                 e.preventDefault();
-                document.querySelector(".section-popular").scrollIntoView();
+                if (location.pathname !== "/") {
+                  navigate("/", { state: { scrollTo: "#popular" } });
+                } else document.querySelector("#popular").scrollIntoView();
               }}
               href="/"
               className="nav__link"
@@ -123,7 +126,7 @@ export default function Navbar({ navstate }) {
               Login
             </Link>
           </li>
-      
+
           <li className="nav__item signoutli">
             <a href="/" className="nav__link nav__link-signout">
               Signout

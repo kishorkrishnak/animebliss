@@ -1,18 +1,36 @@
 import "./Home.css";
-import React, { useState } from "react";
+import { useLocation } from "react-router-dom";
+import React, { useEffect, useState } from "react";
 import "react-responsive-modal/styles.css";
 import InfiniteSection from "./InfiniteSection";
 import ScrollToTop from "react-scroll-to-top";
 import Header from "./Header";
 import MoviesSection from "./MoviesSection";
 import UpcomingSection from "./UpcomingSection";
-import PopularSection from "./PopularSection";
+import { useRef } from "react";
+
 import AnimeSection from "./AnimeSection";
-import RecentSection from "./RecentSection";
 export const SharedState = React.createContext();
 export default function Home({ navstate }) {
   const [active, setActive] = useState("nav__menu");
   const [icon, setIcon] = useState("nav__toggler");
+  const location = useLocation();
+
+  useEffect(() => {
+    const onPageLoad = () => {
+      if (location.state.scrollTo !== null) {
+        console.log(location.state.scrollTo);
+        document.querySelector(location.state.scrollTo).scrollIntoView();
+      }
+    };
+
+    if (document.readyState === "complete") {
+      onPageLoad();
+    } else {
+      window.addEventListener("load", onPageLoad);
+      return () => window.removeEventListener("load", onPageLoad);
+    }
+  }, []);
 
   return (
     <SharedState.Provider
@@ -26,7 +44,6 @@ export default function Home({ navstate }) {
     >
       <>
         <Header navstate={navstate}></Header>
-
         <UpcomingSection></UpcomingSection>
         <AnimeSection
           url={
@@ -40,8 +57,16 @@ export default function Home({ navstate }) {
           id={"trending"}
           sectiontitle={"Trending"}
         ></AnimeSection>
-       
-        <PopularSection></PopularSection>
+
+        <InfiniteSection
+          url={"https://consumet-api.herokuapp.com/meta/anilist/popular"}
+          itemlimit={18}
+          sectiontitle={"Most Popular"}
+          id="popular"
+          querytype={"?"}
+        ></InfiniteSection>
+
+        {/* <PopularSection></PopularSection> */}
         <ScrollToTop top={1500} smooth color="#6f00ff" />
       </>
     </SharedState.Provider>

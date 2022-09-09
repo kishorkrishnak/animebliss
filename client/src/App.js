@@ -7,6 +7,8 @@ import AnimePlayer from "./components/AnimePlayer";
 import { Modal } from "react-responsive-modal";
 import ClockLoader from "react-spinners/ClockLoader";
 import MoviesSection from "./components/MoviesSection";
+import InfiniteSection from "./components/InfiniteSection";
+import close2 from "./assets/images/close2.png";
 import SearchResults from "./components/SearchResults";
 export const SharedState = React.createContext();
 const App = () => {
@@ -14,6 +16,20 @@ const App = () => {
   const [animeInfo, setAnimeInfo] = useState(null);
   const [videoIsLoading, setVideoIsLoading] = useState(false);
 
+  const closeIcon = (
+    <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="16"
+    height="16"
+    viewBox="0 0 16 16"
+  >
+    <path
+      fill="#444"
+      d="M10 2.3v3.3c1.2.7 2 2 2 3.4 0 2.2-1.8 4-4 4s-4-1.8-4-4c0-1.5.8-2.8 2-3.4V2.3C3.1 3.2 1 5.8 1 9c0 3.9 3.1 7 7 7s7-3.1 7-7c0-3.2-2.1-5.8-5-6.7z"
+    ></path>
+    <path fill="#444" d="M7 1h2v7H7V1z"></path>
+  </svg>
+  );
   const [active, setActive] = useState("nav__menu");
   const [icon, setIcon] = useState("nav__toggler");
 
@@ -64,6 +80,7 @@ const App = () => {
           center
           showCloseIcon={true}
           animationDuration={600}
+          closeIcon={"Back"}
         >
           <AnimePlayer
             onOpenModal={onOpenModal}
@@ -84,7 +101,17 @@ const App = () => {
               <Route path="/login" element={<Login />} />
 
               <Route path="/" element={<Home navstate={navstate} />} />
-              <Route path="/movies" element={<MoviesSection></MoviesSection>} />
+              <Route
+                path="/movies"
+                element={
+                  <MoviesSection
+                    onOpenModal={onOpenModal}
+                    setAnimeInfo={setAnimeInfo}
+                    setVideoIsLoading={setVideoIsLoading}
+                    navstate={navstate}
+                  ></MoviesSection>
+                }
+              />
 
               <Route
                 path="/search"
@@ -92,8 +119,6 @@ const App = () => {
                   <SearchResults
                     onOpenModal={onOpenModal}
                     setAnimeInfo={setAnimeInfo}
-                    setVideoIsLoading={setVideoIsLoading}
-                    navstate={navstate}
                   />
                 }
               />

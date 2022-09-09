@@ -12,7 +12,6 @@ export default function CarouselCard({
   rating,
   id,
 }) {
-  console.log(episodeNumber);
   const animestate = useContext(SharedState);
 
   useEffect(() => {
@@ -78,7 +77,7 @@ export default function CarouselCard({
             height: calculateSize(windowSize)[0],
             width: calculateSize(windowSize)[1],
             backgroundPosition: "center",
-            backgroundSize: "cover",
+            animation: "x 1s",
           }}
         ></div>
 
