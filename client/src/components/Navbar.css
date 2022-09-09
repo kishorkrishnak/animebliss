@@ -39,7 +39,7 @@ a {
 
 .nav-side-div {
   align-items: center;
-  justify-content: center;
+justify-content: center;
   gap: 20px;
   display: flex;
 }

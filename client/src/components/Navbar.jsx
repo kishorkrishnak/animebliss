@@ -6,8 +6,31 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
+import React, { useRef } from "react";
+
 import { toast } from "react-toastify";
-export default function Navbar({ navstate }) {
+export default function Navbar() {
+  const [active, setActive] = useState("nav__menu");
+  const [icon, setIcon] = useState("nav__toggler");
+  function useOutsideAlerter(ref) {
+    useEffect(() => {
+      function handleClickOutside(event) {
+        if (ref.current && !ref.current.contains(event.target)) {
+          console.log("yay");
+
+          setIcon("nav__toggler");
+          setActive("nav__menu");
+        }
+      }
+      document.addEventListener("mousedown", handleClickOutside);
+      return () => {
+        document.removeEventListener("mousedown", handleClickOutside);
+      };
+    }, [ref]);
+  }
+
+  const wrapperRef = useRef(null);
+  useOutsideAlerter(wrapperRef);
   const location = useLocation();
   const [input, setInput] = useState("");
   const calculateSize = (windowSize) => {
@@ -47,25 +70,33 @@ export default function Navbar({ navstate }) {
   const [value, setValue] = useState("");
 
   const navToggle = () => {
-    if (navstate.active === "nav__menu") {
-      navstate.setActive("nav__menu nav__active");
+    if (active === "nav__menu") {
+      setActive("nav__menu nav__active");
     } else {
-      navstate.setActive("nav__menu");
+      setActive("nav__menu");
     }
 
-    if (navstate.icon === "nav__toggler") {
-      navstate.setIcon("nav__toggler toggle");
-    } else navstate.setIcon("nav__toggler");
+    if (icon === "nav__toggler") {
+      setIcon("nav__toggler toggle");
+    } else setIcon("nav__toggler");
   };
 
   return (
-    <nav className="nav">
+    <nav className="nav" ref={wrapperRef}>
       <div className="nav-side-div">
-          <div style={{gap:10,display:"flex",alignItems:"center",color:"white",justifyContent:"center"}}>
+        <div
+          style={{
+            gap: 10,
+            display: "flex",
+            alignItems: "center",
+            color: "white",
+            justifyContent: "center",
+          }}
+        >
           <img height="40" src={logo} style={{ color: "white" }} alt="" />
 
           <h3 className="brand-title">Animebliss</h3>
-          </div>
+        </div>
         <FontAwesomeIcon
           className="magnify-icon"
           icon={faMagnifyingGlass}
@@ -87,7 +118,7 @@ export default function Navbar({ navstate }) {
           type="text"
           value={value}
         />
-        <ul className={navstate.active}>
+        <ul className={active}>
           <li></li>
           <li className="nav__item">
             <a
@@ -135,7 +166,7 @@ export default function Navbar({ navstate }) {
         </ul>
       </div>
 
-      <div onClick={navToggle} className={navstate.icon}>
+      <div onClick={navToggle} className={icon}>
         <div className="line1"></div>
         <div className="line2"></div>
         <div className="line3"></div>

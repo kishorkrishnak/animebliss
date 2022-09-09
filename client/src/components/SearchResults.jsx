@@ -7,16 +7,14 @@ import { useContext } from "react";
 import { ToastContainer, toast } from "react-toastify";
 
 import Navbar from "./Navbar";
-import { SharedState } from "../App";
 setConfiguration({ breakpoints: [768, 1170, 1500, 1700, 1800, 1900] });
 
 export default function SearchResults({ setAnimeInfo, onOpenModal }) {
   const location = useLocation();
-  const navstate = useContext(SharedState);
 
   return (
     <>
-      <Navbar navstate={navstate}></Navbar>
+      <Navbar ></Navbar>
       <h1
         style={{
           fontSize: "3rem",
@@ -34,7 +32,6 @@ export default function SearchResults({ setAnimeInfo, onOpenModal }) {
             return (
               <Col align="center" xxl={2} md={2.4} sm={4} xs={6} key={uuidv4()}>
                 <GridCard
-                  navstate={navstate}
                   setAnimeInfo={setAnimeInfo}
                   onOpenModal={onOpenModal}
                   title={query.title.english}

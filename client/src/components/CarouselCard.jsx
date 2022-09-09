@@ -39,8 +39,6 @@ export default function CarouselCard({
 
   async function fetchVideo(id) {
     animestate.setVideoIsLoading(true);
-    animestate.setActive("nav__menu");
-    animestate.setIcon("nav__toggler");
     return await axios
       .get("https://consumet-api.herokuapp.com/meta/anilist/info/" + id)
       .then((res) => {

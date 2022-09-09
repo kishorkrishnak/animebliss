@@ -2,10 +2,10 @@ import InfiniteSection from "./InfiniteSection";
 import Navbar from "./Navbar";
 import React from "react";
 
-const MoviesSection = ({ navstate }) => {
+const MoviesSection = () => {
   return (
     <>
-      <Navbar navstate={navstate}></Navbar>
+      <Navbar></Navbar>
       <InfiniteSection
         url={
           "https://consumet-api.herokuapp.com/meta/anilist/advanced-search?format=MOVIE"

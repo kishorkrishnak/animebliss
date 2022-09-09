@@ -3,7 +3,7 @@ import "./Header.css";
 import React from "react";
 import HeaderCarouselRenderer from "./HeaderCarouselRenderer";
 import Navbar from "./Navbar";
-const Header = ({ navstate }) => {
+const Header = () => {
   const [finalResults, setFinalResults] = useState([]);
 
   useEffect(() => {
@@ -16,7 +16,7 @@ const Header = ({ navstate }) => {
 
   return (
     <>
-      <Navbar navstate={navstate}></Navbar>
+      <Navbar></Navbar>
       <header className="header">
         <section className="section section-carousel">
           {finalResults.length > 0 && (

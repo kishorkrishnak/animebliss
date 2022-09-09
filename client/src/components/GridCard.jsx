@@ -18,15 +18,8 @@ export default function GridCard({
 
   const [windowSize, setWindowSize] = useState(window.innerWidth);
   async function fetchVideo(id) {
-    if (!navstate) {
-      animestate.setVideoIsLoading(true);
-      animestate.setActive("nav__menu");
-      animestate.setIcon("nav__toggler");
-    } else {
-      navstate.setVideoIsLoading(true);
-      navstate.setActive("nav__menu");
-      navstate.setIcon("nav__toggler");
-    }
+    animestate.setVideoIsLoading(true);
+
     return await axios
       .get("https://consumet-api.herokuapp.com/meta/anilist/info/" + id)
       .then((res) => {

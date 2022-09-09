@@ -1,9 +1,7 @@
 import { useEffect, useState, useContext } from "react";
 import TextTruncate from "react-text-truncate";
 
-
-import { motion } from "framer-motion"
-import { SharedState } from "../App";
+import { motion } from "framer-motion";
 const UpcomingCard = ({
   title,
   image,
@@ -22,7 +20,6 @@ const UpcomingCard = ({
     });
   });
 
-  const navstate = useContext(SharedState);
 
   const calculateSize = (windowSize) => {
     if (windowSize > 1750) return [240, 430];
@@ -84,7 +81,7 @@ const UpcomingCard = ({
         >
           <TextTruncate text={title} line={2}></TextTruncate>
         </a>
-    </motion.div>
+      </motion.div>
     </>
   );
 };

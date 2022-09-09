@@ -11,7 +11,7 @@ import { useRef } from "react";
 
 import AnimeSection from "./AnimeSection";
 export const SharedState = React.createContext();
-export default function Home({ navstate }) {
+export default function Home() {
   const [active, setActive] = useState("nav__menu");
   const [icon, setIcon] = useState("nav__toggler");
   const location = useLocation();
@@ -40,7 +40,7 @@ export default function Home({ navstate }) {
       }}
     >
       <>
-        <Header navstate={navstate}></Header>
+        <Header ></Header>
         <UpcomingSection></UpcomingSection>
         <AnimeSection
           url={

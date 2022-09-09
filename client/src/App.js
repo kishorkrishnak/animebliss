@@ -100,7 +100,7 @@ const App = () => {
             <Routes>
               <Route path="/login" element={<Login />} />
 
-              <Route path="/" element={<Home navstate={navstate} />} />
+              <Route path="/" element={<Home  />} />
               <Route
                 path="/movies"
                 element={
@@ -108,7 +108,7 @@ const App = () => {
                     onOpenModal={onOpenModal}
                     setAnimeInfo={setAnimeInfo}
                     setVideoIsLoading={setVideoIsLoading}
-                    navstate={navstate}
+                   
                   ></MoviesSection>
                 }
               />
