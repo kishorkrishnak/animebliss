@@ -1,14 +1,13 @@
-import { useEffect, useState,useContext } from "react";
+import { useEffect, useState, useContext } from "react";
 import "./Header.css";
 import "./Navbar.css";
 import React from "react";
 import HeaderCarouselRenderer from "./HeaderCarouselRenderer";
 import Navbar from "./Navbar";
-import {AnimeInfoContext}  from "./Home";
-const Header = ({ onOpenModal, setAnimeInfo }) => {
+import { SharedState } from "./Home";
+const Header = ({ navstate }) => {
   const [finalResults, setFinalResults] = useState([]);
-  const test = useContext(AnimeInfoContext)
-  console.log(test);
+
   useEffect(() => {
     fetch("https://consumet-api.herokuapp.com/meta/anilist/popular")
       .then((response) => response.json())
@@ -19,22 +18,18 @@ const Header = ({ onOpenModal, setAnimeInfo }) => {
 
   return (
     <>
-      <Navbar
-      onOpenModal={onOpenModal} setAnimeInfo={setAnimeInfo}
-      ></Navbar>
+      <Navbar navstate={navstate}></Navbar>
 
-    <header className="header">
-      <section className="section section-carousel">
-        {finalResults.length > 0 && (
-          <HeaderCarouselRenderer
-            onOpenModal={onOpenModal}
-            setAnimeInfo={setAnimeInfo}
-            finalResults={finalResults}
-          ></HeaderCarouselRenderer>
-        )}
-      </section>
+      <header className="header">
+        <section className="section section-carousel">
+          {finalResults.length > 0 && (
+            <HeaderCarouselRenderer
+              finalResults={finalResults}
+            ></HeaderCarouselRenderer>
+          )}
+        </section>
 
-      {/* 
+        {/* 
       <div
         className="sectiontabs"
         style={{
@@ -69,11 +64,9 @@ const Header = ({ onOpenModal, setAnimeInfo }) => {
 
         <button className="btn-section">Wallpapers</button>
       </div> */}
-    </header>
-
+      </header>
     </>
   );
-  
 };
 
 export default Header;

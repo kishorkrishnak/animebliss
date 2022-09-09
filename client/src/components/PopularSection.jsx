@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import GridRenderer from "./GridRenderer.jsx";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -23,7 +23,7 @@ const override = {
 
   borderColor: "red",
 };
-export default function PopularSection({ setAnimeInfo, onOpenModal }) {
+export default function PopularSection() {
   const nopreviouspageerror = () => toast.warning("You are on the first page!");
   const nonextpageerror = () => toast.warning("You are on the last page!");
   const [popular, setPopular] = useState([]);
@@ -100,11 +100,7 @@ export default function PopularSection({ setAnimeInfo, onOpenModal }) {
               Top Anime
             </h1>
 
-            <GridRenderer
-              setAnimeInfo={setAnimeInfo}
-              onOpenModal={onOpenModal}
-              finalQuery={popular}
-            ></GridRenderer>
+            <GridRenderer finalQuery={popular}></GridRenderer>
 
             <div
               className="pagination-wrapper"

@@ -3,11 +3,11 @@ import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import logo from "../assets/images/image.png";
 import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { toast } from "react-toastify";
-
-export default function Navbar({ onOpenModal, setAnimeInfo }) {
+export default function Navbar({ navstate }) {
   const [input, setInput] = useState("");
   const calculateSize = (windowSize) => {
     if (windowSize > 450) return 330;
@@ -27,14 +27,10 @@ export default function Navbar({ onOpenModal, setAnimeInfo }) {
         return response.json();
       })
       .then((data) => {
-        console.log(data);
         navigate("/search", {
           state: {
             finalResults: data.results,
             input: input,
-   
-
-
           },
         });
       });
@@ -47,20 +43,18 @@ export default function Navbar({ onOpenModal, setAnimeInfo }) {
     }
   }, [input]);
 
-  const [active, setActive] = useState("nav__menu");
-  const [icon, setIcon] = useState("nav__toggler");
   const [value, setValue] = useState("");
 
   const navToggle = () => {
-    if (active === "nav__menu") {
-      setActive("nav__menu nav__active");
+    if (navstate.active === "nav__menu") {
+      navstate.setActive("nav__menu nav__active");
     } else {
-      setActive("nav__menu");
+      navstate.setActive("nav__menu");
     }
 
-    if (icon === "nav__toggler") {
-      setIcon("nav__toggler toggle");
-    } else setIcon("nav__toggler");
+    if (navstate.icon === "nav__toggler") {
+      navstate.setIcon("nav__toggler toggle");
+    } else navstate.setIcon("nav__toggler");
   };
 
   return (
@@ -92,7 +86,7 @@ export default function Navbar({ onOpenModal, setAnimeInfo }) {
           type="text"
           value={value}
         />
-        <ul className={active}>
+        <ul className={navstate.active}>
           <li></li>
           <li className="nav__item">
             <a
@@ -141,7 +135,7 @@ export default function Navbar({ onOpenModal, setAnimeInfo }) {
         </ul>
       </div>
 
-      <div onClick={navToggle} className={icon}>
+      <div onClick={navToggle} className={navstate.icon}>
         <div className="line1"></div>
         <div className="line2"></div>
         <div className="line3"></div>
@@ -149,4 +143,3 @@ export default function Navbar({ onOpenModal, setAnimeInfo }) {
     </nav>
   );
 }
-

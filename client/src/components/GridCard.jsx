@@ -1,6 +1,7 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import MoonLoader from "react-spinners/ClockLoader";
+import { SharedState } from "../App";
 
 export default function GridCard({
   title,
@@ -13,15 +14,23 @@ export default function GridCard({
   id,
   results,
 }) {
+  const animestate = useContext(SharedState);
+
   const [windowSize, setWindowSize] = useState(window.innerWidth);
   async function fetchVideo(id) {
-    console.log(id);
     setVideoIsLoading(true);
     return await axios
       .get("https://consumet-api.herokuapp.com/meta/anilist/info/" + id)
       .then((res) => {
-        setAnimeInfo(res.data);
-        onOpenModal();
+        if (!onOpenModal) {
+          animestate.setAnimeInfo(res.data);
+
+          animestate.onOpenModal();
+        } else {
+          setAnimeInfo(res.data);
+          onOpenModal();
+        }
+
         setVideoIsLoading(false);
       })
       .catch((e) => {

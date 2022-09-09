@@ -12,8 +12,7 @@ const breakPoints = [
 
 const HeaderCarouselRenderer = ({
   finalResults,
-  onOpenModal,
-  setAnimeInfo,
+ 
 }) => {
   const [windowSize, setWindowSize] = useState(window.innerWidth);
   const carouselRef = useRef(null);
@@ -40,8 +39,7 @@ const HeaderCarouselRenderer = ({
     >
       {finalResults.map((item) => (
         <HeaderCarouselCard
-          onOpenModal={onOpenModal}
-          setAnimeInfo={setAnimeInfo}
+         
           key={uuidv4()}
           id={item.id}
           epcount={item.totalEpisodes}

@@ -1,12 +1,10 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import TextTruncate from "react-text-truncate";
 import axios from "axios";
 import ClockLoader from "react-spinners/ClockLoader";
+import { SharedState } from "../App";
 
 export default function CarouselCard({
-  setAnimeInfo,
-
-  onOpenModal,
   title,
   image,
   rowTitle,
@@ -15,6 +13,8 @@ export default function CarouselCard({
   rating,
   id,
 }) {
+  const animestate = useContext(SharedState);
+
   const override = {
     position: "fixed",
     zIndex: 1,
@@ -30,7 +30,6 @@ export default function CarouselCard({
   useEffect(() => {
     window.addEventListener("resize", () => {
       setWindowSize(window.innerWidth);
-      console.log(windowSize);
     });
   });
   const [windowSize, setWindowSize] = useState(window.innerWidth);
@@ -54,11 +53,12 @@ export default function CarouselCard({
 
   async function fetchVideo(id) {
     setVideoIsLoading(true);
+    
     return await axios
       .get("https://consumet-api.herokuapp.com/meta/anilist/info/" + id)
       .then((res) => {
-        setAnimeInfo(res.data);
-        onOpenModal();
+        animestate.setAnimeInfo(res.data);
+        animestate.onOpenModal();
         setVideoIsLoading(false);
       })
       .catch((e) => {

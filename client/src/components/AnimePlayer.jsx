@@ -12,11 +12,9 @@ const AnimePlayer = ({ animeInfo, onOpenModal }) => {
   const [selectedOption, setSelectedOption] = useState({ value: 1, label: 1 });
   let [currentStreamUrl, setCurrentStreamUrl] = useState(null);
   const [currentId, setCurrentId] = useState(allEpisodes[0].id);
-  console.log(animeInfo);
   const options = [];
   const selectStyles = {
     menuList: (styles) => {
-      console.log("menuList:", styles);
       return {
         ...styles,
         maxHeight: 180,
@@ -63,7 +61,7 @@ const AnimePlayer = ({ animeInfo, onOpenModal }) => {
     <>
       {currentStreamUrl !== null && (
         <>
-          <ShakaPlayer  autoPlay src={currentStreamUrl} />
+          <ShakaPlayer autoPlay src={currentStreamUrl} />
 
           <div
             className="curranime"

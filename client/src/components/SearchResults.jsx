@@ -3,23 +3,21 @@ import { Container, Row, Col } from "react-grid-system";
 import GridCard from "./GridCard";
 import { v4 as uuidv4 } from "uuid";
 import { setConfiguration } from "react-grid-system";
-import { AnimeInfoContext } from "./Home";
 import { useLocation } from "react-router-dom";
 import { useEffect, useState, useContext } from "react";
 import { ToastContainer, toast } from "react-toastify";
 
 import Navbar from "./Navbar";
+import { SharedState } from "../App";
 setConfiguration({ breakpoints: [768, 1170, 1500, 1700, 1800, 1900] });
 
-export default function SearchResults() {
+export default function SearchResults({ setAnimeInfo, onOpenModal }) {
   const location = useLocation();
-  const AnimeContext = useContext(AnimeInfoContext);
-
+  const navstate = useContext(SharedState);
   const [windowSize, setWindowSize] = useState(window.innerWidth);
   useEffect(() => {
     window.addEventListener("resize", () => {
       setWindowSize(window.innerWidth);
-      console.log(windowSize);
     });
   });
   const calculateSize = (windowSize) => {
@@ -35,10 +33,9 @@ export default function SearchResults() {
     else if (windowSize >= 360 && windowSize < 390) return [220, 165];
     else return [230, 150];
   };
-  console.log(AnimeContext);
   return (
     <>
-      <Navbar></Navbar>
+      <Navbar navstate={navstate}></Navbar>
       <h1
         style={{
           fontSize: "3rem",
@@ -56,8 +53,8 @@ export default function SearchResults() {
             return (
               <Col align="center" xxl={2} md={2.4} sm={4} xs={6} key={uuidv4()}>
                 <GridCard
-                  // setAnimeInfo={AnimeContext.setAnimeInfo}
-                  // onOpenModal = {AnimeContext.setAnimeInfo}
+                  setAnimeInfo={setAnimeInfo}
+                  onOpenModal={onOpenModal}
                   title={query.title.english}
                   id={query.id}
                   image={query.image}

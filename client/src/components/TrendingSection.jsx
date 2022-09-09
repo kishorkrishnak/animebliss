@@ -15,8 +15,6 @@ export default function TrendingSection({ onOpenModal, setAnimeInfo }) {
     <section className="section section-trending" id="trending">
       {trending.length > 0 && (
         <CarouselRenderer
-          onOpenModal={onOpenModal}
-          setAnimeInfo={setAnimeInfo}
           finalQuery={trending}
           stretchedA={true}
           rowTitle="Trending"

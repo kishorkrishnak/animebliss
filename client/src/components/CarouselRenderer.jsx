@@ -59,7 +59,6 @@ export default function CarouselRenderer({
         {finalQuery.map((query, index) =>
           stretchedA ? (
             <CarouselCard
-              onOpenModal={onOpenModal}
               setTrailerId={setTrailerId}
               setIsPlaying={setIsPlaying}
               title={query.title.english}
@@ -69,7 +68,6 @@ export default function CarouselRenderer({
               rating={query.rating}
               id={query.id}
               rowTitle={rowTitle}
-              setAnimeInfo={setAnimeInfo}
               episodeNum={isRecent ? query.episode : 0}
             ></CarouselCard>
           ) : (

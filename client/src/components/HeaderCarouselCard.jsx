@@ -4,15 +4,13 @@ import {
   ClockCircleOutlined,
 } from "@ant-design/icons";
 import axios from "axios";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { faListOl } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import TextTruncate from "react-text-truncate";
 import MoonLoader from "react-spinners/MoonLoader";
-
-export default function CarouselCard({
-  onOpenModal,
-  setAnimeInfo,
+import { SharedState } from "../App";
+export default function HeaderCarouselCard({
   duration,
   cover,
   title,
@@ -22,6 +20,7 @@ export default function CarouselCard({
   epcount,
   coversmall,
 }) {
+  const animestate = useContext(SharedState);
   const override = {
     position: "fixed",
     zIndex: 1,
@@ -42,8 +41,8 @@ export default function CarouselCard({
     return await axios
       .get("https://consumet-api.herokuapp.com/meta/anilist/info/" + id)
       .then((res) => {
-        setAnimeInfo(res.data);
-        onOpenModal();
+        animestate.setAnimeInfo(res.data);
+        animestate.onOpenModal();
         setVideoIsLoading(false);
       })
       .catch((e) => {

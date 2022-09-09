@@ -22,8 +22,7 @@ const MoviesSection = ({ setAnimeInfo, onOpenModal }) => {
           rowTitle="Top Movies"
           stretchedA={true}
           initialActiveIndex={2}
-          setAnimeInfo={setAnimeInfo}
-          onOpenModal={onOpenModal}
+         
         ></CarouselRenderer>
       )}
     </section>
