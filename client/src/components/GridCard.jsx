@@ -26,11 +26,9 @@ export default function GridCard({
         if (!onOpenModal) {
           animestate.setAnimeInfo(res.data);
 
-          animestate.setActive("nav__menu");
           animestate.onOpenModal();
         } else {
           setAnimeInfo(res.data);
-          animestate.setActive("nav__menu");
 
           onOpenModal();
         }

@@ -1,17 +1,20 @@
 import ShakaPlayer from "shaka-player-react";
 import "shaka-player-react/dist/controls.css";
 import Select from "react-select";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import TextTruncate from "react-text-truncate";
+import ReccomendCarousel from "./ReccomendCarousel";
+import { SharedState } from "../App";
+
 import axios from "axios";
-import CarouselRenderer from "./CarouselRenderer";
+
 const AnimePlayer = ({ animeInfo, onOpenModal }) => {
+  const animestate = useContext(SharedState);
+
   const [anime, setAnime] = useState(animeInfo);
-  const [allEpisodes, setAllEpisodes] = useState(animeInfo.episodes);
-  const [epcount, setEpCount] = useState(animeInfo.episodes.length);
   const [selectedOption, setSelectedOption] = useState({ value: 1, label: 1 });
-  let [currentStreamUrl, setCurrentStreamUrl] = useState(null);
-  const [currentId, setCurrentId] = useState(allEpisodes[0].id);
+  const [currentStreamUrl, setCurrentStreamUrl] = useState(null);
+  const [currentId, setCurrentId] = useState(anime.episodes[0].id);
   const options = [];
   const selectStyles = {
     menuList: (styles) => {
@@ -24,31 +27,39 @@ const AnimePlayer = ({ animeInfo, onOpenModal }) => {
 
   async function fetchVideoById(url) {
     return await axios.get(url).then((response) => {
-      console.log("hello");
-      console.log(response);
       setCurrentStreamUrl(response.data.sources[1].url);
+      console.log("stream url changed");
+      console.log(currentStreamUrl);
     });
   }
 
   const changeStream = () => {
-    setCurrentId(allEpisodes[selectedOption.value - 1].id);
+    setCurrentId(anime.episodes[selectedOption.value - 1].id);
   };
 
   useEffect(() => {
+    console.log("id changed: " + currentId);
     fetchVideoById(
       " https://consumet-api.herokuapp.com/meta/anilist/watch/" + currentId
     );
   }, [currentId]);
 
   useEffect(() => {
+    setAnime(animeInfo);
+    setCurrentId(animeInfo.episodes[0].id);
+  }, [animeInfo]);
+
+  useEffect(() => {
     changeStream();
   }, [selectedOption]);
-  for (let i = 1; i <= epcount; i++) {
+
+  for (let i = 1; i <= anime.episodes.length; i++) {
     options.push({
       value: i,
       label: i,
     });
   }
+
   let regexeddescription = anime.description.replaceAll(
     /<\/?[\w\s]*>|<.+[\W]>/g,
     ""
@@ -69,7 +80,7 @@ const AnimePlayer = ({ animeInfo, onOpenModal }) => {
             className="curranime"
             style={{ height: "100%", padding: 30, backgroundColor: "#10141e" }}
           >
-            <h2 style={{ color: "red" }}>{animeInfo.title.english}</h2>
+            <h2 style={{ color: "red" }}>{anime.title.english}</h2>
             <div
               className="curranimeinfo"
               style={{ marginTop: 5, display: "flex", gap: 25 }}
@@ -129,11 +140,9 @@ const AnimePlayer = ({ animeInfo, onOpenModal }) => {
             <div className="recommendations">
               <h3 style={{ color: "red" }}>Recommendations</h3>
 
-              <CarouselRenderer
-                type={"reco"}
+              <ReccomendCarousel
                 finalQuery={anime.recommendations}
-                stretchedA={true}
-              ></CarouselRenderer>
+              ></ReccomendCarousel>
             </div>
           </div>
         </>

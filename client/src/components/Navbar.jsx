@@ -3,7 +3,6 @@ import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import logo from "../assets/images/image.png";
 import { useNavigate, useLocation } from "react-router-dom";
-import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import React, { useRef } from "react";
@@ -16,7 +15,6 @@ export default function Navbar() {
     useEffect(() => {
       function handleClickOutside(event) {
         if (ref.current && !ref.current.contains(event.target)) {
-          console.log("yay");
 
           setIcon("nav__toggler");
           setActive("nav__menu");
@@ -148,9 +146,16 @@ export default function Navbar() {
           </li>
 
           <li className="nav__item">
-            <a href="/" className="nav__link">
-              Watchlist
-            </a>
+          <Link
+              // onClick={(e) => {
+              //   e.preventDefault();
+              //   navigate("/recentep");
+              // }}
+              to="/recentep"
+              style={{ color: "white", font: "inherit" }}
+            >
+              Recent Ep
+            </Link>
           </li>
           <li className="nav__item">
             <Link to="/login" style={{ color: "white", font: "inherit" }}>

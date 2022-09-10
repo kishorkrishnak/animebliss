@@ -8,39 +8,24 @@ import Header from "./Header";
 import MoviesSection from "./MoviesSection";
 import UpcomingSection from "./UpcomingSection";
 import { useRef } from "react";
-
+import Caro from "./ReccomendCarousel";
+import RecentSection from "./RecentSection";
 import AnimeSection from "./AnimeSection";
 export const SharedState = React.createContext();
 export default function Home() {
   const [active, setActive] = useState("nav__menu");
   const [icon, setIcon] = useState("nav__toggler");
-  const location = useLocation();
-
-  // useEffect(() => {
-  //   const onPageLoad = () => {
-  //     document.querySelector("#popular").scrollIntoView();
-  //   };
-
-  //   if (document.readyState === "complete") {
-  //     onPageLoad();
-  //   } else {
-  //     window.addEventListener("load", onPageLoad);
-  //     return () => window.removeEventListener("load", onPageLoad);
-  //   }
-  // }, []);
-
   return (
     <SharedState.Provider
       value={{
         setActive,
         setIcon,
         active,
-
         icon,
       }}
     >
       <>
-        <Header ></Header>
+        <Header></Header>
         <UpcomingSection></UpcomingSection>
         <AnimeSection
           url={
@@ -54,7 +39,7 @@ export default function Home() {
           id={"trending"}
           sectiontitle={"Trending"}
         ></AnimeSection>
-
+        <RecentSection></RecentSection>
         <InfiniteSection
           url={"https://consumet-api.herokuapp.com/meta/anilist/popular"}
           itemlimit={18}

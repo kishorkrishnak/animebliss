@@ -3,7 +3,6 @@ import GridCard from "./GridCard";
 import { v4 as uuidv4 } from "uuid";
 import { setConfiguration } from "react-grid-system";
 import { useLocation } from "react-router-dom";
-import { useContext } from "react";
 import { ToastContainer, toast } from "react-toastify";
 
 import Navbar from "./Navbar";
@@ -14,7 +13,7 @@ export default function SearchResults({ setAnimeInfo, onOpenModal }) {
 
   return (
     <>
-      <Navbar ></Navbar>
+      <Navbar></Navbar>
       <h1
         style={{
           fontSize: "3rem",

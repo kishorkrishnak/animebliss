@@ -1,4 +1,4 @@
-import { useEffect, useState, useContext } from "react";
+import { useEffect, useState } from "react";
 import TextTruncate from "react-text-truncate";
 
 import { motion } from "framer-motion";
@@ -19,7 +19,6 @@ const UpcomingCard = ({
       setWindowSize(window.innerWidth);
     });
   });
-
 
   const calculateSize = (windowSize) => {
     if (windowSize > 1750) return [240, 430];

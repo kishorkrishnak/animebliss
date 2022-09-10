@@ -57,8 +57,7 @@ export default function CarouselRenderer({
         {finalQuery.map((query, index) =>
           stretchedA ? (
             <CarouselCard
-              setTrailerId={setTrailerId}
-              setIsPlaying={setIsPlaying}
+          
               title={query.title.english}
               image={query.image}
               key={uuidv4()}
