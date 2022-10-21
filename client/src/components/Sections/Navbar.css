@@ -1,0 +1,241 @@
+*,
+*::after,
+*::before {
+  margin: 0;
+  box-sizing: border-box;
+}
+html {
+  font-size: 62.5%;
+}
+body {
+  font-size: 1.6rem;
+}
+li {
+  list-style: none;
+}
+a {
+  text-decoration: none;
+  color: black;
+}
+.nav {
+  width: 100%;
+  position: fixed;
+  display: flex;
+  font-size: 1.6rem;
+  background-color: #0f0617;
+  top: 0;
+  left: 0;
+  right: 0;
+  align-items: center;
+  justify-content: space-between;
+  padding-right: 25px;
+  height: 65px;
+  z-index: 2000;
+  padding-left: 40px;
+}
+.nav-side-div {
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  display: flex;
+}
+.nav__link {
+  color: white;
+  cursor: pointer;
+  font: inherit;
+}
+.nav__brand {
+  display: flex;
+  align-items: center;
+  color: white;
+  gap: 10px;
+  text-transform: uppercase;
+}
+.nav__menu {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 2.5rem;
+}
+.nav__toggler {
+  display: none;
+}
+.nav__toggler div {
+  width: 2rem;
+  height: 0.3rem;
+  margin: 0.4rem;
+  background: rgb(204, 204, 204);
+  transition: 0.3s ease-in;
+}
+@media screen and (max-width: 1250px) {
+  .auth li:first-child {
+    padding: 5px 14px !important;
+  }
+  .auth li:last-child {
+    background-color: #8230c6;
+    border-radius: 4px;
+    border: none;
+    outline: none;
+  }
+  .auth li {
+    border: 1px solid white;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    padding: 6px 14px !important;
+    justify-content: center;
+  }
+
+  .auth {
+    display: flex;
+    order: -3;
+    gap: 10px;
+  }
+  .magnify-icon {
+    display: none;
+  }
+  .searchbar {
+    background-image: url("../../assets/images/searchicon.png");
+    background-position: 8px 8.5px;
+    background-repeat: no-repeat;
+    background-size: 20px;
+    padding: 10px 40px !important;
+  }
+  .nav {
+    justify-content: space-between;
+    padding-left: 25px;
+  }
+  .nav__toggler {
+    display: block;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  .nav__item {
+    color: white;
+  }
+  .searchbar {
+    display: none;
+  }
+  .nav__menu {
+    position: fixed;
+    padding-top: 20px;
+    z-index: 1;
+    gap: 0.8rem;
+    top: 60px;
+    right: 0;
+    width: 100vw;
+    height: fit-content;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 40px;
+    text-align: center;
+    padding-right: 30px;
+    border: 1px solid hsl(248, 24%, 10%);
+    background-color: #10141e;
+    border-radius: 5px;
+    flex-direction: column;
+    font-size: 7px;
+    transform: translateX(100%);
+    transition: 0.1s ease-in;
+  }
+  .nav__item {
+    font-size: 1.6rem;
+    width: 99%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    color: #d1d5db;
+  }
+  .nav__item:hover {
+    border-radius: 6px;
+    background-color: #374151;
+  }
+}
+.nav__active {
+  padding-bottom: 20px;
+  transform: translateX(0%);
+}
+.toggle .line1 {
+  transform: rotate(-45deg) translate(-4px, 5px);
+}
+.toggle .line2 {
+  opacity: 0;
+}
+.toggle .line3 {
+  transform: rotate(45deg) translate(-4px, -5px);
+}
+.searchbar {
+  outline: none;
+  display: inline-block;
+  padding: 10px 15px;
+  border-radius: 0.7rem;
+  border: none;
+  font-size: 1.5rem;
+  color: #9aa2ae;
+  background-color: #374151;
+}
+.searchbar::placeholder {
+  color: white;
+  font-family: inherit;
+}
+.searchbar:hover,
+.searchbar:focus {
+  border: 1px solid violet;
+  color: white;
+}
+@media screen and (min-width: 1100px) {
+  .auth li:first-child {
+    padding: 7px 14px;
+  }
+  .auth li:last-child {
+    background-color: #8230c6;
+    border-radius: 4px;
+    border: none;
+    outline: none;
+  }
+  .nav__item-login {
+    border: 1px solid white;
+  }
+  .auth li {
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    padding: 8px 14px;
+    justify-content: center;
+  }
+  .nav__item-logout {
+    padding: 3px 5px !important;
+  }
+  .auth {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    right: 0;
+    margin-right: 4%;
+  }
+}
+@media screen and (min-width: 380px) {
+  .searchbar {
+    width: 60vw;
+  }
+  .nav-side-div {
+    gap: 17px;
+  }
+}
+@media screen and (min-width: 420px) {
+  .searchbar {
+    width: 67vw;
+  }
+}
+@media screen and (min-width: 500px) {
+  .searchbar {
+    width: 300px;
+  }
+}
+@media screen and (max-width: 380px) {
+  .searchbar {
+    width: 60vw;
+  }
+}

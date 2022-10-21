@@ -1,0 +1,46 @@
+.section-infinite {
+  padding-bottom: 40px;
+}
+.section-title {
+  font-size: 1.9rem;
+  margin-left: 15px;
+}
+@media screen and (min-width: 768px) {
+  .section-title {
+    font-size: 2.5rem;
+    margin-left: 23px;
+  }
+}
+.pagination-wrapper {
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  width: 100vw;
+  justify-content: center;
+}
+.pagination {
+  height: 60px;
+  width: 96%;
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+  border-top: 1px solid dodgerblue;
+  justify-content: space-between;
+}
+.previousPageButton,
+.nextPageButton {
+  font-size: 15px;
+  outline: none;
+  border: none;
+  color: white;
+  width: 150px;
+  background-color: transparent;
+}
+.btn-pageindex {
+  border: none;
+  padding: 4px 8px;
+  border-radius: 5px;
+  color: white;
+  background: none;
+  font-size: 14px;
+}

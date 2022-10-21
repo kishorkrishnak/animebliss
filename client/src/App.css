@@ -1,18 +1,31 @@
 html {
   scroll-behavior: smooth;
 }
-
 * {
   box-sizing: border-box;
 }
+* {
+  scroll-margin-top: 20px;
+}
 body {
-  background-color: #10141e;
+  background-color: #0f0617 !important;
   margin: 0;
   padding: 0;
-  
   max-height: 100vh;
   max-width: 100vw;
-overflow-x: hidden;
+  overflow-x: hidden;
 }
+body::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
 
-
+  background-color: transparent;
+}
+body::-webkit-scrollbar {
+  width: 5px;
+  background-color: transparent;
+}
+body::-webkit-scrollbar-thumb {
+  background-color: grey;
+  border-radius: 4px;
+}

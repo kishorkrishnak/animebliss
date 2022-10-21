@@ -1,0 +1,154 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@500&display=swap");
+html {
+  scroll-behavior: smooth;
+}
+* {
+  box-sizing: border-box;
+}
+body {
+  background-color: #10141e;
+  margin: 0;
+  max-height: 100vh;
+  max-width: 100%;
+  font-family: "Inter", sans-serif;
+}
+.section-anime,
+.section-infinite {
+  margin-top: 8px;
+}
+button.rec-dot {
+  background-color: #3f1e26;
+}
+.animecard-wrapper:hover,
+.gridcard-wrapper:hover,
+.recommend-card:hover,
+.recommend-wrapper:hover {
+  transform: scale(1.02);
+  transition: 300ms ease;
+}
+.contindex::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  background-color: transparent;
+}
+.contindex::-webkit-scrollbar {
+  width: 10px;
+  background-color: transparent;
+}
+.contindex::-webkit-scrollbar-thumb {
+  background-color: #366073;
+  border-radius: 4px;
+}
+button.rec-dot {
+  height: 8.5px;
+  width: 8.5px;
+}
+.section-anime button.rec,
+.section-upcoming button.rec {
+  display: none;
+}
+button.rec-dot_active,
+button.rec-dot_active:focus,
+button.rec-dot_active:hover button.rec-dot:focus {
+  background-color: #b7b5ba;
+}
+button.rec-dot_active:hover {
+  box-shadow: none;
+}
+button.rec-dot {
+  box-shadow: none;
+}
+.row-title {
+  color: white;
+  font-size: 1.9rem;
+  width: 60%;
+  margin-left: 16px;
+  margin-bottom: 3px;
+}
+.more-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 30px;
+  font-size: 1.55rem;
+  gap: 5px;
+  margin-bottom: 3px;
+  color: #8f72db;
+}
+@media screen and (min-width: 768px) {
+  .row-title {
+    font-size: 2.5rem;
+    width: 60%;
+    margin-left: 30px;
+    margin-bottom: 10px;
+  }
+}
+@media screen and (max-width: 768px) {
+  .header-card {
+    height: 320px !important;
+  }
+  .anime-description {
+    font-size: 1.5rem;
+  }
+  .curranimeinfo {
+    display: flex !important;
+    justify-content: "center" !important;
+    align-items: "center" !important;
+  }
+  .curranime {
+    font-size: 1.4rem !important;
+  }
+  .additional-anime-info {
+    font-size: 1.4rem !important;
+  }
+}
+@media screen and (max-width: 768px) {
+  .more-button {
+    font-size: 1.4rem;
+  }
+  button.rec {
+    display: none;
+  }
+}
+.pageindex {
+  display: flex;
+  gap: 40px;
+  justify-content: center;
+}
+@media screen and (max-width: 1000px) {
+  .pageindex {
+    gap: 1px;
+    font-size: 2rem;
+    width: fit-content;
+  }
+  .pagination {
+    margin-top: 5px;
+  }
+  .previousPageButton * {
+    order: 1;
+  }
+  .nextPageButton,
+  .previousPageButton {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .pageindex button {
+    font-size: 1.7rem;
+  }
+}
+@media screen and (max-width: 360px) {
+  .pageindex {
+    display: none;
+  }
+}
+.btn-index {
+  cursor: pointer;
+}
+.btn-pageindex:hover {
+  border: 1px solid dodgerblue !important;
+}
+.modal-video-body {
+  max-width: 85vw !important;
+}

@@ -1,0 +1,166 @@
+.animecard-wrapper {
+  display: flex;
+  margin-top: 3px;
+  flex-direction: column;
+  align-items: center;
+  height: fit-content;
+  justify-content: center;
+  text-align: center;
+}
+.stardiv {
+  color: yellow;
+  background-color: rgba(0, 0, 0, 0.6);
+  padding: 2px 7px;
+  position: absolute;
+  border-radius: 4px;
+  font-size: 1.35rem;
+  display: flex;
+  gap: 4px;
+  justify-content: center;
+  align-items: center;
+}
+.epnumber {
+  color: white;
+  font-weight: lighter;
+}
+.animecardinfo-year {
+  color: white;
+  font-size: 1.15rem;
+  margin-top: 4px;
+}
+@media screen and (min-width: 800px) {
+  .animecardinfo-year {
+    font-size: 1.35rem;
+  }
+}
+.animecard-card {
+  border-radius: 4px;
+  background-position: center;
+  background-size: cover;
+  transition: all 0.5s;
+}
+@media screen and (max-width: 359px) {
+  .animecard-card {
+    height: 130px;
+    width: 95px;
+  }
+}
+@media screen and (min-width: 360px) {
+  .animecard-card {
+    height: 140px;
+    width: 110px;
+  }
+}
+@media screen and (min-width: 380px) {
+  .animecard-card {
+    height: 150px;
+    width: 115px;
+  }
+}
+@media screen and (min-width: 420px) {
+  .animecard-card {
+    height: 155px;
+    width: 125px;
+  }
+}
+@media screen and (min-width: 440px) {
+  .animecard-card {
+    height: 155px;
+    width: 125px;
+  }
+}
+@media screen and (min-width: 475px) {
+  .animecard-card {
+    height: 185px;
+    width: 145px;
+  }
+}
+@media screen and (min-width: 700px) {
+  .animecard-card {
+    height: 250px;
+    width: 160px;
+  }
+}
+@media screen and (min-width: 800px) {
+  .animecard-card {
+    height: 250px;
+    width: 180px;
+  }
+}
+.epnumber {
+  color: white;
+  font-weight: lighter;
+  margin-top: 5px;
+  font-size: 1.35rem;
+}
+.animecard-title {
+  font-size: 1.5rem;
+  color: white;
+  margin-top: 3px;
+}
+@media screen and (max-width: 768px) {
+  .epnumber {
+    font-size: 1.15rem;
+  }
+  .animecard-title {
+    font-size: 1.2rem;
+  }
+}
+@media screen and (min-width: 830px) {
+  .animecard-card {
+    height: 250px;
+    width: 180px;
+  }
+}
+@media screen and (min-width: 1010px) {
+  .animecard-card {
+    height: 250px;
+    width: 180px;
+  }
+}
+@media screen and (min-width: 1125px) {
+  .animecard-card {
+    height: 250px;
+    width: 180px;
+  }
+}
+@media screen and (min-width: 1300px) {
+  .animecard-card {
+    height: 340px;
+    width: 230px;
+  }
+}
+@media screen and (min-width: 1400px) {
+  .animecard-card {
+    height: 340px;
+    width: 230px;
+  }
+}
+@media screen and (min-width: 1570px) {
+  .animecard-card {
+    height: 340px;
+    width: 230px;
+  }
+}
+@media screen and (min-width: 1600px) {
+  .animecard-card {
+    height: 340px;
+    width: 230px;
+  }
+}
+@media screen and (min-width: 1710px) {
+  .animecard-card {
+    height: 340px;
+    width: 230px;
+  }
+}
+@media screen and (min-width: 1800px) {
+  .animecard-card {
+    height: 340px;
+    width: 230px;
+  }
+  .vertical-grid .animecard-card {
+    height: 380px;
+    width: 260px;
+  }
+}

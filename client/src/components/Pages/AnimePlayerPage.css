@@ -1,0 +1,173 @@
+.watchlist,
+.share {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+.animeplayer-container {
+  margin-top: 65px;
+}
+.sharewatchlistcontainer {
+  background-color: #181020;
+  height: 100px;
+  margin-top: 25px;
+  justify-content: space-evenly;
+  align-items: center;
+  display: flex;
+  gap: 10px;
+  width: 210px;
+  border-radius: 3px;
+}
+.watchlist span,
+.share span {
+  color: #d8d8d8;
+  font-size: 1.2rem;
+}
+.epindex:hover {
+  background-color: #823061;
+}
+.vime-container {
+  width: 98%;
+  margin: 0 auto;
+}
+.vertical-grid-container {
+  display: block;
+  position: absolute;
+  right: 30px;
+  top: 80px;
+  width: 29vw;
+}
+.vertical-grid::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  background-color: transparent;
+}
+.vertical-grid::-webkit-scrollbar {
+  width: 5px;
+  background-color: transparent;
+}
+.vertical-grid::-webkit-scrollbar-thumb {
+  background-color: #2f2f2f;
+  border-radius: 4px;
+}
+.vertical-grid {
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  max-height: 1050px;
+  overflow-x: hidden;
+  display: grid;
+  overflow-y: scroll;
+  row-gap: 15px;
+}
+.recommend-div button.rec {
+  display: none;
+}
+.top-narrowbar {
+  background-color: rgb(38, 50, 56);
+  height: 35px;
+  border-radius: 3px 3px 0px 0px;
+  display: flex;
+  align-items: center;
+  padding: 0px 15px;
+}
+.curranimeinfo {
+  margin-top: 5px;
+  display: flex;
+  gap: 25px;
+}
+.contindex {
+  overflow-y: scroll;
+  max-height: 100px;
+  height: fit-content;
+  display: grid;
+  gap: 4px 4px;
+  justify-items: start;
+  justify-content: start;
+  align-items: start;
+  grid-template-columns: repeat(auto-fill, minmax(50px, 1fr));
+}
+.recommendations-title {
+  color: white;
+  font-size: 1.7rem;
+}
+.anime-title {
+  font-size: 1.8rem;
+}
+.curranime-status,
+.curranime-adaptation,
+.curranime-genres,
+.curranime-studios {
+  font-size: 1.35rem;
+  color: #d8d8d8;
+}
+.curranime-genres {
+  color: #197ee0;
+}
+.summary-content {
+  text-align: justify;
+  color: #d8d8d8;
+  font-size: 1.35rem;
+  font-weight: lighter;
+}
+.summary-title {
+  font-size: 1.7rem;
+  color: white;
+  margin-top: 20px;
+}
+.epindex {
+  cursor: pointer;
+  border-radius: 3px;
+  height: 30px;
+  width: 50px;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.3rem;
+}
+@media screen and (max-width: 1700px) {
+  .vertical-grid .animecard-card {
+    height: 280px;
+    width: 200px;
+  }
+}
+@media screen and (max-width: 1706px) {
+  .vertical-grid-container {
+    display: none;
+  }
+}
+.curranime-platform,
+.curranime-score,
+.curranime-epaired,
+.curranime-releaseyear {
+  color: white;
+}
+.curranime {
+  width: 99%;
+  padding: 15px;
+  background-color: #0f0617;
+  line-height: 1.5;
+}
+@media screen and (min-width: 768px) {
+  .curranime {
+    padding-left: 22px;
+  }
+  .anime-title {
+    font-size: 2.6rem;
+  }
+}
+@media screen and (min-width: 1400px) {
+  .vime-container {
+    margin-left: 22px;
+  }
+  .animeplayer-container {
+    margin-top: 90px;
+    margin-left: 10px;
+  }
+}
+@media screen and (min-width: 1690px) {
+  .animeplayer-container {
+    max-width: 68vw;
+  }
+}

@@ -1,0 +1,94 @@
+@media screen and (max-width: 700px) {
+  .main-wrapper {
+    flex-direction: column;
+  }
+  .welcome-text {
+    display: none;
+  }
+}
+@media screen and (max-width: 375px) {
+  .login-container {
+    width: 95%;
+  }
+}
+
+.main-wrapper {
+  display: flex;
+  min-height: 100vh;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.welcome-text {
+  color: white;
+  font-size: 5.6rem;
+}
+
+.login-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 6px;
+  width: 96%;
+  max-width: 400px;
+  padding: 50px;
+  color: black;
+  background-color: white;
+  border-radius: 10px;
+}
+.extras div:first-of-type {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.extras {
+  gap: 12px;
+  display: flex;
+  font-size: 1.2rem;
+  justify-content: space-between;
+}
+.welcome-text-dodgerblue {
+  color: dodgerblue;
+}
+.login-form {
+  margin-top: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.login-container button {
+  margin-top: 8px;
+  background-color: #131418;
+  outline: none;
+  border: none;
+  font-size: 1.4rem;
+  color: white;
+  border-radius: 8px;
+  padding: 12px 0px;
+  justify-self: center;
+}
+.login-form button {
+  background-color: dodgerblue;
+}
+
+.signupprompt {
+  margin-top: 4px;
+
+  font-size: 1.2rem;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.input::placeholder {
+}
+.input {
+  color: white;
+  font-size: 1.5rem;
+  padding: 12px;
+  outline: none;
+  border: none;
+  border-radius: 5px;
+  background-color: #212121;
+}
