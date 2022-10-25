@@ -14,8 +14,8 @@ const AnimeSection = ({ sectiontitle, url, id }) => {
         <CarouselRenderer
           url={url}
           finalQuery={fetchedData}
-          stretchedA={true}
-          rowTitle={sectiontitle}
+          isAnimeCard={true}
+          sectionTitle={sectiontitle}
         ></CarouselRenderer>
       )}
     </section>

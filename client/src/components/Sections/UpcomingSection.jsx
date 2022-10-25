@@ -17,10 +17,7 @@ const UpcomingSection = () => {
   return (
     <section
       style={{
-        marginTop: 30,
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "flex-start",
+        marginTop: 10,
       }}
       className="section section-upcoming"
       id="upcoming"
@@ -28,8 +25,8 @@ const UpcomingSection = () => {
       {upcoming.length > 0 && (
         <CarouselRenderer
           finalQuery={upcoming}
-          rowTitle="Upcoming"
-          isUpcoming={true}
+          sectionTitle="Upcoming"
+          isAnimeCard={false}
           setIsPlaying={setIsPlaying}
           setTrailerId={setTrailerId}
           url={url}

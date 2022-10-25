@@ -1,7 +1,6 @@
 import ScrollToTop from "react-scroll-to-top";
 import AnimePlayer from "../Players/AnimePlayer";
 import React from "react";
-
 import {
   StarFilled,
   CalendarOutlined,
@@ -36,11 +35,26 @@ const AnimePlayerPage = () => {
   const [currentId, setCurrentId] = useState("");
   const epArray = [];
   const [ep, setEp] = useState(null);
+
   async function fetchVideoById(url) {
     return await axios.get(url).then(({ data }) => {
       setCurrentStreamUrl([data.sources[0].url, data.sources[1].url]);
     });
   }
+
+  const cleanDescription = (description) => {
+    setDescription(
+      description
+        .substring(
+          0,
+          description.indexOf("(") === -1
+            ? description.length
+            : description.indexOf("(")
+        )
+        .replaceAll(/<\/?[\w\s]*>|<.+[\W]>/g, "")
+    );
+  };
+
   const initialFetch = async () => {
     return await axios
       .get("https://api.consumet.org/meta/anilist/info/" + id)
@@ -59,26 +73,19 @@ const AnimePlayerPage = () => {
           }
         }
         setAdaptation(adaptation);
-        let regexeddescription = data.description.replaceAll(
-          /<\/?[\w\s]*>|<.+[\W]>/g,
-          ""
-        );
-        setDescription(
-          regexeddescription.substring(0, regexeddescription.indexOf("("), 4)
-        );
+        cleanDescription(data.description);
       });
   };
+
   useEffect(() => {
     initialFetch();
   }, [id]);
-
   useEffect(() => {
     if (currentId !== "")
       fetchVideoById(
         " https://api.consumet.org/meta/anilist/watch/" + currentId
       );
   }, [currentId]);
-
   useEffect(() => {
     if (anime) setCurrentId(anime.episodes[selectedOption - 1].id);
   }, [selectedOption, anime]);
@@ -121,7 +128,7 @@ const AnimePlayerPage = () => {
               </div>
               <form style={{ marginTop: 15 }}>
                 <div className="contindex">
-                  {ep.map((ep, index) => {
+                  {ep.map((ep) => {
                     return (
                       <div
                         key={uuidv4()}
@@ -186,7 +193,7 @@ const AnimePlayerPage = () => {
                     {anime.studios.join(", ")}
                   </span>
                 </h4>
-                {adaptation !== "" && (
+                {adaptation && (
                   <h4 style={{ color: "white" }}>
                     Adapation:&nbsp;
                     <span className="curranime-adaptation">{adaptation}</span>
@@ -202,7 +209,7 @@ const AnimePlayerPage = () => {
             <div>
               {anime.recommendations.length > 0 && (
                 <VerticalCarousel
-                  rowTitle={"More Like This"}
+                  sectionTitle={"More Like This"}
                   finalQuery={anime.recommendations}
                 ></VerticalCarousel>
               )}
@@ -210,9 +217,9 @@ const AnimePlayerPage = () => {
           </div>
           {anime.recommendations && (
             <CarouselRenderer
-              rowTitle="Recommendations"
+              sectionTitle="Recommendations"
               finalQuery={anime.recommendations}
-              stretchedA={true}
+              isAnimeCard={true}
             ></CarouselRenderer>
           )}
           <AnimeSection

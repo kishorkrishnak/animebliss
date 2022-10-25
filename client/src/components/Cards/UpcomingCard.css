@@ -1,8 +1,3 @@
-.upcoming-card-title {
-  font-size: 1.2rem;
-  color: white;
-  margin-top: 5px;
-}
 .upcomingcard-wrapper {
   display: flex;
   flex-direction: column;
@@ -11,6 +6,12 @@
   margin-top: 3px;
   justify-content: center;
   text-align: center;
+}
+
+.upcomingcard-title {
+  font-size: 1.2rem;
+  color: white;
+  margin-top: 5px;
 }
 @media screen and (max-width: 359px) {
   .upcomingcard-card {
@@ -83,7 +84,7 @@
     height: 180px;
     width: 270px;
   }
-  .upcoming-card-title {
+  .upcomingcard-title {
     font-size: 1.5rem;
   }
 }
@@ -105,6 +106,7 @@
     width: 370px;
   }
 }
+
 @media screen and (min-width: 1270px) {
   .upcomingcard-card {
     height: 200px;

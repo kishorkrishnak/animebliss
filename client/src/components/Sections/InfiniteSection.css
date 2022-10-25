@@ -27,8 +27,8 @@
   border-top: 1px solid dodgerblue;
   justify-content: space-between;
 }
-.previousPageButton,
-.nextPageButton {
+.previous-page-button,
+.next-page-button {
   font-size: 15px;
   outline: none;
   border: none;

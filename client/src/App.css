@@ -1,16 +1,15 @@
+* {
+  box-sizing: border-box;
+  scroll-margin-top: 20px;
+}
+
 html {
   scroll-behavior: smooth;
 }
-* {
-  box-sizing: border-box;
-}
-* {
-  scroll-margin-top: 20px;
-}
+
 body {
   background-color: #0f0617 !important;
   margin: 0;
-  padding: 0;
   max-height: 100vh;
   max-width: 100vw;
   overflow-x: hidden;

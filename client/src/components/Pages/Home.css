@@ -84,17 +84,6 @@ button.rec-dot {
   }
 }
 @media screen and (max-width: 768px) {
-  .header-card {
-    height: 320px !important;
-  }
-  .anime-description {
-    font-size: 1.5rem;
-  }
-  .curranimeinfo {
-    display: flex !important;
-    justify-content: "center" !important;
-    align-items: "center" !important;
-  }
   .curranime {
     font-size: 1.4rem !important;
   }

@@ -17,7 +17,7 @@ const InfiniteSection = ({ url, sectiontitle, itemlimit, id, querytype }) => {
   const [pageNumbers, setPageNumbers] = useState([1, 2, 3, 4, 5]);
 
   const updatePageNumberButtons = (e) => {
-    if (e.target.classList.contains("nextPageButton")) {
+    if (e.target.classList.contains("next-page-button")) {
       if (currpage % 5 === 0) {
         let temp = [];
         for (let i = 1; i <= 5; i++) {
@@ -26,7 +26,7 @@ const InfiniteSection = ({ url, sectiontitle, itemlimit, id, querytype }) => {
         setPageNumbers(temp);
       }
     }
-    if (e.target.classList.contains("previousPageButton")) {
+    if (e.target.classList.contains("previous-page-button")) {
       if (currpage % 5 === 1) {
         let temp = [];
         for (let i = 5; i >= 1; i--) {
@@ -62,7 +62,7 @@ const InfiniteSection = ({ url, sectiontitle, itemlimit, id, querytype }) => {
         id={id}
         className="section section-infinite"
         style={{
-          marginTop: querytype === "&" ? 70 : "",
+          marginTop: querytype === "&" || id === "recent-section" ? 70 : "",
         }}
       >
         {fetchedData.length > 0 && (
@@ -82,7 +82,7 @@ const InfiniteSection = ({ url, sectiontitle, itemlimit, id, querytype }) => {
             <div className="pagination-wrapper">
               <div className="pagination">
                 <button
-                  className="previousPageButton"
+                  className="previous-page-button"
                   onClick={(e) => {
                     if (currpage <= 1) {
                       toast.error("You are on the first page!");
@@ -113,7 +113,7 @@ const InfiniteSection = ({ url, sectiontitle, itemlimit, id, querytype }) => {
                   ))}
                 </div>
                 <button
-                  className="nextPageButton"
+                  className="next-page-button"
                   onClick={(e) => {
                     if (hasNextPage) {
                       updatePageNumberButtons(e);

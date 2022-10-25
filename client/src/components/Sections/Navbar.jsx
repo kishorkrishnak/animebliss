@@ -8,7 +8,6 @@ import React, { useRef } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import { GoogleLogout } from "react-google-login";
 import { SharedStateContext } from "../../App";
-
 import { useContext } from "react";
 const Navbar = () => {
   const SharedState = useContext(SharedStateContext);
@@ -34,7 +33,7 @@ const Navbar = () => {
   useOutsideAlerter(wrapperRef);
   const location = useLocation();
   const navigate = useNavigate();
-  const searchAnime = async (input) => {
+  const searchAnime = (input) => {
     return fetch("https://api.consumet.org/meta/anilist/" + input)
       .then((response) => {
         return response.json();
@@ -48,7 +47,6 @@ const Navbar = () => {
         });
       });
   };
-
   const [value, setValue] = useState("");
   const navToggle = () => {
     if (active === "nav__menu") {
@@ -216,5 +214,4 @@ const Navbar = () => {
     </nav>
   );
 };
-
 export default Navbar;

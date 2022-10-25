@@ -28,14 +28,14 @@ const CarouselCard = ({ title, image, episodeNumber, id, rating, year }) => {
           }}
         >
           {rating && (
-            <div className="stardiv">
+            <div className="animecard-starcontainer">
               <StarFilled />
               <span style={{ color: "white" }}>{rating / 10}</span>
             </div>
           )}
         </div>
         {episodeNumber > 0 && (
-          <h5 className="epnumber">Episode {episodeNumber}</h5>
+          <h5 className="animecard-epnumber">Episode {episodeNumber}</h5>
         )}
         {title && (
           <a href={`/watch/${id}`} className="animecard-title">
@@ -45,7 +45,7 @@ const CarouselCard = ({ title, image, episodeNumber, id, rating, year }) => {
             ></TextTruncate>
           </a>
         )}
-        {year && <p className="animecardinfo-year">{year}</p>}
+        {year && <p className="animecard-year">{year}</p>}
       </div>
     </>
   );

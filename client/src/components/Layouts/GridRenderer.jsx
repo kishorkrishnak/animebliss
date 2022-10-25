@@ -4,7 +4,7 @@ import { v4 as uuidv4 } from "uuid";
 import CarouselCard from "../Cards/AnimeCard";
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
-setConfiguration({ breakpoints: [605, 924, 1434, 1785, 2000, 2400] });
+setConfiguration({ breakpoints: [600, 924, 1434, 1785, 2000, 2400] });
 const GridRenderer = ({ finalQuery, setAnimeInfo, isAnimate }) => {
   useEffect(() => {
     setIsAnimated(isAnimate);

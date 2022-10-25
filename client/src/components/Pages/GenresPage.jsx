@@ -174,11 +174,11 @@ const GenresPage = () => {
       <Navbar></Navbar>
       <h1 className="genres-title">Genres</h1>
       <div className="genresdiv">
-        {genresinfo.map((genreinfo) => {
+        {genresinfo.map(genreinfo => {
           return (
             <div
               key={uuidv4()}
-              onClick={(e) => {
+              onClick={e => {
                 navigate(
                   "/filtered/genre/" + e.target.innerText.toLowerCase(),
                   {
@@ -198,7 +198,7 @@ const GenresPage = () => {
       </div>
       <h1 className="formats-title">Formats</h1>
       <div className="formatsdiv">
-        {formatsInfo.map((formatInfo) => {
+        {formatsInfo.map(formatInfo => {
           return (
             <div
               onClick={(e) => {

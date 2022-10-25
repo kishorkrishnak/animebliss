@@ -239,3 +239,8 @@ a {
     width: 60vw;
   }
 }
+@media screen and (max-width: 1000px) {
+  .brand-title {
+    display: none;
+  }
+}

@@ -16,11 +16,11 @@ const MoreSection = () => {
           marginTop: 90,
         }}
       >
-        {location.state.section}
+        {location.state.sectionTitle}
       </h1>
       <InfiniteSection
         itemlimit={28}
-        id={location.state.section.toLowerCase()}
+        id={location.state.sectionTitle}
         querytype={"?"}
         url={location.state.url}
       ></InfiniteSection>

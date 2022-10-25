@@ -9,7 +9,7 @@ const RecentPage = () => {
         url={"https://api.consumet.org/meta/anilist/recent-episodes"}
         itemlimit={21}
         sectiontitle={"Recent Episodes"}
-        id="recent-nav"
+        id="recent-section"
         querytype={"?"}
       ></InfiniteSection>
     </>

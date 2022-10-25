@@ -5,6 +5,8 @@ import ScrollToTop from "react-scroll-to-top";
 import Header from "../Sections/Header";
 import UpcomingSection from "../Sections/UpcomingSection";
 import AnimeSection from "../Sections/AnimeSection";
+import { Toaster } from "react-hot-toast";
+
 const Home = () => {
   return (
     <>
@@ -34,6 +36,7 @@ const Home = () => {
         id="popular"
         querytype={"?"}
       ></InfiniteSection>
+
       <ScrollToTop
         style={{
           border: "1px solid dodgerblue",

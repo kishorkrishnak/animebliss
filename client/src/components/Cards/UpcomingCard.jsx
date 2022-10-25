@@ -34,7 +34,7 @@ const UpcomingCard = ({
             e.preventDefault();
           }}
           href="/"
-          className="upcoming-card-title"
+          className="upcomingcard-title"
         >
           <TextTruncate text={title} line={2}></TextTruncate>
         </a>

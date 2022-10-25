@@ -1,0 +1,84 @@
+.headercard-wrapper {
+  background-position: center;
+  background-size: cover;
+  height: 470px;
+}
+
+.headercard-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-top: 20px;
+  align-items: flex-start;
+  padding: 20px 40px;
+  text-align: left;
+  width: 98.7%;
+  border-radius: 8px;
+}
+
+.headercard-wrapper img {
+  height: 100%;
+  width: 100%;
+}
+.headercard-animeinfo-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.headercard-animeinfo {
+  color: white;
+  display: flex;
+  gap: 20px;
+}
+.headercard-animeinfo-title {
+  color: white;
+  font-size: 2.7rem;
+}
+.headercard-animeinfo-description {
+  text-align: justify;
+  color: white;
+  font-family: "Inter", sans-serif;
+  line-height: 1.5;
+  width: 50%;
+}
+
+.btn-watchnow {
+  background-color: rgba(0, 0, 0, 0.4);
+  border: 1px solid white;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 9px 15px;
+  font-family: inherit;
+  border-radius: 4px;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+.btn-watchnow:hover {
+  opacity: 0.8;
+  transition: 500ms ease;
+}
+
+@media screen and (max-width: 768px) {
+  .headercard-wrapper {
+    height: 320px;
+  }
+  .headercard-animeinfo-item {
+    font-size: 1.4rem;
+  }
+  .headercard-animeinfo-title {
+    font-size: 2.5rem;
+  }
+  .headercard-animeinfo-description {
+    font-size: 1.5rem;
+  }
+  .headercard-animeinfo-description {
+    width: 100%;
+    font-size: 1.4rem;
+  }
+  .btn-watchnow {
+    font-size: 1.2rem;
+  }
+}

@@ -14,8 +14,6 @@
     "@types/node": "^18.7.19",
     "@types/react": "^18.0.21",
     "@types/react-dom": "^18.0.6",
-    "@vidstack/player": "^1.6.4",
-    "@vidstack/player-react": "^1.6.4",
     "@vime/core": "^5.3.1",
     "@vime/react": "^5.3.1",
     "axios": "^0.27.2",
@@ -39,7 +37,6 @@
     "sass": "^1.54.9",
     "styled-components": "^5.3.5",
     "uuid": "^8.3.2",
-    "vimond-replay": "^3.3.2",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

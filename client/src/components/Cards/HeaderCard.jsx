@@ -3,7 +3,7 @@ import {
   CalendarOutlined,
   ClockCircleOutlined,
 } from "@ant-design/icons";
-import "./HeaderCarouselCard.css";
+import "./HeaderCard.css";
 import { useContext } from "react";
 import { faListOl } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -25,42 +25,44 @@ const HeaderCarouselCard = ({
     SharedState.setVideoIsLoading(true);
     navigate("/watch/" + id);
   }
-  let regexeddescription = description.replaceAll(/<\/?[\w\s]*>|<.+[\W]>/g, "");
-  regexeddescription = regexeddescription.substring(
-    0,
-    regexeddescription.indexOf("("),
-    4
-  );
+
   return (
     <>
       <div
-        className="header-card"
+        className="headercard-wrapper"
         style={{
           backgroundImage: ` linear-gradient( rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.3) ),url(${cover})`,
         }}
       >
-        <div className="anime-info-div">
-          <h1 className="anime-title">{title !== "" && title}</h1>
-          <div className="anime-info">
-            <p className="anime-info-item">
+        <div className="headercard-animeinfo-wrapper">
+          <h1 className="headercard-animeinfo-title">{title}</h1>
+
+          <div className="headercard-animeinfo">
+            <p className="headercard-animeinfo-item">
               {" "}
               <PlayCircleOutlined /> TV
             </p>
-            <p className="anime-info-item">
+            <p className="headercard-animeinfo-item">
               <FontAwesomeIcon icon={faListOl} /> {epcount} Episodes
             </p>
-            <p className="anime-info-item">
+            <p className="headercard-animeinfo-item">
               <ClockCircleOutlined /> {duration} Minutes
             </p>
-            <p className="anime-info-item">
+            <p className="headercard-animeinfo-item">
               <CalendarOutlined /> {year}
             </p>
           </div>
-          <span className="anime-description">
+          <span className="headercard-animeinfo-description">
             {" "}
             <TextTruncate
-              className="anime-description"
-              text={regexeddescription}
+              text={description
+                .substring(
+                  0,
+                  description.indexOf("(") === -1
+                    ? description.length
+                    : description.indexOf("(")
+                )
+                .replaceAll(/<\/?[\w\s]*>|<.+[\W]>/g, "")}
               line={4}
             ></TextTruncate>
           </span>

@@ -6,37 +6,36 @@ import { RightOutlined } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
 const CarouselRenderer = ({
   finalQuery,
-  rowTitle,
+  sectionTitle,
   isRecent,
-  isUpcoming,
-  stretchedA,
-  initialActiveIndex,
+  isAnimeCard,
   setIsPlaying,
   setTrailerId,
   url,
 }) => {
   const navigate = useNavigate();
   const breakPoints = [
-    { width: 1, itemsToShow: isUpcoming ? 2 : 3 },
-    { width: 580, itemsToShow: isUpcoming ? 2 : 4 },
-    { width: 800, itemsToShow: isUpcoming ? 3 : 4 },
-    { width: 900, itemsToShow: isUpcoming ? 3 : 5 },
-    { width: 1100, itemsToShow: isUpcoming ? 3 : 5 },
-    { width: 1270, itemsToShow: isUpcoming ? 4 : 5 },
-    { width: 1410, itemsToShow: isUpcoming ? 4 : 6 },
-    { width: 1760, itemsToShow: isUpcoming ? 4 : 7 },
-    { width: 1920, itemsToShow: isUpcoming ? 4 : 8 },
+    { width: 1, itemsToShow: !isAnimeCard ? 2 : 3 },
+    { width: 580, itemsToShow: !isAnimeCard ? 2 : 4 },
+    { width: 800, itemsToShow: !isAnimeCard ? 3 : 4 },
+    { width: 900, itemsToShow: !isAnimeCard ? 3 : 5 },
+    { width: 1100, itemsToShow: !isAnimeCard ? 3 : 5 },
+    { width: 1270, itemsToShow: !isAnimeCard ? 4 : 6 },
+    { width: 1760, itemsToShow: !isAnimeCard ? 4 : 7 },
+    { width: 1920, itemsToShow: !isAnimeCard ? 4 : 8 },
   ];
+
+  console.log(sectionTitle);
   return (
     <div className="carouselinstance">
       <div style={{ display: "flex", justifyContent: "space-between" }}>
-        {rowTitle && <h1 className="row-title">{rowTitle}</h1>}
-        {!isUpcoming && rowTitle !== "Recommendations" && (
+        {sectionTitle && <h1 className="row-title">{sectionTitle}</h1>}
+        {isAnimeCard && sectionTitle !== "Recommendations" && (
           <a
             onClick={(event) => {
               event.preventDefault();
-              navigate("/more/" + rowTitle.toLowerCase(), {
-                state: { section: rowTitle, url },
+              navigate("/more/" + sectionTitle.toLowerCase(), {
+                state: { sectionTitle, url },
               });
             }}
             href="/more"
@@ -48,7 +47,6 @@ const CarouselRenderer = ({
         )}
       </div>
       <Carousel
-        initialActiveIndex={initialActiveIndex}
         enableTilt={true}
         enableAutoPlay={true}
         autoPlaySpeed={6000}
@@ -57,15 +55,17 @@ const CarouselRenderer = ({
         breakPoints={breakPoints}
       >
         {finalQuery.map((query) =>
-          stretchedA ? (
-            <AnimeCard
-              title={query.title}
-              image={query.image}
-              key={uuidv4()}
-              id={query.id}
-              rowTitle={rowTitle}
-              episodeNumber={query.episodeNumber ? query.episodeNumber : 0}
-            ></AnimeCard>
+          isAnimeCard ? (
+            <div>
+              <AnimeCard
+                title={query.title}
+                image={query.image}
+                key={uuidv4()}
+                id={query.id}
+                sectionTitle={sectionTitle}
+                episodeNumber={query.episodeNumber ? query.episodeNumber : 0}
+              ></AnimeCard>
+            </div>
           ) : (
             <UpcomingCard
               setTrailerId={setTrailerId}
@@ -73,7 +73,7 @@ const CarouselRenderer = ({
               title={query.title}
               image={query.images.jpg.large_image_url}
               key={uuidv4()}
-              rowTitle={rowTitle}
+              sectionTitle={sectionTitle}
               episodeNum={isRecent ? query.episode : 0}
               trailerVideoId={
                 query.trailer !== null ? query.trailer.youtube_id : 0

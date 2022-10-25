@@ -54,12 +54,13 @@
 }
 .vertical-grid {
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  max-height: 1050px;
+  max-height: 1100px;
   overflow-x: hidden;
   display: grid;
   overflow-y: scroll;
   row-gap: 15px;
 }
+
 .recommend-div button.rec {
   display: none;
 }
@@ -93,6 +94,7 @@
 }
 .anime-title {
   font-size: 1.8rem;
+  color: white;
 }
 .curranime-status,
 .curranime-adaptation,
@@ -126,17 +128,14 @@
   align-items: center;
   font-size: 1.3rem;
 }
+
 @media screen and (max-width: 1700px) {
   .vertical-grid .animecard-card {
     height: 280px;
     width: 200px;
   }
 }
-@media screen and (max-width: 1706px) {
-  .vertical-grid-container {
-    display: none;
-  }
-}
+
 .curranime-platform,
 .curranime-score,
 .curranime-epaired,
@@ -149,7 +148,18 @@
   background-color: #0f0617;
   line-height: 1.5;
 }
+
+@media screen and (max-width: 1706px) {
+  .vertical-grid-container {
+    display: none;
+  }
+}
 @media screen and (min-width: 768px) {
+  .curranimeinfo {
+    display: flex !important;
+    justify-content: "center" !important;
+    align-items: "center" !important;
+  }
   .curranime {
     padding-left: 22px;
   }
