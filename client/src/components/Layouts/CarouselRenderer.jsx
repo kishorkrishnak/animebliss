@@ -1,9 +1,9 @@
+import { RightOutlined } from "@ant-design/icons";
 import Carousel from "react-elastic-carousel";
+import { useNavigate } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 import AnimeCard from "../Cards/AnimeCard";
 import UpcomingCard from "../Cards/UpcomingCard";
-import { RightOutlined } from "@ant-design/icons";
-import { useNavigate } from "react-router-dom";
 const CarouselRenderer = ({
   finalQuery,
   sectionTitle,
@@ -25,7 +25,6 @@ const CarouselRenderer = ({
     { width: 1920, itemsToShow: !isAnimeCard ? 4 : 8 },
   ];
 
-  console.log(sectionTitle);
   return (
     <div className="carouselinstance">
       <div style={{ display: "flex", justifyContent: "space-between" }}>
@@ -54,13 +53,12 @@ const CarouselRenderer = ({
         showArrows={false}
         breakPoints={breakPoints}
       >
-        {finalQuery.map((query) =>
+        {finalQuery.map((query, index) =>
           isAnimeCard ? (
-            <div>
+            <div key={uuidv4()}>
               <AnimeCard
                 title={query.title}
                 image={query.image}
-                key={uuidv4()}
                 id={query.id}
                 sectionTitle={sectionTitle}
                 episodeNumber={query.episodeNumber ? query.episodeNumber : 0}

@@ -149,7 +149,7 @@
   line-height: 1.5;
 }
 
-@media screen and (max-width: 1706px) {
+@media screen and (max-width: 1500px) {
   .vertical-grid-container {
     display: none;
   }
@@ -176,7 +176,7 @@
     margin-left: 10px;
   }
 }
-@media screen and (min-width: 1690px) {
+@media screen and (min-width: 1500px) {
   .animeplayer-container {
     max-width: 68vw;
   }

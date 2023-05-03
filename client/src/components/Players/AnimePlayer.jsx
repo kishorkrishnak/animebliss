@@ -1,18 +1,19 @@
-import {
-  Player,
-  Hls,
-  DefaultUi,
-  Control,
-  Controls,
-  PlaybackControl,
-  Tooltip,
-} from "@vime/react";
-import toast, { Toaster } from "react-hot-toast";
-import { useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
 import "@vime/core/themes/default.css";
 import "@vime/core/themes/light.css";
+import {
+  Control,
+  Controls,
+  DefaultUi,
+  Hls,
+  PlaybackControl,
+  Player,
+  Tooltip,
+} from "@vime/react";
+import { useEffect, useState } from "react";
+import toast, { Toaster } from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 const AnimePlayer = ({ src, animeInfoUrl, setVideoIsLoading }) => {
+  console.log(src);
   const [url, setUrl] = useState(null);
 
   const navigate = useNavigate();

@@ -1,17 +1,18 @@
-import "./Home.css";
 import React from "react";
-import InfiniteSection from "../Sections/InfiniteSection";
 import ScrollToTop from "react-scroll-to-top";
-import Header from "../Sections/Header";
-import UpcomingSection from "../Sections/UpcomingSection";
 import AnimeSection from "../Sections/AnimeSection";
-import { Toaster } from "react-hot-toast";
-
+import Header from "../Sections/Header";
+import InfiniteSection from "../Sections/InfiniteSection";
+import UpcomingSection from "../Sections/UpcomingSection";
+import "./Home.css";
 const Home = () => {
+  const baseURl = process.env.REACT_APP_ANIME_BASE_URL;
+
   return (
     <>
       <Header></Header>
       <UpcomingSection></UpcomingSection>
+
       <AnimeSection
         url={"https://api.consumet.org/meta/anilist/recent-episodes"}
         id={"recent"}
@@ -31,7 +32,7 @@ const Home = () => {
       ></AnimeSection>
       <InfiniteSection
         url={"https://api.consumet.org/meta/anilist/popular"}
-        itemlimit={21}
+        itemlimit={18}
         sectiontitle={"Most Popular"}
         id="popular"
         querytype={"?"}

@@ -95,7 +95,7 @@ a {
     display: none;
   }
   .searchbar {
-    background-image: url("../../assets/images/searchicon.png");
+    background-image: url("../../assets/images/search.png");
     background-position: 8px 8.5px;
     background-repeat: no-repeat;
     background-size: 20px;

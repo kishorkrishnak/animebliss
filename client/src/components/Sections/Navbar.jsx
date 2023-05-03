@@ -1,14 +1,12 @@
-import "./Navbar.css";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import logo from "../../assets/images/image.png";
-import { useNavigate, useLocation } from "react-router-dom";
-import { useState, useEffect } from "react";
-import React, { useRef } from "react";
-import toast, { Toaster } from "react-hot-toast";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { GoogleLogout } from "react-google-login";
+import toast, { Toaster } from "react-hot-toast";
+import { useLocation, useNavigate } from "react-router-dom";
 import { SharedStateContext } from "../../App";
-import { useContext } from "react";
+import logo from "../../assets/images/logo.png";
+import "./Navbar.css";
 const Navbar = () => {
   const SharedState = useContext(SharedStateContext);
   const [active, setActive] = useState("nav__menu");

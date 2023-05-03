@@ -1,10 +1,9 @@
-import { useContext } from "react";
+import { StarFilled } from "@ant-design/icons";
+import React, { useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import TextTruncate from "react-text-truncate";
 import { SharedStateContext } from "../../App.jsx";
-import { StarFilled } from "@ant-design/icons";
-import { useNavigate } from "react-router-dom";
 import "./AnimeCard.css";
-import React from "react";
 const CarouselCard = ({ title, image, episodeNumber, id, rating, year }) => {
   const navigate = useNavigate();
   const SharedState = useContext(SharedStateContext);
@@ -34,13 +33,15 @@ const CarouselCard = ({ title, image, episodeNumber, id, rating, year }) => {
             </div>
           )}
         </div>
-        {episodeNumber > 0 && (
-          <h5 className="animecard-epnumber">Episode {episodeNumber}</h5>
-        )}
+
         {title && (
           <a href={`/watch/${id}`} className="animecard-title">
             <TextTruncate
-              text={title.english || title.romaji}
+              text={
+                typeof title === "string"
+                  ? title
+                  : title.english || title.romaji
+              }
               line={2}
             ></TextTruncate>
           </a>

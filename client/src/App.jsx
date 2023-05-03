@@ -1,19 +1,19 @@
 //component imports
-import LoginPage from "./components/Pages/LoginPage";
-import GenresPage from "./components/Pages/GenresPage";
-import Watchlist from "./components/Pages/Watchlist";
-import Home from "./components/Pages/Home";
-import MoreSection from "./components/Sections/MoreSection";
-import ClockLoader from "react-spinners/MoonLoader";
-import AnimePlayerPage from "./components/Pages/AnimePlayerPage";
-import MoviesPage from "./components/Pages/MoviesPage";
-import RecentPage from "./components/Pages/RecentPage";
-import SearchResults from "./components/Pages/SearchResults";
-import FilteredPage from "./components/Pages/FilteredPage";
-import SignupPage from "./components/Pages/SignupPage";
-import "./App.css";
 import React, { useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import "./App.css";
+import ClockLoader from "./components/Others/ClockLoader";
+import AnimePlayerPage from "./components/Pages/AnimePlayerPage";
+import FilteredPage from "./components/Pages/Filtered";
+import GenresPage from "./components/Pages/Genres";
+import Home from "./components/Pages/Home";
+import LoginPage from "./components/Pages/Login";
+import MoviesPage from "./components/Pages/Movies";
+import RecentPage from "./components/Pages/Recent";
+import SearchResults from "./components/Pages/SearchResults";
+import SignupPage from "./components/Pages/Signup";
+import Watchlist from "./components/Pages/Watchlist";
+import MoreSection from "./components/Sections/MoreSection";
 
 // state for showing and hiding spinner
 export const SharedStateContext = React.createContext();
@@ -32,22 +32,7 @@ const App = () => {
     >
       <div className="App">
         {videoIsLoading && (
-          <ClockLoader
-            className="spinner"
-            color={"white"}
-            loading={videoIsLoading}
-            cssOverride={{
-              position: "fixed",
-              zIndex: 800000,
-              left: 0,
-              right: 0,
-              top: 0,
-              bottom: 0,
-              margin: "auto",
-              borderColor: "red",
-            }}
-            size={35}
-          />
+          <ClockLoader color={"white"} loading={videoIsLoading} size={35} />
         )}
         <BrowserRouter>
           <>

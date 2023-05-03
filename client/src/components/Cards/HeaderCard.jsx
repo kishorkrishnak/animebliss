@@ -1,15 +1,15 @@
 import {
-  PlayCircleOutlined,
   CalendarOutlined,
   ClockCircleOutlined,
+  PlayCircleOutlined,
 } from "@ant-design/icons";
-import "./HeaderCard.css";
-import { useContext } from "react";
 import { faListOl } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import TextTruncate from "react-text-truncate";
 import { SharedStateContext } from "../../App";
-import { useNavigate } from "react-router-dom";
+import "./HeaderCard.css";
 const HeaderCarouselCard = ({
   duration,
   cover,

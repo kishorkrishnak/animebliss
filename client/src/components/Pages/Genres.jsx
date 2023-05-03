@@ -1,10 +1,9 @@
-import React from "react";
 import Navbar from "../Sections/Navbar";
 import { useNavigate } from "react-router-dom";
-import "./GenresPage.css";
+import "./Genres.css";
 import { v4 as uuidv4 } from "uuid";
 import { useState } from "react";
-const GenresPage = () => {
+const Genres = () => {
   const [genresinfo, setGenresInfo] = useState([
     {
       title: "Action",
@@ -174,11 +173,11 @@ const GenresPage = () => {
       <Navbar></Navbar>
       <h1 className="genres-title">Genres</h1>
       <div className="genresdiv">
-        {genresinfo.map(genreinfo => {
+        {genresinfo.map((genreinfo) => {
           return (
             <div
               key={uuidv4()}
-              onClick={e => {
+              onClick={(e) => {
                 navigate(
                   "/filtered/genre/" + e.target.innerText.toLowerCase(),
                   {
@@ -198,7 +197,7 @@ const GenresPage = () => {
       </div>
       <h1 className="formats-title">Formats</h1>
       <div className="formatsdiv">
-        {formatsInfo.map(formatInfo => {
+        {formatsInfo.map((formatInfo) => {
           return (
             <div
               onClick={(e) => {
@@ -279,4 +278,4 @@ const GenresPage = () => {
     </>
   );
 };
-export default GenresPage;
+export default Genres;

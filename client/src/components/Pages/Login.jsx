@@ -1,12 +1,12 @@
 import { GithubFilled, GoogleCircleFilled } from "@ant-design/icons";
-import "./LoginPage.css";
+import "./Login.css";
 import { useEffect } from "react";
 import Navbar from "../Sections/Navbar";
 import { GoogleLogin } from "react-google-login";
 import { useNavigate } from "react-router-dom";
 import { gapi } from "gapi-script";
 import toast, { Toaster } from "react-hot-toast";
-const LoginPage = ({ setIsLoggedIn }) => {
+const Login = ({ setIsLoggedIn }) => {
   const navigate = useNavigate();
   const clientId =
     "952500448273-nr07eb37fsoadpoktd855vrpmphsrg9e.apps.googleusercontent.com";
@@ -100,4 +100,4 @@ const LoginPage = ({ setIsLoggedIn }) => {
     </>
   );
 };
-export default LoginPage;
+export default Login;
