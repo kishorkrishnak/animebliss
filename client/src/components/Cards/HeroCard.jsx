@@ -8,8 +8,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import TextTruncate from "react-text-truncate";
-import { SharedStateContext } from "../../App";
-import "./HeaderCard.css";
+import { GlobalContext } from "../../App";
+import "./HeroCard.css";
 const HeaderCarouselCard = ({
   duration,
   cover,
@@ -20,7 +20,7 @@ const HeaderCarouselCard = ({
   epcount,
 }) => {
   const navigate = useNavigate();
-  const SharedState = useContext(SharedStateContext);
+  const SharedState = useContext(GlobalContext);
   async function fetchVideo(id) {
     SharedState.setVideoIsLoading(true);
     navigate("/watch/" + id);
@@ -29,30 +29,30 @@ const HeaderCarouselCard = ({
   return (
     <>
       <div
-        className="headercard-wrapper"
+        className="herocard-wrapper"
         style={{
           backgroundImage: ` linear-gradient( rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.3) ),url(${cover})`,
         }}
       >
-        <div className="headercard-animeinfo-wrapper">
-          <h1 className="headercard-animeinfo-title">{title}</h1>
+        <div className="herocard-animeinfo-wrapper">
+          <h1 className="herocard-animeinfo-title">{title}</h1>
 
-          <div className="headercard-animeinfo">
-            <p className="headercard-animeinfo-item">
+          <div className="herocard-animeinfo">
+            <p className="herocard-animeinfo-item">
               {" "}
               <PlayCircleOutlined /> TV
             </p>
-            <p className="headercard-animeinfo-item">
+            <p className="herocard-animeinfo-item">
               <FontAwesomeIcon icon={faListOl} /> {epcount} Episodes
             </p>
-            <p className="headercard-animeinfo-item">
+            <p className="herocard-animeinfo-item">
               <ClockCircleOutlined /> {duration} Minutes
             </p>
-            <p className="headercard-animeinfo-item">
+            <p className="herocard-animeinfo-item">
               <CalendarOutlined /> {year}
             </p>
           </div>
-          <span className="headercard-animeinfo-description">
+          <span className="herocard-animeinfo-description">
             {" "}
             <TextTruncate
               text={description
@@ -72,7 +72,7 @@ const HeaderCarouselCard = ({
             e.preventDefault();
             fetchVideo(id);
           }}
-          className="btn btn-watchnow"
+          className="btn herocard-btn-watch"
         >
           <PlayCircleOutlined />
           &nbsp;&nbsp;WATCH

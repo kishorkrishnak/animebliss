@@ -1,29 +1,27 @@
-import { useEffect, useState } from "react";
 import axios from "axios";
-import Navbar from "./Navbar";
-
+import { useEffect, useRef, useState } from "react";
 import Carousel from "react-elastic-carousel";
-import HeaderCarouselCard from "../Cards/HeaderCard";
 import { v4 as uuidv4 } from "uuid";
-import { useRef } from "react";
-const Header = () => {
+import HeroCard from "../Cards/HeroCard";
+import Navbar from "./Navbar";
+const Hero = ({ setHeroSectionLoaded }) => {
   const carouselRef = useRef(null);
   let resetTimeout;
-  const [finalResults, setFinalResults] = useState([]);
+  const [fetchedAnime, setFetchedAnime] = useState([]);
+  const baseURL = process.env.REACT_APP_ANILIST_BASE_URL;
+
   useEffect(() => {
-    axios
-      .get("https://api.consumet.org/meta/anilist/trending")
-      .then(({ data: { results } }) => {
-        setFinalResults(results);
-      }, []);
+    axios.get(`${baseURL}/trending`).then(({ data: { results } }) => {
+      setFetchedAnime(results);
+      setHeroSectionLoaded(true);
+    }, []);
   }, []);
 
   return (
     <>
-      {finalResults.length > 0 && (
+      {fetchedAnime.length > 0 && (
         <header className="header">
           <Navbar></Navbar>
-
           <section style={{ marginTop: 30 }} className="section-header">
             return (
             <Carousel
@@ -39,7 +37,7 @@ const Header = () => {
               }}
               pagination={true}
             >
-              {finalResults.map((item) =>
+              {fetchedAnime.map((item) =>
                 item.totalEpisodes &&
                 item.id &&
                 item.totalEpisodes &&
@@ -48,16 +46,16 @@ const Header = () => {
                 item.title &&
                 item.description &&
                 item.cover ? (
-                  <HeaderCarouselCard
+                  <HeroCard
                     key={uuidv4()}
                     id={item.id}
                     epcount={item.totalEpisodes}
                     year={item.releaseDate}
                     duration={item.duration}
-                    title={item.title.english || "poop"}
+                    title={item.title.english || "Error"}
                     description={item.description}
                     cover={item.cover}
-                  ></HeaderCarouselCard>
+                  ></HeroCard>
                 ) : null
               )}
             </Carousel>
@@ -68,4 +66,4 @@ const Header = () => {
     </>
   );
 };
-export default Header;
+export default Hero;

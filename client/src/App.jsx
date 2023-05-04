@@ -16,13 +16,13 @@ import Watchlist from "./components/Pages/Watchlist";
 import MoreSection from "./components/Sections/MoreSection";
 
 // state for showing and hiding spinner
-export const SharedStateContext = React.createContext();
+export const GlobalContext = React.createContext();
 const App = () => {
   const [videoIsLoading, setVideoIsLoading] = useState(false);
   const [loggedIn, setIsLoggedIn] = useState(false);
 
   return (
-    <SharedStateContext.Provider
+    <GlobalContext.Provider
       value={{
         videoIsLoading,
         setVideoIsLoading,
@@ -30,53 +30,37 @@ const App = () => {
         loggedIn,
       }}
     >
-      <div className="App">
-        {videoIsLoading && (
-          <ClockLoader color={"white"} loading={videoIsLoading} size={35} />
-        )}
-        <BrowserRouter>
-          <>
-            <Routes>
-              <Route exact path="/search" element={<SearchResults />} />
-              <Route
-                exact
-                path="/recentep"
-                element={<RecentPage></RecentPage>}
-              />
-              <Route exact path="/watchlist" element={<Watchlist />} />
-              <Route exact path="/filter" element={<GenresPage />} />
-              <Route
-                exact
-                path="/more/:section"
-                element={<MoreSection></MoreSection>}
-              />
-              <Route exact path="/watch/:id" element={<AnimePlayerPage />} />
-              <Route exact path="/" element={<Home />} />
-              <Route
-                exact
-                path="/movies"
-                element={
-                  <MoviesPage
-                    setVideoIsLoading={setVideoIsLoading}
-                  ></MoviesPage>
-                }
-              />
-              <Route
-                exact
-                path="/filtered/:type/:value"
-                element={<FilteredPage></FilteredPage>}
-              />
-              <Route
-                exact
-                path="/login"
-                element={<LoginPage setIsLoggedIn={setIsLoggedIn} />}
-              />
-              <Route exact path="/signup" element={<SignupPage />} />
-            </Routes>
-          </>
-        </BrowserRouter>
-      </div>
-    </SharedStateContext.Provider>
+      {videoIsLoading && <ClockLoader color={"white"} size={35} />}
+      <BrowserRouter>
+        <>
+          <Routes>
+            <Route exact path="/search" element={<SearchResults />} />
+            <Route exact path="/recentep" element={<RecentPage></RecentPage>} />
+            <Route exact path="/watchlist" element={<Watchlist />} />
+            <Route exact path="/filter" element={<GenresPage />} />
+            <Route exact path="/more/:section" element={<MoreSection />} />
+            <Route exact path="/watch/:id" element={<AnimePlayerPage />} />
+            <Route exact path="/" element={<Home />} />
+            <Route
+              exact
+              path="/movies"
+              element={<MoviesPage setVideoIsLoading={setVideoIsLoading} />}
+            />
+            <Route
+              exact
+              path="/filtered/:type/:value"
+              element={<FilteredPage />}
+            />
+            <Route
+              exact
+              path="/login"
+              element={<LoginPage setIsLoggedIn={setIsLoggedIn} />}
+            />
+            <Route exact path="/signup" element={<SignupPage />} />
+          </Routes>
+        </>
+      </BrowserRouter>
+    </GlobalContext.Provider>
   );
 };
 export default App;

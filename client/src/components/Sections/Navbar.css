@@ -57,6 +57,19 @@ a {
   justify-content: flex-start;
   gap: 2.5rem;
 }
+.nav-brand {
+  cursor: pointer;
+  gap: 10px;
+  display: flex;
+  align-items: center;
+  color: white;
+  justify-content: center;
+}
+.nav-brand-logo {
+  height: 34px;
+  color: white;
+  padding: 0px;
+}
 .nav__toggler {
   display: none;
 }
@@ -93,6 +106,8 @@ a {
   }
   .magnify-icon {
     display: none;
+    color: white;
+    font-size: 25px;
   }
   .searchbar {
     background-image: url("../../assets/images/search.png");
@@ -240,7 +255,7 @@ a {
   }
 }
 @media screen and (max-width: 1000px) {
-  .brand-title {
+  .nav-brand-title {
     display: none;
   }
 }

@@ -1,11 +1,10 @@
 import Loader from "react-spinners/MoonLoader";
 
-const ClockLoader = (color,videoIsLoading,size) => {
+const ClockLoader = ({ color, size }) => {
   return (
     <Loader
       className="spinner"
       color={color}
-      loading={videoIsLoading}
       cssOverride={{
         position: "fixed",
         zIndex: 800000,
@@ -20,4 +19,4 @@ const ClockLoader = (color,videoIsLoading,size) => {
     />
   );
 };
-export default ClockLoader
+export default ClockLoader;

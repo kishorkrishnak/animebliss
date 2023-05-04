@@ -4,14 +4,15 @@ import React, { useContext, useEffect, useRef, useState } from "react";
 import { GoogleLogout } from "react-google-login";
 import toast, { Toaster } from "react-hot-toast";
 import { useLocation, useNavigate } from "react-router-dom";
-import { SharedStateContext } from "../../App";
+import { GlobalContext } from "../../App";
 import logo from "../../assets/images/logo.png";
 import "./Navbar.css";
 const Navbar = () => {
-  const SharedState = useContext(SharedStateContext);
+  const SharedState = useContext(GlobalContext);
   const [active, setActive] = useState("nav__menu");
   const [icon, setIcon] = useState("nav__toggler");
-  function useOutsideAlerter(ref) {
+  const clientId = process.env.REACT_APP_CLIENT_ID
+  const useOutsideAlerter = (ref) => {
     useEffect(() => {
       function handleClickOutside(event) {
         if (ref.current && !ref.current.contains(event.target)) {
@@ -26,7 +27,8 @@ const Navbar = () => {
         document.removeEventListener("mousedown", handleClickOutside);
       };
     }, [ref]);
-  }
+  };
+
   const wrapperRef = useRef(null);
   useOutsideAlerter(wrapperRef);
   const location = useLocation();
@@ -56,6 +58,7 @@ const Navbar = () => {
       setIcon("nav__toggler toggle");
     } else setIcon("nav__toggler");
   };
+
   return (
     <nav className="nav" ref={wrapperRef}>
       <Toaster
@@ -66,32 +69,19 @@ const Navbar = () => {
       ></Toaster>
       <div className="nav-side-div">
         <div
+          className="nav-brand"
           onClick={(e) => {
             e.preventDefault();
             navigate("/");
             window.location.reload();
           }}
-          style={{
-            cursor: "pointer",
-            gap: 10,
-            display: "flex",
-            alignItems: "center",
-            color: "white",
-            justifyContent: "center",
-          }}
         >
-          <img
-            height="34"
-            src={logo}
-            style={{ color: "white", padding: 0 }}
-            alt=""
-          />
-          <h3 className="brand-title">Animebliss</h3>
+          <img className="nav-brand-logo" src={logo} alt="logo" />
+          <h3 className="nav-brand-title">Animebliss</h3>
         </div>
         <FontAwesomeIcon
           className="magnify-icon"
           icon={faMagnifyingGlass}
-          style={{ color: "white", fontSize: 25 }}
         ></FontAwesomeIcon>
         <input
           onInput={(e) => {
@@ -171,7 +161,7 @@ const Navbar = () => {
                       <span className="nav__link">Logout</span>
                     </li>
                   )}
-                  clientId="658977310896-knrl3gka66fldh83dao2rhgbblmd4un9.apps.googleusercontent.com"
+                  clientId={clientId}
                   buttonText="Logout"
                   onLogoutSuccess={() => {
                     toast.success("Successfully logged out");

@@ -13,7 +13,6 @@ import { useEffect, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 const AnimePlayer = ({ src, animeInfoUrl, setVideoIsLoading }) => {
-  console.log(src);
   const [url, setUrl] = useState(null);
 
   const navigate = useNavigate();
@@ -22,6 +21,7 @@ const AnimePlayer = ({ src, animeInfoUrl, setVideoIsLoading }) => {
     if (localStorage.getItem(animeInfoUrl) !== null) {
       setSavedTime(Number(localStorage.getItem(animeInfoUrl)));
     }
+    if (Object.keys(localStorage).length > 10) localStorage.clear();
     localStorage.setItem("recentlywatched", animeInfoUrl);
   }, []);
   const [time, setTime] = useState(0);

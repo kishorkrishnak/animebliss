@@ -1,29 +1,29 @@
-import ScrollToTop from "react-scroll-to-top";
-import AnimePlayer from "../Players/AnimePlayer";
-import React from "react";
 import {
-  StarFilled,
   CalendarOutlined,
   OrderedListOutlined,
   PlayCircleOutlined,
+  StarFilled,
 } from "@ant-design/icons";
-import VerticalCarousel from "../Layouts/VerticalCarousel";
-import Navbar from "../Sections/Navbar";
-import AnimeSection from "../Sections/AnimeSection";
-import CarouselRenderer from "../Layouts/CarouselRenderer";
-import { RWebShare } from "react-web-share";
-import { useEffect, useState, useContext } from "react";
-import TextTruncate from "react-text-truncate";
 import { faFileCirclePlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { v4 as uuidv4 } from "uuid";
-import { useParams } from "react-router-dom";
-import { SharedStateContext } from "../../App";
 import axios from "axios";
+import React, { useContext, useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import ScrollToTop from "react-scroll-to-top";
+import TextTruncate from "react-text-truncate";
+import { RWebShare } from "react-web-share";
+import { v4 as uuidv4 } from "uuid";
+import { GlobalContext } from "../../App";
+import CarouselRenderer from "../Layouts/CarouselRenderer";
+import VerticalCarousel from "../Layouts/VerticalCarousel";
+import AnimePlayer from "../Players/AnimePlayer";
+import AnimeSection from "../Sections/AnimeSection";
+import Navbar from "../Sections/Navbar";
 import "./AnimePlayerPage.css";
 const AnimePlayerPage = () => {
-  const SharedState = useContext(SharedStateContext);
+  const SharedState = useContext(GlobalContext);
   useEffect(() => {
+    console.log(SharedState.videoIsLoading);
     SharedState.setVideoIsLoading(true);
   }, []);
   const { id } = useParams();

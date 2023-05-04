@@ -6,6 +6,8 @@
   margin-top: 3px;
   justify-content: center;
   text-align: center;
+  cursor: pointer;
+  
 }
 
 .upcomingcard-title {
@@ -13,6 +15,8 @@
   color: white;
   margin-top: 5px;
 }
+
+
 @media screen and (max-width: 359px) {
   .upcomingcard-card {
     height: 90px;

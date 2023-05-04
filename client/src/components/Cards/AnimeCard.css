@@ -6,13 +6,16 @@
   height: fit-content;
   justify-content: center;
   text-align: center;
+  cursor: pointer;
 }
+
 .animecard-card {
   border-radius: 4px;
   background-position: center;
   background-size: cover;
   transition: all 0.5s;
 }
+
 .animecard-starcontainer {
   color: yellow;
   background-color: rgba(0, 0, 0, 0.6);
@@ -25,12 +28,14 @@
   justify-content: center;
   align-items: center;
 }
+
 .animecard-epnumber {
   color: white;
   font-weight: lighter;
   margin-top: 5px;
   font-size: 1.35rem;
 }
+
 .animecard-year {
   color: white;
   font-size: 1.15rem;
@@ -42,59 +47,69 @@
   color: white;
   margin-top: 3px;
 }
+
 @media screen and (min-width: 800px) {
   .animecard-year {
     font-size: 1.35rem;
   }
 }
+
 @media screen and (max-width: 359px) {
   .animecard-card {
     height: 130px;
     width: 95px;
   }
 }
+
 @media screen and (min-width: 360px) {
   .animecard-card {
     height: 140px;
     width: 110px;
   }
 }
+
 @media screen and (min-width: 380px) {
   .animecard-card {
     height: 150px;
     width: 115px;
   }
 }
+
 @media screen and (min-width: 420px) {
   .animecard-card {
     height: 155px;
     width: 125px;
   }
 }
+
 @media screen and (min-width: 440px) {
   .animecard-card {
     height: 155px;
     width: 125px;
   }
 }
+
 @media screen and (min-width: 475px) {
   .animecard-card {
     height: 185px;
     width: 145px;
   }
 }
+
 @media screen and (min-width: 700px) {
   .animecard-card {
     height: 250px;
     width: 160px;
   }
 }
+
 @media screen and (min-width: 800px) {
   .animecard-card {
     height: 250px;
     width: 180px;
   }
 }
+
 @media screen and (max-width: 768px) {
   .epnumber {
     font-size: 1.15rem;
@@ -103,12 +118,14 @@
     font-size: 1.2rem;
   }
 }
+
 @media screen and (min-width: 830px) {
   .animecard-card {
     height: 250px;
     width: 180px;
   }
 }
+
 @media screen and (min-width: 1010px) {
   .animecard-card {
     height: 250px;
@@ -121,41 +138,48 @@
     width: 180px;
   }
 }
+
 @media screen and (min-width: 1300px) {
   .animecard-card {
     height: 340px;
     width: 230px;
   }
 }
+
 @media screen and (min-width: 1400px) {
   .animecard-card {
     height: 340px;
     width: 230px;
   }
 }
+
 @media screen and (min-width: 1570px) {
   .animecard-card {
     height: 340px;
     width: 230px;
   }
 }
+
 @media screen and (min-width: 1600px) {
   .animecard-card {
     height: 340px;
     width: 230px;
   }
 }
+
 @media screen and (min-width: 1710px) {
   .animecard-card {
     height: 340px;
     width: 230px;
   }
 }
+
 @media screen and (min-width: 1800px) {
   .animecard-card {
     height: 340px;
     width: 230px;
   }
+
   .vertical-grid .animecard-card {
     height: 380px;
     width: 260px;

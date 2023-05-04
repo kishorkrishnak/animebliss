@@ -2,11 +2,11 @@ import { StarFilled } from "@ant-design/icons";
 import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import TextTruncate from "react-text-truncate";
-import { SharedStateContext } from "../../App.jsx";
+import { GlobalContext } from "../../App.jsx";
 import "./AnimeCard.css";
-const CarouselCard = ({ title, image, episodeNumber, id, rating, year }) => {
+const CarouselCard = ({ title, image, id, rating, year }) => {
   const navigate = useNavigate();
-  const SharedState = useContext(SharedStateContext);
+  const SharedState = useContext(GlobalContext);
   async function fetchVideo(id) {
     SharedState.setVideoIsLoading(true);
     navigate("/watch/" + id);
@@ -38,9 +38,8 @@ const CarouselCard = ({ title, image, episodeNumber, id, rating, year }) => {
           <a href={`/watch/${id}`} className="animecard-title">
             <TextTruncate
               text={
-                typeof title === "string"
-                  ? title
-                  : title.english || title.romaji
+               
+                  title.english || title.romaji
               }
               line={2}
             ></TextTruncate>

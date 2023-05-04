@@ -1,42 +1,46 @@
-import React from "react";
+import React, { useState } from "react";
 import ScrollToTop from "react-scroll-to-top";
 import AnimeSection from "../Sections/AnimeSection";
-import Header from "../Sections/Header";
+import Hero from "../Sections/Hero";
 import InfiniteSection from "../Sections/InfiniteSection";
 import UpcomingSection from "../Sections/UpcomingSection";
+
 import "./Home.css";
 const Home = () => {
-  const baseURl = process.env.REACT_APP_ANIME_BASE_URL;
+  const baseURL = process.env.REACT_APP_ANILIST_BASE_URL;
+  const [heroSectionLoaded, setHeroSectionLoaded] = useState(false);
 
   return (
     <>
-      <Header></Header>
-      <UpcomingSection></UpcomingSection>
+      <Hero setHeroSectionLoaded={setHeroSectionLoaded}></Hero>
+      {heroSectionLoaded && (
+        <>
+          <UpcomingSection></UpcomingSection>
 
-      <AnimeSection
-        url={"https://api.consumet.org/meta/anilist/recent-episodes"}
-        id={"recent"}
-        sectiontitle={"Recent"}
-      ></AnimeSection>
-      <AnimeSection
-        url={"https://api.consumet.org/meta/anilist/trending"}
-        id={"trending"}
-        sectiontitle={"Trending"}
-      ></AnimeSection>
-      <AnimeSection
-        url={
-          "https://api.consumet.org/meta/anilist/advanced-search?format=SPECIAL"
-        }
-        id={"special"}
-        sectiontitle={"Special"}
-      ></AnimeSection>
-      <InfiniteSection
-        url={"https://api.consumet.org/meta/anilist/popular"}
-        itemlimit={18}
-        sectiontitle={"Most Popular"}
-        id="popular"
-        querytype={"?"}
-      ></InfiniteSection>
+          <AnimeSection
+            url={`${baseURL}/recent-episodes`}
+            id={"recent"}
+            sectiontitle={"Recent"}
+          ></AnimeSection>
+          <AnimeSection
+            url={`${baseURL}/trending`}
+            id={"trending"}
+            sectiontitle={"Trending"}
+          ></AnimeSection>
+          <AnimeSection
+            url={`${baseURL}/advanced-search?format=SPECIAL`}
+            id={"special"}
+            sectiontitle={"Special"}
+          ></AnimeSection>
+          <InfiniteSection
+            url={`${baseURL}/popular`}
+            itemlimit={18}
+            sectiontitle={"Most Popular"}
+            id="popular"
+            querytype={"?"}
+          ></InfiniteSection>
+        </>
+      )}
 
       <ScrollToTop
         style={{
@@ -45,8 +49,6 @@ const Home = () => {
           opacity: 0.5,
           color: "white",
           boxShadow: "none",
-          borderTopLeftRadius: 10,
-          borderBottomLeftRadius: 10,
         }}
         className="scrolltop"
         top={1500}

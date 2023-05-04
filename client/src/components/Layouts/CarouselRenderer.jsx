@@ -31,8 +31,8 @@ const CarouselRenderer = ({
         {sectionTitle && <h1 className="row-title">{sectionTitle}</h1>}
         {isAnimeCard && sectionTitle !== "Recommendations" && (
           <a
-            onClick={(event) => {
-              event.preventDefault();
+            onClick={(e) => {
+              e.preventDefault();
               navigate("/more/" + sectionTitle.toLowerCase(), {
                 state: { sectionTitle, url },
               });

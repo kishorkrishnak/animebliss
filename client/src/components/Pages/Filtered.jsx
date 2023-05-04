@@ -27,7 +27,7 @@ const GenresPage = () => {
           isGenresPage={true}
           url={queryUrl}
           sectiontitle={"Filter Results"}
-          itemlimit={21}
+          itemlimit={24}
           id="filterresults"
           querytype={"&"}
         ></InfiniteSection>

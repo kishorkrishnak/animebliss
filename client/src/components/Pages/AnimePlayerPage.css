@@ -29,7 +29,7 @@
   background-color: #823061;
 }
 .vime-container {
-  width: 98%;
+  width: 97%;
   margin: 0 auto;
 }
 .vertical-grid-container {
@@ -54,7 +54,7 @@
 }
 .vertical-grid {
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  max-height: 1100px;
+  max-height: 980px;
   overflow-x: hidden;
   display: grid;
   overflow-y: scroll;
