@@ -23,7 +23,6 @@ import "./AnimePlayerPage.css";
 const AnimePlayerPage = () => {
   const SharedState = useContext(GlobalContext);
   useEffect(() => {
-    console.log(SharedState.videoIsLoading);
     SharedState.setVideoIsLoading(true);
   }, []);
   const { id } = useParams();
@@ -151,8 +150,8 @@ const AnimePlayerPage = () => {
                 <div>
                   <RWebShare
                     data={{
-                      text: `Watch ${anime.title.english} on Animebliss`,
-                      url: `https://animebliss.vercel.app/watch/${id}`,
+                      text: `Watch ${anime.title.english} on Animehub`,
+                      url: `https://animehub.vercel.app/watch/${id}`,
                       title: anime.title.english,
                     }}
                   >

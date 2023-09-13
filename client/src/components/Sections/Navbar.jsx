@@ -77,7 +77,7 @@ const Navbar = () => {
           }}
         >
           <img className="nav-brand-logo" src={logo} alt="logo" />
-          <h3 className="nav-brand-title">Animebliss</h3>
+          <h3 className="nav-brand-title">Animehub</h3>
         </div>
         <FontAwesomeIcon
           className="magnify-icon"

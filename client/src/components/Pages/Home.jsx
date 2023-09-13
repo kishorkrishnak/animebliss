@@ -22,11 +22,11 @@ const Home = () => {
             id={"recent"}
             sectiontitle={"Recent"}
           ></AnimeSection>
-          <AnimeSection
+          {/* <AnimeSection
             url={`${baseURL}/trending`}
             id={"trending"}
             sectiontitle={"Trending"}
-          ></AnimeSection>
+          ></AnimeSection> */}
           <AnimeSection
             url={`${baseURL}/advanced-search?format=SPECIAL`}
             id={"special"}

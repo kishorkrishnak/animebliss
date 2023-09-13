@@ -33,7 +33,7 @@ const Login = ({ setIsLoggedIn }) => {
         <h1 className="welcome-text">
           <span className="welcome-text-dodgerblue">Hola,</span>
           <br />
-          Welcome to <br /> <span>Animebliss </span>
+          Welcome to <br /> <span>Animehub </span>
         </h1>
         <div className="login-container">
           <h2>Sign in</h2>
@@ -79,7 +79,7 @@ const Login = ({ setIsLoggedIn }) => {
             clientId={clientId}
             onSuccess={onSuccess}
             onFailure={onFailure}
-            redirectUri="https://animebliss.vercel.app/"
+            redirectUri="https://animehub.vercel.app/"
             cookiePolicy={"single_host_origin"}
           />
           <button>
