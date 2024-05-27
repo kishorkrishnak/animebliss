@@ -31,6 +31,7 @@ const GridRenderer = ({ finalQuery, setAnimeInfo, isAnimate }) => {
                     }
                   : {}
               }
+              
               animate={isAnimated ? { opacity: 1, translateX: 0 } : {}}
               transition={{ duration: 0.3, delay: index * 0.05 }}
               viewport={{ once: true }}

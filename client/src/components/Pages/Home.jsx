@@ -7,26 +7,20 @@ import UpcomingSection from "../Sections/UpcomingSection";
 
 import "./Home.css";
 const Home = () => {
-  const baseURL = process.env.REACT_APP_ANILIST_BASE_URL;
-  const [heroSectionLoaded, setHeroSectionLoaded] = useState(false);
+  const baseURL = process.env.REACT_APP_ANILIST_API_URL;
+  const [heroSectionLoaded, setHeroSectionLoaded] = useState(true);
 
   return (
     <>
       <Hero setHeroSectionLoaded={setHeroSectionLoaded}></Hero>
       {heroSectionLoaded && (
         <>
-          <UpcomingSection></UpcomingSection>
-
+          <UpcomingSection></UpcomingSection> *
           <AnimeSection
             url={`${baseURL}/recent-episodes`}
             id={"recent"}
             sectiontitle={"Recent"}
           ></AnimeSection>
-          {/* <AnimeSection
-            url={`${baseURL}/trending`}
-            id={"trending"}
-            sectiontitle={"Trending"}
-          ></AnimeSection> */}
           <AnimeSection
             url={`${baseURL}/advanced-search?format=SPECIAL`}
             id={"special"}

@@ -12,6 +12,7 @@ const Navbar = () => {
   const [active, setActive] = useState("nav__menu");
   const [icon, setIcon] = useState("nav__toggler");
   const clientId = process.env.REACT_APP_CLIENT_ID
+  const baseURL = process.env.REACT_APP_CONSUMET_API_URL
   const useOutsideAlerter = (ref) => {
     useEffect(() => {
       function handleClickOutside(event) {
@@ -34,7 +35,7 @@ const Navbar = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const searchAnime = (input) => {
-    return fetch("https://api.consumet.org/meta/anilist/" + input)
+    return fetch(`${baseURL}/meta/anilist/${input}`)
       .then((response) => {
         return response.json();
       })

@@ -34,6 +34,7 @@ const AnimePlayerPage = () => {
   const [currentId, setCurrentId] = useState("");
   const epArray = [];
   const [ep, setEp] = useState(null);
+  const baseURL = process.env.REACT_APP_CONSUMET_API_URL;
 
   async function fetchVideoById(url) {
     return await axios.get(url).then(({ data }) => {
@@ -53,11 +54,11 @@ const AnimePlayerPage = () => {
         .replaceAll(/<\/?[\w\s]*>|<.+[\W]>/g, "")
     );
   };
-
   const initialFetch = async () => {
     return await axios
-      .get("https://api.consumet.org/meta/anilist/info/" + id)
+      .get(`${baseURL}/meta/anilist/info/${id}?provider=gogoanime`)
       .then(({ data }) => {
+        console.log(data);
         setAnime(data);
         setCurrentId(data.episodes[selectedOption - 1].id);
         for (let i = 1; i <= data.episodes.length; i++) {
@@ -82,7 +83,7 @@ const AnimePlayerPage = () => {
   useEffect(() => {
     if (currentId !== "")
       fetchVideoById(
-        " https://api.consumet.org/meta/anilist/watch/" + currentId
+        `${baseURL}/meta/anilist/watch/${currentId}` 
       );
   }, [currentId]);
   useEffect(() => {
@@ -97,9 +98,7 @@ const AnimePlayerPage = () => {
             <div className="vime-container">
               <AnimePlayer
                 setVideoIsLoading={SharedState.setVideoIsLoading}
-                animeInfoUrl={
-                  " https://api.consumet.org/meta/anilist/watch/" + currentId
-                }
+                animeInfoUrl={`${baseURL}/meta/anilist/watch/${currentId}?provider=gogoanime`}
                 src={currentStreamUrl}
               ></AnimePlayer>
             </div>
@@ -222,7 +221,7 @@ const AnimePlayerPage = () => {
             ></CarouselRenderer>
           )}
           <AnimeSection
-            url={"https://api.consumet.org/meta/anilist/trending"}
+            url={`${baseURL}/meta/anilist/trending`}
             id={"trending"}
             sectiontitle={"Trending"}
           ></AnimeSection>

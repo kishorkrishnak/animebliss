@@ -7,14 +7,15 @@ import Navbar from "../Sections/Navbar";
 setConfiguration({ breakpoints: [768, 1170, 1500, 1700, 1800, 1900] });
 const GenresPage = () => {
   const location = useLocation();
+  const baseURL = process.env.REACT_APP_CONSUMET_API_URL
   const [queryUrl, setQueryUrl] = useState(
     location.state.type === "genre"
-      ? "https://api.consumet.org/meta/anilist/advanced-search?genres=[" +
+      ? `${baseURL}/meta/anilist/advanced-search?genres=[` +
           '"' +
           location.state.value +
           '"' +
           "]"
-      : "https://api.consumet.org/meta/anilist/advanced-search?" +
+      : `${baseURL}/meta/anilist/advanced-search?` +
           location.state.type +
           "=" +
           location.state.value

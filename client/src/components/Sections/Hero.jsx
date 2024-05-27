@@ -8,7 +8,7 @@ const Hero = ({ setHeroSectionLoaded }) => {
   const carouselRef = useRef(null);
   let resetTimeout;
   const [fetchedAnime, setFetchedAnime] = useState([]);
-  const baseURL = process.env.REACT_APP_ANILIST_BASE_URL;
+  const baseURL = process.env.REACT_APP_ANILIST_API_URL;
 
   useEffect(() => {
     // axios.get(`${baseURL}/recent-episodes`).then(({ data: { results } }) => {
