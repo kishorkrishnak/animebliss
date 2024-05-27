@@ -26,9 +26,7 @@ const AnimePlayer = ({ src, animeInfoUrl, setVideoIsLoading }) => {
   }, []);
   const [time, setTime] = useState(0);
   useEffect(() => {
-    // setTimeout(() => {
-    //   setVideoIsLoading(false);
-    // }, 10000);
+  
     if (!src) {
       toast.error("No servers available");
       navigate("/");

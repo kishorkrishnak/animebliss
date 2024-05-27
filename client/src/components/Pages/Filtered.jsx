@@ -7,7 +7,7 @@ import Navbar from "../Sections/Navbar";
 setConfiguration({ breakpoints: [768, 1170, 1500, 1700, 1800, 1900] });
 const GenresPage = () => {
   const location = useLocation();
-  const baseURL = process.env.REACT_APP_CONSUMET_API_URL
+  const baseURL = process.env.REACT_APP_CONSUMET_API_URL;
   const [queryUrl, setQueryUrl] = useState(
     location.state.type === "genre"
       ? `${baseURL}/meta/anilist/advanced-search?genres=[` +
@@ -27,7 +27,7 @@ const GenresPage = () => {
         <InfiniteSection
           isGenresPage={true}
           url={queryUrl}
-          sectiontitle={"Filter Results"}
+          sectiontitle={`${location.state.value}`}
           itemlimit={24}
           id="filterresults"
           querytype={"&"}

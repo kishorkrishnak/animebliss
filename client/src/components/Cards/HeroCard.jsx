@@ -5,10 +5,8 @@ import {
 } from "@ant-design/icons";
 import { faListOl } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import TextTruncate from "react-text-truncate";
-import { GlobalContext } from "../../App";
 import "./HeroCard.css";
 const HeaderCarouselCard = ({
   duration,
@@ -20,9 +18,7 @@ const HeaderCarouselCard = ({
   epcount,
 }) => {
   const navigate = useNavigate();
-  const SharedState = useContext(GlobalContext);
   async function fetchVideo(id) {
-    SharedState.setVideoIsLoading(true);
     navigate("/watch/" + id);
   }
 

@@ -11,7 +11,7 @@ const MoviesPage = () => {
         url={
           `${baseURL}/meta/anilist/advanced-search?format=MOVIE`
         }
-        itemlimit={21}
+        itemlimit={18}
         sectiontitle={"Top Anime Movies"}
         id="movies"
         querytype={"&"}

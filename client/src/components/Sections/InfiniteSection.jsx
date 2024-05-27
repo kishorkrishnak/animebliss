@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import GridRenderer from "../Layouts/GridRenderer.jsx";
 import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -9,7 +9,9 @@ import {
   faArrowLeftLong,
   faArrowRightLong,
 } from "@fortawesome/free-solid-svg-icons";
+import { GlobalContext } from "../../App.jsx";
 const InfiniteSection = ({ url, sectiontitle, itemlimit, id, querytype }) => {
+  const SharedState = useContext(GlobalContext)
   const [fetchedData, setFetchedData] = useState([]);
   const [currpage, setCurrpage] = useState(1);
   const [isAnimate, setIsAnimate] = useState(false);
@@ -41,6 +43,7 @@ const InfiniteSection = ({ url, sectiontitle, itemlimit, id, querytype }) => {
   }, [url]);
   useEffect(() => {
     setIsAnimate(false);
+    SharedState.setVideoIsLoading(true)
     if (currpage > 1) {
       document.querySelector("#" + id).scrollIntoView();
     }
@@ -54,7 +57,10 @@ const InfiniteSection = ({ url, sectiontitle, itemlimit, id, querytype }) => {
         }
         setFetchedData(results);
         setIsAnimate(true);
-      });
+      }).finally(()=>
+    SharedState.setVideoIsLoading(false)
+      
+      )
   }, [currpage, url]);
   return (
     <>
@@ -62,7 +68,7 @@ const InfiniteSection = ({ url, sectiontitle, itemlimit, id, querytype }) => {
         id={id}
         className="section section-infinite"
         style={{
-          marginTop: querytype === "&" || id === "recent-section" ? 70 : "",
+          marginTop: querytype === "&" || id === "recent-section" ? 90 : "",
         }}
       >
         {fetchedData.length > 0 && (

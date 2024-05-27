@@ -22,9 +22,7 @@ import Navbar from "../Sections/Navbar";
 import "./AnimePlayerPage.css";
 const AnimePlayerPage = () => {
   const SharedState = useContext(GlobalContext);
-  useEffect(() => {
-    SharedState.setVideoIsLoading(true);
-  }, []);
+
   const { id } = useParams();
   const [adaptation, setAdaptation] = useState(null);
   const [description, setDescription] = useState(null);
@@ -38,6 +36,7 @@ const AnimePlayerPage = () => {
 
   async function fetchVideoById(url) {
     return await axios.get(url).then(({ data }) => {
+      console.log(data);
       setCurrentStreamUrl([data.sources[0].url, data.sources[1].url]);
     });
   }
@@ -55,8 +54,10 @@ const AnimePlayerPage = () => {
     );
   };
   const initialFetch = async () => {
+    SharedState.setVideoIsLoading(true);
+
     return await axios
-      .get(`${baseURL}/meta/anilist/info/${id}?provider=gogoanime`)
+      .get(`${baseURL}/meta/anilist/info/${id}?provider=enime`)
       .then(({ data }) => {
         console.log(data);
         setAnime(data);
@@ -74,17 +75,18 @@ const AnimePlayerPage = () => {
         }
         setAdaptation(adaptation);
         cleanDescription(data.description);
-      });
+      })
+      .finally(() => SharedState.setVideoIsLoading(false));
   };
 
   useEffect(() => {
+    console.log("hi");
     initialFetch();
   }, [id]);
+
   useEffect(() => {
     if (currentId !== "")
-      fetchVideoById(
-        `${baseURL}/meta/anilist/watch/${currentId}` 
-      );
+      fetchVideoById(`${baseURL}/meta/anilist/watch/${currentId}`);
   }, [currentId]);
   useEffect(() => {
     if (anime) setCurrentId(anime.episodes[selectedOption - 1].id);
