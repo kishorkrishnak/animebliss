@@ -3,7 +3,6 @@ import "./UpcomingCard.css";
 const UpcomingCard = ({
   title,
   image,
-  episodeNum,
   trailerVideoId,
   setIsPlaying,
   setTrailerId,

@@ -11,8 +11,7 @@ const Hero = ({ setHeroSectionLoaded }) => {
   const baseURL = process.env.REACT_APP_ANILIST_API_URL;
 
   useEffect(() => {
-    // axios.get(`${baseURL}/recent-episodes`).then(({ data: { results } }) => {
-      axios.get(`${baseURL}/popular`).then(({ data: { results } }) => {
+    axios.get(`${baseURL}/popular`).then(({ data: { results } }) => {
       setFetchedAnime(results);
       setHeroSectionLoaded(true);
     }, []);

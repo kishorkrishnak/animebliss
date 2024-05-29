@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import CarouselRenderer from "../Layouts/CarouselRenderer";
+
 const AnimeSection = ({ sectiontitle, url, id }) => {
   const [fetchedData, setFetchedData] = useState([]);
   useEffect(() => {

@@ -2,7 +2,7 @@ import { StarFilled } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
 import TextTruncate from "react-text-truncate";
 import "./AnimeCard.css";
-const CarouselCard = ({ title, image, id, rating, year }) => {
+const AnimeCard = ({ title, image, id, rating, year }) => {
   const navigate = useNavigate();
   async function fetchVideo(id) {
     navigate("/watch/" + id);
@@ -43,4 +43,4 @@ const CarouselCard = ({ title, image, id, rating, year }) => {
     </>
   );
 };
-export default CarouselCard;
+export default AnimeCard;

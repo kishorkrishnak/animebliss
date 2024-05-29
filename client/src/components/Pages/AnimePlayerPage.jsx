@@ -33,10 +33,10 @@ const AnimePlayerPage = () => {
   const epArray = [];
   const [ep, setEp] = useState(null);
   const baseURL = process.env.REACT_APP_CONSUMET_API_URL;
-
+const animeProvider = process.env.REACT_APP_CONSUMET_PROVIDER;
   async function fetchVideoById(url) {
     return await axios.get(url).then(({ data }) => {
-      console.log(data);
+
       setCurrentStreamUrl([data.sources[0].url, data.sources[1].url]);
     });
   }
@@ -57,7 +57,7 @@ const AnimePlayerPage = () => {
     SharedState.setVideoIsLoading(true);
 
     return await axios
-      .get(`${baseURL}/meta/anilist/info/${id}?provider=enime`)
+      .get(`${baseURL}/meta/anilist/info/${id}?provider=${animeProvider}`)
       .then(({ data }) => {
         console.log(data);
         setAnime(data);
@@ -86,7 +86,9 @@ const AnimePlayerPage = () => {
 
   useEffect(() => {
     if (currentId !== "")
-      fetchVideoById(`${baseURL}/meta/anilist/watch/${currentId}`);
+      fetchVideoById(
+        `${baseURL}/meta/anilist/watch/${currentId}?provider=${animeProvider}`
+      );
   }, [currentId]);
   useEffect(() => {
     if (anime) setCurrentId(anime.episodes[selectedOption - 1].id);
@@ -100,7 +102,7 @@ const AnimePlayerPage = () => {
             <div className="vime-container">
               <AnimePlayer
                 setVideoIsLoading={SharedState.setVideoIsLoading}
-                animeInfoUrl={`${baseURL}/meta/anilist/watch/${currentId}?provider=gogoanime`}
+                animeInfoUrl={`${baseURL}/meta/anilist/watch/${currentId}?provider=${animeProvider}`}
                 src={currentStreamUrl}
               ></AnimePlayer>
             </div>

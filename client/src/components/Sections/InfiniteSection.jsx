@@ -11,7 +11,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { GlobalContext } from "../../App.jsx";
 const InfiniteSection = ({ url, sectiontitle, itemlimit, id, querytype }) => {
-  const SharedState = useContext(GlobalContext)
+  const SharedState = useContext(GlobalContext);
   const [fetchedData, setFetchedData] = useState([]);
   const [currpage, setCurrpage] = useState(1);
   const [isAnimate, setIsAnimate] = useState(false);
@@ -43,7 +43,7 @@ const InfiniteSection = ({ url, sectiontitle, itemlimit, id, querytype }) => {
   }, [url]);
   useEffect(() => {
     setIsAnimate(false);
-    SharedState.setVideoIsLoading(true)
+    SharedState.setVideoIsLoading(true);
     if (currpage > 1) {
       document.querySelector("#" + id).scrollIntoView();
     }
@@ -57,10 +57,8 @@ const InfiniteSection = ({ url, sectiontitle, itemlimit, id, querytype }) => {
         }
         setFetchedData(results);
         setIsAnimate(true);
-      }).finally(()=>
-    SharedState.setVideoIsLoading(false)
-      
-      )
+      })
+      .finally(() => SharedState.setVideoIsLoading(false));
   }, [currpage, url]);
   return (
     <>
@@ -73,14 +71,7 @@ const InfiniteSection = ({ url, sectiontitle, itemlimit, id, querytype }) => {
       >
         {fetchedData.length > 0 && (
           <>
-            <h1
-              className="section-title"
-              style={{
-                color: "white",
-              }}
-            >
-              {sectiontitle}
-            </h1>
+            <h1 className="section-title">{sectiontitle}</h1>
             <GridRenderer
               isAnimate={isAnimate}
               finalQuery={fetchedData}

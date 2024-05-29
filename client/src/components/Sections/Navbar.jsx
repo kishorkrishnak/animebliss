@@ -80,10 +80,7 @@ const Navbar = () => {
           <img className="nav-brand-logo" src={logo} alt="logo" />
           <h3 className="nav-brand-title">Animehub</h3>
         </div>
-        <FontAwesomeIcon
-          className="magnify-icon"
-          icon={faMagnifyingGlass}
-        ></FontAwesomeIcon>
+    
         <input
           onInput={(e) => {
             setValue(e.target.value);
