@@ -23,7 +23,10 @@ export const ENDPOINTS = {
   animekai: {
     search: (query, page = 1) => `/anime/animekai/${encodeURIComponent(query)}?page=${page}`,
     info: (id) => `/anime/animekai/info?id=${encodeURIComponent(id)}`,
-    watch: (episodeId) => `/anime/animekai/watch/${encodeURIComponent(episodeId)}`,
+    watch: (episodeId, server) => {
+      const path = `/anime/animekai/watch/${encodeURIComponent(episodeId)}`;
+      return server ? `${path}?server=${encodeURIComponent(server)}` : path;
+    },
     servers: (episodeId) => `/anime/animekai/servers/${encodeURIComponent(episodeId)}`,
     searchSuggestions: (query) => `/anime/animekai/search-suggestions/${encodeURIComponent(query)}`,
     spotlight: () => `/anime/animekai/spotlight`,
@@ -43,8 +46,14 @@ export const ENDPOINTS = {
 
   // Multi-provider video source & server endpoints
   providers: {
+    animepaheSearch: (query) => `/anime/animepahe/${encodeURIComponent(query)}`,
+    animepaheInfo: (id) => `/anime/animepahe/info/${encodeURIComponent(id)}`,
     animepaheWatch: (episodeId) => `/anime/animepahe/watch?episodeId=${encodeURIComponent(episodeId)}`,
+    animesaturnSearch: (query) => `/anime/animesaturn/${encodeURIComponent(query)}`,
+    animesaturnInfo: (id) => `/anime/animesaturn/info/${encodeURIComponent(id)}`,
     animesaturnWatch: (episodeId) => `/anime/animesaturn/watch/${encodeURIComponent(episodeId)}`,
+    animeunitySearch: (query) => `/anime/animeunity/${encodeURIComponent(query)}`,
+    animeunityInfo: (id) => `/anime/animeunity/info/${encodeURIComponent(id)}`,
     animeunityWatch: (episodeId) => `/anime/animeunity/watch/${encodeURIComponent(episodeId)}`,
     hianimeDubbed: (page = 1) => `/anime/hianime/dubbed-anime?page=${page}`,
     kickassanimeServers: (episodeId) => `/anime/kickassanime/servers?episodeId=${encodeURIComponent(episodeId)}`,

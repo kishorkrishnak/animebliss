@@ -44,6 +44,7 @@ const AnimePlayerPage = () => {
   const [selectedBatch, setSelectedBatch] = useState(0);
   const [loadingVideo, setLoadingVideo] = useState(true);
   const [selectedProvider, setSelectedProvider] = useState("animekai");
+  const [selectedServer, setSelectedServer] = useState(null);
   const [servers, setServers] = useState([]);
 
   // Check watchlist state
@@ -106,7 +107,12 @@ const AnimePlayerPage = () => {
     setLoadingVideo(true);
 
     providerApi
-      .resolveEpisodeStream(currentEpisode.id, selectedProvider)
+      .resolveEpisodeStream(
+        anime,
+        { ...currentEpisode, number: currentEpisode.number || selectedEpIndex + 1 },
+        selectedProvider,
+        selectedServer
+      )
       .then((streamResult) => {
         if (!isMounted) return;
         if (streamResult?.data?.sources && streamResult.data.sources.length > 0) {
@@ -141,7 +147,7 @@ const AnimePlayerPage = () => {
     return () => {
       isMounted = false;
     };
-  }, [anime, selectedEpIndex, selectedProvider]);
+  }, [anime, selectedEpIndex, selectedProvider, selectedServer]);
 
   // Track & Save Watch Progress
   const handleProgressUpdate = (currentTime, duration) => {
@@ -361,6 +367,7 @@ const AnimePlayerPage = () => {
                       className={`server-chip ${selectedProvider === p.id ? "active" : ""}`}
                       onClick={() => {
                         setSelectedProvider(p.id);
+                        setSelectedServer(null);
                         toast(`Switching to ${p.name}`);
                       }}
                     >
@@ -371,9 +378,10 @@ const AnimePlayerPage = () => {
                     <button
                       key={srv.name || idx}
                       type="button"
-                      className={`server-chip ${selectedProvider === srv.name ? "active" : ""}`}
+                      className={`server-chip ${selectedProvider === "animekai" && selectedServer === srv.name ? "active" : ""}`}
                       onClick={() => {
-                        setSelectedProvider(srv.name);
+                        setSelectedProvider("animekai");
+                        setSelectedServer(srv.name);
                         toast(`Server: ${srv.name}`);
                       }}
                     >

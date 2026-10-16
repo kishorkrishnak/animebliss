@@ -19,7 +19,7 @@
 
 - **🎬 Multi-Provider Streaming & Server Switching**
   - Seamlessly streams episodes from **AnimeKai** as the default HD provider.
-  - Interactive on-the-fly server switcher supporting **AnimePahe**, **AnimeSaturn**, **AnimeUnity**, and **AniList/Gogoanime** backups so playback never buffers or fails.
+  - Interactive server selection for AnimeKai, with provider-specific episode lookup and stream failover across **AnimePahe**, **AnimeSaturn**, and **AnimeUnity**.
   - Server discovery with automated quality selection.
 
 - **🔥 100% Dynamic Content (Zero Static Hardcoding)**
