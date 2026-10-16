@@ -1,5 +1,6 @@
 import apiClient, { fetchWithFallback, normalizeApiResponse } from "./client";
 import { ENDPOINTS, ANILIST_API_URL } from "./config";
+import animeParadiseApi from "./animeParadiseApi";
 
 const getTitles = (anime) => {
   const title = anime?.title;
@@ -150,7 +151,7 @@ export const providerApi = {
   async resolveEpisodeStream(anime, episode, preferredProvider = "animekai", preferredServer = null) {
     if (!anime || !episode?.id) return null;
 
-    const providers = ["animekai", "animepahe", "animesaturn", "animeunity"];
+    const providers = ["animeparadise", "animekai", "animepahe", "animesaturn", "animeunity"];
     const orderedProviders = [
       preferredProvider,
       ...providers.filter((provider) => provider !== preferredProvider),
@@ -158,6 +159,14 @@ export const providerApi = {
 
     for (const provider of orderedProviders) {
       try {
+        if (provider === "animeparadise") {
+          const data = await animeParadiseApi.getWatch(anime, episode);
+          if (Array.isArray(data?.sources) && data.sources.length > 0) {
+            return { provider, data };
+          }
+          continue;
+        }
+
         let providerEpisodeId = episode.id;
         if (provider !== "animekai") {
           const mappedEpisode = await getProviderEpisode(provider, anime, episode);

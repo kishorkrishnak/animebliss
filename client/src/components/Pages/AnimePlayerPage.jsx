@@ -43,7 +43,7 @@ const AnimePlayerPage = () => {
   const [episodeSearch, setEpisodeSearch] = useState("");
   const [selectedBatch, setSelectedBatch] = useState(0);
   const [loadingVideo, setLoadingVideo] = useState(true);
-  const [selectedProvider, setSelectedProvider] = useState("animekai");
+  const [selectedProvider, setSelectedProvider] = useState("animeparadise");
   const [selectedServer, setSelectedServer] = useState(null);
   const [servers, setServers] = useState([]);
 
@@ -98,7 +98,12 @@ const AnimePlayerPage = () => {
 
   // Fetch Video Source for Currently Selected Episode via Provider Resolver
   useEffect(() => {
-    if (!anime || !anime.episodes || anime.episodes.length === 0) return;
+    if (!anime) return;
+    if (!anime.episodes || anime.episodes.length === 0) {
+      setCurrentStreamUrl(null);
+      setLoadingVideo(false);
+      return;
+    }
 
     const currentEpisode = anime.episodes[selectedEpIndex];
     if (!currentEpisode || !currentEpisode.id) return;
@@ -365,6 +370,7 @@ const AnimePlayerPage = () => {
                 <span className="server-label">Server:</span>
                 <div className="server-chips">
                   {[
+                    { id: "animeparadise", name: "AnimeParadise" },
                     { id: "animekai", name: "AnimeKai" },
                     { id: "animepahe", name: "AnimePahe" },
                     { id: "animesaturn", name: "AnimeSaturn" },

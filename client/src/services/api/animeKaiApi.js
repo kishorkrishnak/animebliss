@@ -1,4 +1,5 @@
 import apiClient, { fetchWithFallback, normalizeApiResponse } from "./client";
+import animeParadiseApi from "./animeParadiseApi";
 import { ENDPOINTS, ANILIST_API_URL } from "./config";
 
 const normalizeTitle = (title) => String(title || "")
@@ -109,6 +110,13 @@ export const animeKaiApi = {
             episodes: providerInfo.episodes,
           };
         }
+      }
+
+      try {
+        const alternateInfo = await animeParadiseApi.getInfo(metadata);
+        if (alternateInfo?.episodes?.length) return alternateInfo;
+      } catch (error) {
+        // Keep metadata usable if the alternate episode catalog is unavailable.
       }
 
       // Keep AniList details visible even when the streaming catalog has no match.
