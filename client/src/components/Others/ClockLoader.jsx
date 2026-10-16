@@ -13,7 +13,7 @@ const ClockLoader = ({ color, size }) => {
         top: 0,
         bottom: 0,
         margin: "auto",
-        borderColor: "red",
+        borderColor: "var(--accent, #6366f1)",
       }}
       size={size}
     />

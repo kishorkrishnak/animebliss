@@ -1,68 +1,85 @@
-import axios from "axios";
-import { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Carousel from "react-elastic-carousel";
 import { v4 as uuidv4 } from "uuid";
 import HeroCard from "../Cards/HeroCard";
 import Navbar from "./Navbar";
+import { animeKaiApi } from "../../services/api";
+
 const Hero = ({ setHeroSectionLoaded }) => {
   const carouselRef = useRef(null);
-  let resetTimeout;
   const [fetchedAnime, setFetchedAnime] = useState([]);
-  const baseURL = process.env.REACT_APP_ANILIST_API_URL;
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    axios.get(`${baseURL}/popular`).then(({ data: { results } }) => {
-      setFetchedAnime(results);
-      setHeroSectionLoaded(true);
-    }, []);
-  }, []);
+    let isMounted = true;
+
+    animeKaiApi
+      .getSpotlight()
+      .then((data) => {
+        if (!isMounted) return;
+        const results = data?.results || [];
+        setFetchedAnime(results);
+        if (setHeroSectionLoaded) setHeroSectionLoaded(true);
+      })
+      .catch((err) => {
+        console.error("Failed to fetch spotlight carousel:", err);
+        if (setHeroSectionLoaded) setHeroSectionLoaded(true);
+      })
+      .finally(() => {
+        if (isMounted) setLoading(false);
+      });
+
+    return () => {
+      isMounted = false;
+    };
+  }, [setHeroSectionLoaded]);
 
   return (
-    <>
-      {fetchedAnime.length > 0 && (
-        <header className="header">
-          <Navbar></Navbar>
-          <section style={{ marginTop: 30 }} className="section-header">
-            return (
+    <header className="header">
+      <Navbar />
+      <section style={{ marginTop: 85, padding: "0 20px" }} className="section-header">
+        {loading ? (
+          <div
+            style={{
+              display: "flex",
+              gap: 16,
+              overflow: "hidden",
+              minHeight: 480,
+              borderRadius: 16,
+            }}
+            className="skeleton"
+          />
+        ) : (
+          fetchedAnime.length > 0 && (
             <Carousel
               enableAutoPlay={true}
               ref={carouselRef}
               showArrows={false}
-              autoPlaySpeed={2000}
-              onNextEnd={() => {
-                clearTimeout(resetTimeout);
-                resetTimeout = setTimeout(() => {
-                  carouselRef?.current?.goTo(0);
-                }, 4000);
-              }}
+              autoPlaySpeed={6500}
               pagination={true}
             >
-              {fetchedAnime.map((item) =>
-                item.totalEpisodes &&
-                item.id &&
-                item.releaseDate &&
-                item.duration &&
-                item.title &&
-                item.description &&
-                item.cover ? (
-                  <HeroCard
-                    key={uuidv4()}
-                    id={item.id}
-                    epcount={item.totalEpisodes}
-                    year={item.releaseDate}
-                    duration={item.duration}
-                    title={item.title.english || "Error"}
-                    description={item.description}
-                    cover={item.cover}
-                  ></HeroCard>
-                ) : null
-              )}
+              {fetchedAnime.slice(0, 8).map((item, index) => (
+                <HeroCard
+                  key={uuidv4()}
+                  id={item.id}
+                  epcount={item.totalEpisodes || item.episodes?.length || 0}
+                  year={item.releaseDate}
+                  duration={item.duration}
+                  title={item.title?.english || item.title?.romaji || "Untitled"}
+                  description={item.description}
+                  cover={item.cover || item.image}
+                  image={item.image}
+                  rating={item.rating}
+                  spotlightIndex={index + 1}
+                  seasonLabel="TRENDING NOW"
+                />
+              ))}
             </Carousel>
-            );
-          </section>
-        </header>
-      )}
-    </>
+          )
+        )}
+      </section>
+    </header>
   );
 };
+
 export default Hero;

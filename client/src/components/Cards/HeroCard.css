@@ -1,84 +1,200 @@
 .herocard-wrapper {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  background-position: center;
-  background-size: cover;
-  height: 470px;
-  margin-top: 20px;
-  align-items: flex-start;
-  padding: 20px 40px;
-  text-align: left;
-  width: 98.7%;
-  border-radius: 8px;
-}
-
-.herocard-wrapper img {
-  height: 100%;
+  position: relative;
   width: 100%;
+  min-height: 480px;
+  max-height: 600px;
+  background-size: cover;
+  background-position: center 20%;
+  background-repeat: no-repeat;
+  border-radius: var(--radius-lg);
+  display: flex;
+  align-items: center;
+  padding: 40px 50px;
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+  border: 1px solid var(--border-subtle);
+  margin-bottom: 25px;
 }
 
-.herocard-animeinfo-wrapper {
+.herocard-content {
+  max-width: 650px;
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 16px;
+  z-index: 2;
 }
 
-.herocard-animeinfo {
-  color: white;
-  display: flex;
-  gap: 20px;
-}
-
-.herocard-animeinfo-title {
-  color: white;
-  font-size: 2.7rem;
-}
-.herocard-animeinfo-description {
-  text-align: justify;
-  color: white;
-  font-family: "Inter", sans-serif;
-  line-height: 1.5;
-  width: 50%;
-}
-
-.herocard-btn-watch {
-  background-color: rgba(0, 0, 0, 0.4);
-  border: 1px solid white;
-  color: white;
-  display: flex;
-  justify-content: center;
+.herocard-spotlight-badge {
+  display: inline-flex;
   align-items: center;
-  padding: 9px 15px;
-  font-family: inherit;
-  border-radius: 4px;
-  font-size: 1.5rem;
-  font-weight: bold;
+  gap: 8px;
+  width: fit-content;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #e2e8f0;
+  font-size: 0.76rem;
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: var(--radius-full);
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
 }
 
-.btn-watchnow:hover {
-  opacity: 0.8;
-  transition: 500ms ease;
+.spotlight-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: #22c55e;
 }
 
-@media screen and (max-width: 768px) {
+.herocard-title {
+  font-size: 2.6rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  line-height: 1.18;
+  letter-spacing: -0.5px;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.6);
+  word-break: break-word;
+}
+
+.herocard-badges {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: var(--radius-sm);
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(8px);
+  color: #cbd5e1;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.badge-tv {
+  background: rgba(255, 255, 255, 0.1);
+  color: #f8fafc;
+}
+
+.badge-rating {
+  background: rgba(251, 191, 36, 0.1);
+  border-color: rgba(251, 191, 36, 0.25);
+  color: #fbbf24;
+}
+
+.badge-quality {
+  background: rgba(255, 255, 255, 0.08);
+  color: #94a3b8;
+}
+
+.herocard-description {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  max-width: 580px;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.herocard-actions {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 8px;
+}
+
+.hero-btn-watch {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: #ffffff;
+  color: #0b0c10;
+  font-weight: 700;
+  font-size: 0.95rem;
+  padding: 12px 26px;
+  border-radius: var(--radius-full);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
+  transition: transform 0.2s cubic-bezier(0.2, 0, 0, 1), background-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.hero-btn-watch:hover {
+  background: #f1f5f9;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
+}
+
+.hero-btn-watchlist {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  color: #f8fafc;
+  font-weight: 600;
+  font-size: 0.92rem;
+  padding: 12px 22px;
+  border-radius: var(--radius-full);
+  transition: all 0.2s cubic-bezier(0.2, 0, 0, 1);
+}
+
+.hero-btn-watchlist:hover {
+  background: rgba(255, 255, 255, 0.14);
+  border-color: rgba(255, 255, 255, 0.28);
+  transform: translateY(-2px);
+}
+
+.hero-btn-watchlist.active {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+@media screen and (max-width: 900px) {
   .herocard-wrapper {
-    height: 320px;
+    min-height: 400px;
+    padding: 30px 24px;
   }
-  .herocard-animeinfo-item {
+  .herocard-title {
+    font-size: 1.8rem;
+  }
+  .herocard-description {
+    font-size: 0.88rem;
+  }
+  .hero-btn-watch,
+  .hero-btn-watchlist {
+    padding: 10px 18px;
+    font-size: 0.88rem;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .herocard-wrapper {
+    min-height: 350px;
+    padding: 24px 16px;
+  }
+  .herocard-title {
     font-size: 1.4rem;
   }
-  .herocard-animeinfo-title {
-    font-size: 2.5rem;
-  }
-  .herocard-animeinfo-description {
-    font-size: 1.5rem;
-  }
-  .herocard-animeinfo-description {
+  .herocard-actions {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
     width: 100%;
-    font-size: 1.4rem;
   }
-  .herocard-btn-watch {
-    font-size: 1.2rem;
+  .hero-btn-watch,
+  .hero-btn-watchlist {
+    width: 100%;
+    justify-content: center;
   }
 }

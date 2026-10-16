@@ -1,103 +1,120 @@
-import { GithubFilled, GoogleCircleFilled } from "@ant-design/icons";
-import "./Login.css";
-import { useEffect } from "react";
-import Navbar from "../Sections/Navbar";
-import { GoogleLogin } from "react-google-login";
+import React, { useState } from "react";
+import { UserOutlined, LockOutlined } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
-import { gapi } from "gapi-script";
+import Navbar from "../Sections/Navbar";
+import { saveUserProfile } from "../../services/storage";
 import toast, { Toaster } from "react-hot-toast";
+import "./Login.css";
+
+const AVATAR_OPTIONS = [
+  "https://api.dicebear.com/7.x/adventurer/svg?seed=Gojo",
+  "https://api.dicebear.com/7.x/adventurer/svg?seed=Luffy",
+  "https://api.dicebear.com/7.x/adventurer/svg?seed=Zoro",
+  "https://api.dicebear.com/7.x/adventurer/svg?seed=Naruto",
+  "https://api.dicebear.com/7.x/adventurer/svg?seed=Tanjiro",
+];
+
 const Login = ({ setIsLoggedIn }) => {
   const navigate = useNavigate();
-  const clientId =
-    "952500448273-nr07eb37fsoadpoktd855vrpmphsrg9e.apps.googleusercontent.com";
-  const onSuccess = (res) => {
-    toast.success("Login Successful!");
-    setIsLoggedIn(true);
-    navigate("/");
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [selectedAvatar, setSelectedAvatar] = useState(AVATAR_OPTIONS[0]);
+
+  const handleSignIn = (e) => {
+    e.preventDefault();
+    const finalName = username.trim() || "AnimeFan";
+
+    const profile = {
+      isLoggedIn: true,
+      name: finalName,
+      email: `${finalName.toLowerCase()}@animebliss.tv`,
+      avatar: selectedAvatar,
+    };
+
+    saveUserProfile(profile);
+    if (setIsLoggedIn) setIsLoggedIn(true);
+    toast.success(`Welcome back, ${finalName}!`);
+    setTimeout(() => {
+      navigate("/");
+    }, 600);
   };
-  const onFailure = (err) => {
-    toast.error("Login Failed");
-  };
-  useEffect(() => {
-    gapi.load("client:auth2", () => {
-      gapi.client.init({
-        clientId: clientId,
-        scope: "",
-      });
-    });
-  });
+
   return (
-    <>
-      <Navbar></Navbar>
-      <div className="main-wrapper">
-        <h1 className="welcome-text">
-          <span className="welcome-text-dodgerblue">Hola,</span>
-          <br />
-          Welcome to <br /> <span>Animehub </span>
-        </h1>
-        <div className="login-container">
-          <h2>Sign in</h2>
-          <span style={{ color: "#78909C" }}>
-            Please sign in to your account.
-          </span>
-          <form className="login-form" action="/loginreq" method="POST">
-            <label htmlFor="">Email *</label>
-            <input
-              className="input input-email"
-              placeholder="Your email address"
-              type="text"
-            />
-            <label htmlFor="">Password *</label>
-            <input
-              className="input input-password"
-              placeholder="Your password"
-              type="text"
-            />
-            <div className="extras">
-              <div>
-                <input
-                  name="remembercheckbox"
-                  className="remember-checkbox"
-                  type="checkbox"
+    <div className="auth-page-root">
+      <Navbar />
+      <Toaster position="top-right" />
+
+      <div className="auth-wrapper">
+        <div className="auth-card glass-panel">
+          <div className="auth-header">
+            <h1 className="auth-title">
+              Welcome to <span className="title-accent">AnimeBliss</span>
+            </h1>
+            <p className="auth-desc">Sign in to sync your watchlist and streaming progress.</p>
+          </div>
+
+          {/* Avatar Selector */}
+          <div className="avatar-select-section">
+            <label className="input-label">Choose Your Avatar</label>
+            <div className="avatar-options-row">
+              {AVATAR_OPTIONS.map((url, i) => (
+                <img
+                  key={i}
+                  src={url}
+                  alt={`Avatar ${i}`}
+                  className={`avatar-option ${selectedAvatar === url ? "selected" : ""}`}
+                  onClick={() => setSelectedAvatar(url)}
                 />
-                <span>Remember me</span>
-              </div>
-              <a href="/forgotpass">Forgot your password?</a>
+              ))}
             </div>
-            <button type="submit">Sign In</button>
+          </div>
+
+          <form className="auth-form" onSubmit={handleSignIn}>
+            <div className="form-group">
+              <label className="input-label">Username</label>
+              <div className="input-field-wrapper">
+                <UserOutlined className="input-icon" />
+                <input
+                  type="text"
+                  placeholder="e.g. OtakuKing"
+                  value={username}
+                  onChange={(e) => setUsername(e.target.value)}
+                  className="auth-input"
+                  required
+                />
+              </div>
+            </div>
+
+            <div className="form-group">
+              <label className="input-label">Password</label>
+              <div className="input-field-wrapper">
+                <LockOutlined className="input-icon" />
+                <input
+                  type="password"
+                  placeholder="Enter your password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  className="auth-input"
+                  required
+                />
+              </div>
+            </div>
+
+            <button type="submit" className="auth-submit-btn">
+              Sign In to AnimeBliss
+            </button>
           </form>
 
-          <GoogleLogin
-            render={(renderProps) => (
-              <button
-                onClick={renderProps.onClick}
-                disabled={renderProps.disabled}
-              >
-                <GoogleCircleFilled /> Sign In
-              </button>
-            )}
-            clientId={clientId}
-            onSuccess={onSuccess}
-            onFailure={onFailure}
-            redirectUri="https://animehub.vercel.app/"
-            cookiePolicy={"single_host_origin"}
-          />
-          <button>
-            <GithubFilled /> Sign In
-          </button>
-          <div className="signupprompt">
-            <span>Dont't have a account?</span>
-            <a href="/signup">Sign Up</a>
+          <div className="auth-footer">
+            <span>Don't have an account? </span>
+            <span className="auth-link" onClick={() => navigate("/signup")}>
+              Sign Up
+            </span>
           </div>
         </div>
       </div>
-      <Toaster
-        toastOptions={{
-          duration: 1000,
-        }}
-        position="top-right"
-      ></Toaster>
-    </>
+    </div>
   );
 };
+
 export default Login;
