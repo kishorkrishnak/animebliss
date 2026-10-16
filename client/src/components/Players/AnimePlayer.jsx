@@ -24,6 +24,8 @@ const AnimePlayer = ({
   const [time, setTime] = useState(0);
   const [savedTime, setSavedTime] = useState(null);
   const playerRef = useRef(null);
+  const hasStartedPlaybackRef = useRef(false);
+  const errorToastTimeoutRef = useRef(null);
 
   // Load saved playback timestamp
   useEffect(() => {
@@ -45,10 +47,19 @@ const AnimePlayer = ({
       return;
     }
 
+    hasStartedPlaybackRef.current = false;
+    if (errorToastTimeoutRef.current) {
+      clearTimeout(errorToastTimeoutRef.current);
+      errorToastTimeoutRef.current = null;
+    }
     setUrl(src[0]);
     setServerIndex(0);
     if (setVideoIsLoading) setVideoIsLoading(false);
   }, [src, setVideoIsLoading]);
+
+  useEffect(() => () => {
+    if (errorToastTimeoutRef.current) clearTimeout(errorToastTimeoutRef.current);
+  }, []);
 
   const handleTimeChange = (e) => {
     const newTime = e.detail;
@@ -77,11 +88,34 @@ const AnimePlayer = ({
   const handleError = () => {
     if (src && serverIndex + 1 < src.length) {
       const nextIndex = serverIndex + 1;
+      hasStartedPlaybackRef.current = false;
+      if (errorToastTimeoutRef.current) {
+        clearTimeout(errorToastTimeoutRef.current);
+        errorToastTimeoutRef.current = null;
+      }
       toast("Switching to backup video server...", { icon: "🔄" });
       setServerIndex(nextIndex);
       setUrl(src[nextIndex]);
-    } else {
-      toast.error("Playback error on this episode. Please try another episode or refresh.");
+      return;
+    }
+
+    // HLS can emit a recoverable error while it is still loading another rendition.
+    // Wait for playback to start before showing a terminal error to the viewer.
+    if (hasStartedPlaybackRef.current || errorToastTimeoutRef.current) return;
+    errorToastTimeoutRef.current = setTimeout(() => {
+      errorToastTimeoutRef.current = null;
+      if (!hasStartedPlaybackRef.current) {
+        toast.error("Playback error on this episode. Please try another episode or refresh.");
+      }
+    }, 8000);
+  };
+
+  const handlePlayingChange = (event) => {
+    if (!event.detail) return;
+    hasStartedPlaybackRef.current = true;
+    if (errorToastTimeoutRef.current) {
+      clearTimeout(errorToastTimeoutRef.current);
+      errorToastTimeoutRef.current = null;
     }
   };
 
@@ -110,6 +144,7 @@ const AnimePlayer = ({
         }}
         currentTime={time}
         onVmCurrentTimeChange={handleTimeChange}
+        onVmPlayingChange={handlePlayingChange}
         onVmPlaybackEnded={handlePlaybackEnded}
         onVmError={handleError}
         hlsConfig={hlsConfig}

@@ -88,12 +88,19 @@ export const animeKaiApi = {
   async getInfo(id) {
     if (!id) throw new Error("Anime ID is required");
 
-    // Several catalog sections use AniList IDs, while AnimeKai has its own slugs.
-    // Resolve AniList IDs through metadata first so the player receives AnimeKai episode IDs.
+    // Several catalog sections use AniList IDs, while streaming providers have their own IDs.
+    // Load the working alternate catalog first so its anime ID and episode IDs stay paired.
     if (/^\d+$/.test(String(id))) {
       const metadataResponse = await apiClient.get(`${ANILIST_API_URL}/data/${encodeURIComponent(id)}`);
       const metadata = metadataResponse.data;
       const titles = getAniListTitles(metadata).slice(0, 2);
+
+      try {
+        const alternateInfo = await animeParadiseApi.getInfo(metadata);
+        if (alternateInfo?.episodes?.length) return alternateInfo;
+      } catch (error) {
+        // Fall back to AnimeKai if the alternate episode catalog is unavailable.
+      }
 
       for (const title of titles) {
         const searchData = await fetchWithFallback(ENDPOINTS.animekai.search(title));
@@ -110,13 +117,6 @@ export const animeKaiApi = {
             episodes: providerInfo.episodes,
           };
         }
-      }
-
-      try {
-        const alternateInfo = await animeParadiseApi.getInfo(metadata);
-        if (alternateInfo?.episodes?.length) return alternateInfo;
-      } catch (error) {
-        // Keep metadata usable if the alternate episode catalog is unavailable.
       }
 
       // Keep AniList details visible even when the streaming catalog has no match.
