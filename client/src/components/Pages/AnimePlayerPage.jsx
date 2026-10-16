@@ -343,10 +343,19 @@ const AnimePlayerPage = () => {
                   />
                 ) : (
                   <div className="player-error-fallback glass-panel">
-                    <p>Stream unavailable for Episode {currentEpNumber}.</p>
-                    <button onClick={handleNextEpisode} className="error-btn-next">
-                      Try Next Episode
-                    </button>
+                    {totalEpisodes > 0 ? (
+                      <>
+                        <p>Stream unavailable for Episode {currentEpNumber}.</p>
+                        <button onClick={handleNextEpisode} className="error-btn-next">
+                          Try Next Episode
+                        </button>
+                      </>
+                    ) : (
+                      <>
+                        <p>Episode sources are unavailable right now.</p>
+                        <span>The anime details loaded, but no streaming provider returned an episode list.</span>
+                      </>
+                    )}
                   </div>
                 )}
               </div>
@@ -555,7 +564,7 @@ const AnimePlayerPage = () => {
                   <h3 className="ep-browser-title">Episodes ({totalEpisodes})</h3>
 
                   {/* Episode Search */}
-                  <div className="ep-search-box">
+                  {totalEpisodes > 0 && <div className="ep-search-box">
                     <SearchOutlined className="ep-search-icon" />
                     <input
                       type="text"
@@ -564,7 +573,7 @@ const AnimePlayerPage = () => {
                       onChange={(e) => setEpisodeSearch(e.target.value)}
                       className="ep-search-input"
                     />
-                  </div>
+                  </div>}
                 </div>
 
                 {/* Batch Range Tabs (1-50, 51-100, etc.) if more than 50 episodes */}
@@ -583,8 +592,9 @@ const AnimePlayerPage = () => {
                 )}
 
                 {/* Episode Grid List */}
-                <div className="episodes-grid-list">
-                  {visibleEpisodes.map((ep) => {
+                {totalEpisodes > 0 ? (
+                  <div className="episodes-grid-list">
+                    {visibleEpisodes.map((ep) => {
                     const isCurrent = ep.displayIndex - 1 === selectedEpIndex;
                     return (
                       <div
@@ -600,8 +610,13 @@ const AnimePlayerPage = () => {
                         {isCurrent && <CheckCircleFilled className="ep-active-icon" />}
                       </div>
                     );
-                  })}
-                </div>
+                    })}
+                  </div>
+                ) : (
+                  <p className="episode-sources-empty">
+                    Try again later. The streaming catalog may be temporarily unavailable.
+                  </p>
+                )}
               </div>
             </div>
           </div>

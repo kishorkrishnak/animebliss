@@ -402,6 +402,13 @@
   color: var(--text-primary);
 }
 
+.episode-sources-empty {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  line-height: 1.5;
+  margin: 12px 0;
+}
+
 .ep-search-box {
   position: relative;
   display: flex;

@@ -4,10 +4,10 @@
  */
 
 export const CONSUMET_API_URL =
-  process.env.REACT_APP_CONSUMET_API_URL || "https://api.consumet.org";
+  process.env.REACT_APP_CONSUMET_API_URL || "https://consumet-instance-alpha.vercel.app";
 
 export const CONSUMET_FALLBACK_URL =
-  process.env.REACT_APP_CONSUMET_FALLBACK_URL || "https://consumet-instance-alpha.vercel.app";
+  process.env.REACT_APP_CONSUMET_FALLBACK_URL || CONSUMET_API_URL;
 
 export const ANILIST_API_URL =
   process.env.REACT_APP_ANILIST_API_URL || `${CONSUMET_FALLBACK_URL}/meta/anilist`;
