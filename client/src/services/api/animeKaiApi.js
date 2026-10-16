@@ -1,6 +1,44 @@
 import apiClient, { fetchWithFallback, normalizeApiResponse } from "./client";
 import { ENDPOINTS, ANILIST_API_URL } from "./config";
 
+const normalizeTitle = (title) => String(title || "")
+  .toLowerCase()
+  .replace(/[^a-z0-9]+/g, " ")
+  .trim();
+
+const getAniListTitles = (anime) => {
+  const title = anime?.title;
+  return [...new Set([
+    title?.english,
+    title?.romaji,
+    title?.native,
+    title?.userPreferred,
+    ...(Array.isArray(anime?.synonyms) ? anime.synonyms : []),
+  ].filter(Boolean))];
+};
+
+const findAnimeKaiMatch = (results, titles) => {
+  const candidates = Array.isArray(results) ? results : results?.results || [];
+  const normalizedTitles = titles.map(normalizeTitle).filter(Boolean);
+  const scored = candidates.map((candidate) => {
+    const candidateTitle = normalizeTitle(
+      typeof candidate?.title === "string"
+        ? candidate.title
+        : candidate?.title?.english || candidate?.title?.romaji || candidate?.title?.userPreferred || candidate?.name,
+    );
+    const score = normalizedTitles.reduce((best, title) => {
+      if (title === candidateTitle) return Math.max(best, 3);
+      if (title && candidateTitle && (title.includes(candidateTitle) || candidateTitle.includes(title))) {
+        return Math.max(best, 2);
+      }
+      return best;
+    }, 0);
+    return { candidate, score };
+  });
+
+  return scored.sort((a, b) => b.score - a.score).find(({ candidate, score }) => score > 0 && candidate?.id)?.candidate;
+};
+
 /**
  * AnimeKai API Module
  * Implements all Consumet AnimeKai endpoints with graceful fallback support
@@ -48,6 +86,35 @@ export const animeKaiApi = {
    */
   async getInfo(id) {
     if (!id) throw new Error("Anime ID is required");
+
+    // Several catalog sections use AniList IDs, while AnimeKai has its own slugs.
+    // Resolve AniList IDs through metadata first so the player receives AnimeKai episode IDs.
+    if (/^\d+$/.test(String(id))) {
+      const metadataResponse = await apiClient.get(`${ANILIST_API_URL}/data/${encodeURIComponent(id)}`);
+      const metadata = metadataResponse.data;
+      const titles = getAniListTitles(metadata).slice(0, 2);
+
+      for (const title of titles) {
+        const searchData = await fetchWithFallback(ENDPOINTS.animekai.search(title));
+        const match = findAnimeKaiMatch(searchData, titles);
+        if (!match?.id) continue;
+
+        const providerInfo = await fetchWithFallback(ENDPOINTS.animekai.info(match.id));
+        if (Array.isArray(providerInfo?.episodes) && providerInfo.episodes.length > 0) {
+          return {
+            ...providerInfo,
+            ...metadata,
+            id: providerInfo.id,
+            title: metadata.title || providerInfo.title,
+            episodes: providerInfo.episodes,
+          };
+        }
+      }
+
+      // Keep AniList details visible even when the streaming catalog has no match.
+      return metadata;
+    }
+
     const path = ENDPOINTS.animekai.info(id);
 
     const fallbackFn = async () => {
