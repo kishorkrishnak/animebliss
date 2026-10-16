@@ -1,187 +1,192 @@
 .animecard-wrapper {
   display: flex;
-  margin-top: 3px;
   flex-direction: column;
-  align-items: center;
-  height: fit-content;
-  justify-content: center;
-  text-align: center;
+  width: 100%;
   cursor: pointer;
+  transition: transform 0.22s cubic-bezier(0.2, 0, 0, 1);
+  user-select: none;
+  margin-bottom: 18px;
 }
 
-.animecard-card {
-  border-radius: 4px;
-  background-position: center;
-  background-size: cover;
-  transition: all 0.5s;
+.animecard-wrapper:hover {
+  transform: translateY(-4px);
 }
 
-.animecard-starcontainer {
-  color: yellow;
-  background-color: rgba(0, 0, 0, 0.6);
-  padding: 2px 7px;
+.animecard-poster-container {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 2 / 3;
+  border-radius: 12px;
+  overflow: hidden;
+  background-color: var(--bg-card);
+  box-shadow: 0 8px 20px -4px rgba(0, 0, 0, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.animecard-wrapper:hover .animecard-poster-container {
+  border-color: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 10px 24px -2px rgba(0, 0, 0, 0.6);
+}
+
+.animecard-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.35s cubic-bezier(0.2, 0, 0, 1);
+}
+
+.animecard-wrapper:hover .animecard-img {
+  transform: scale(1.04);
+}
+
+.animecard-skeleton {
   position: absolute;
-  border-radius: 4px;
-  font-size: 1.35rem;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* Hover overlay */
+.animecard-overlay {
+  position: absolute;
+  inset: 0;
+  background: transparent;
+  opacity: 0;
   display: flex;
-  gap: 4px;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
+  transition: opacity 0.2s ease;
 }
 
-.animecard-epnumber {
-  color: white;
-  font-weight: lighter;
-  margin-top: 5px;
-  font-size: 1.35rem;
+.animecard-wrapper:hover .animecard-overlay {
+  opacity: 1;
 }
 
-.animecard-year {
-  color: white;
-  font-size: 1.15rem;
-  margin-top: 4px;
+.animecard-play-btn {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.95);
+  color: #0b0c10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
+  transform: scale(0.9);
+  transition: transform 0.2s cubic-bezier(0.2, 0, 0, 1), background-color 0.15s ease;
+}
+
+.animecard-wrapper:hover .animecard-play-btn {
+  transform: scale(1);
+  background: #ffffff;
+}
+
+/* Top badges */
+.animecard-top-badges {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  right: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.animecard-rating-badge {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: rgba(15, 18, 26, 0.75);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  padding: 3px 7px;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.animecard-bookmark-btn {
+  pointer-events: auto;
+  background: rgba(15, 18, 26, 0.75);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 0.85rem;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+  margin-left: auto;
+}
+
+.animecard-bookmark-btn:hover {
+  transform: scale(1.15);
+  background: rgba(139, 92, 246, 0.9);
+}
+
+.animecard-bookmark-btn.active {
+  background: rgba(236, 72, 153, 0.2);
+  border-color: rgba(236, 72, 153, 0.6);
+}
+
+/* Bottom Badge */
+.animecard-bottom-badge {
+  position: absolute;
+  bottom: 8px;
+  left: 8px;
+  background: rgba(139, 92, 246, 0.88);
+  backdrop-filter: blur(6px);
+  color: #fff;
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 2px 7px;
+  border-radius: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  z-index: 2;
+}
+
+/* Info */
+.animecard-info {
+  padding-top: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
 }
 
 .animecard-title {
-  font-size: 1.5rem;
-  color: white;
-  margin-top: 3px;
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  line-height: 1.35;
+  transition: color 0.2s ease;
+  word-break: break-word;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-height: 2.6em;
 }
 
-@media screen and (min-width: 800px) {
-  .animecard-year {
-    font-size: 1.35rem;
-  }
+.animecard-wrapper:hover .animecard-title {
+  color: var(--accent-light);
 }
 
-@media screen and (max-width: 359px) {
-  .animecard-card {
-    height: 130px;
-    width: 95px;
-  }
-}
-
-@media screen and (min-width: 360px) {
-  .animecard-card {
-    height: 140px;
-    width: 110px;
-  }
-}
-
-@media screen and (min-width: 380px) {
-  .animecard-card {
-    height: 150px;
-    width: 115px;
-  }
-}
-
-@media screen and (min-width: 420px) {
-  .animecard-card {
-    height: 155px;
-    width: 125px;
-  }
-}
-
-@media screen and (min-width: 440px) {
-  .animecard-card {
-    height: 155px;
-    width: 125px;
-  }
-}
-
-@media screen and (min-width: 475px) {
-  .animecard-card {
-    height: 185px;
-    width: 145px;
-  }
-}
-
-@media screen and (min-width: 700px) {
-  .animecard-card {
-    height: 250px;
-    width: 160px;
-  }
-}
-
-@media screen and (min-width: 800px) {
-  .animecard-card {
-    height: 250px;
-    width: 180px;
-  }
-}
-
-@media screen and (max-width: 768px) {
-  .epnumber {
-    font-size: 1.15rem;
-  }
-  .animecard-title {
-    font-size: 1.2rem;
-  }
-}
-
-@media screen and (min-width: 830px) {
-  .animecard-card {
-    height: 250px;
-    width: 180px;
-  }
-}
-
-@media screen and (min-width: 1010px) {
-  .animecard-card {
-    height: 250px;
-    width: 180px;
-  }
-}
-@media screen and (min-width: 1125px) {
-  .animecard-card {
-    height: 250px;
-    width: 180px;
-  }
-}
-
-@media screen and (min-width: 1300px) {
-  .animecard-card {
-    height: 340px;
-    width: 230px;
-  }
-}
-
-@media screen and (min-width: 1400px) {
-  .animecard-card {
-    height: 340px;
-    width: 230px;
-  }
-}
-
-@media screen and (min-width: 1570px) {
-  .animecard-card {
-    height: 340px;
-    width: 230px;
-  }
-}
-
-@media screen and (min-width: 1600px) {
-  .animecard-card {
-    height: 340px;
-    width: 230px;
-  }
-}
-
-@media screen and (min-width: 1710px) {
-  .animecard-card {
-    height: 340px;
-    width: 230px;
-  }
-}
-
-@media screen and (min-width: 1800px) {
-  .animecard-card {
-    height: 340px;
-    width: 230px;
-  }
-
-  .vertical-grid .animecard-card {
-    height: 380px;
-    width: 260px;
-  }
+.animecard-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.78rem;
+  color: var(--text-muted);
 }

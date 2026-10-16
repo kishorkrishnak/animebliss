@@ -1,101 +1,122 @@
-.genresdiv,
-.formatsdiv,
-.seasonsdiv,
-.statusesdiv {
-  transition: all 300ms ease;
-  width: 95%;
-  margin: 0 auto;
-  display: grid;
+.filter-page-root {
+  min-height: 100vh;
+  padding-bottom: 70px;
+}
+
+.filter-container {
+  max-width: 1680px;
+  margin: 100px auto 40px;
+  padding: 0 28px;
+}
+
+.filter-header {
+  margin-bottom: 35px;
+}
+
+.filter-main-title {
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  display: flex;
   align-items: center;
-  gap: 30px;
-  justify-items: center;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  column-gap: 10;
 }
-.genre:hover,
-.format:hover,
-.status:hover,
-.season:hover {
-  transform: scale(1.05);
-  transition: 300ms ease;
+
+.filter-subtitle {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  margin-top: 4px;
 }
-.genre,
-.format,
-.status,
-.season {
-  cursor: pointer;
-  background-color: rgb(0, 0, 0, 0.5);
+
+.filter-category-section {
+  margin-bottom: 36px;
+}
+
+.filter-section-title {
+  font-size: 1.45rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.filter-section-title::before {
+  content: "";
+  display: inline-block;
+  width: 4px;
+  height: 20px;
+  background: var(--accent-gradient);
+  border-radius: 4px;
+}
+
+.filter-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 18px;
+}
+
+.filter-card {
+  position: relative;
+  height: 130px;
+  border-radius: 12px;
+  background-color: var(--bg-card);
   background-size: cover;
   background-position: center;
-  text-align: center;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
   display: flex;
-  justify-content: center;
-  color: white;
-  align-items: center;
-  height: 155px;
-  width: 270px;
-  border-radius: 5px;
+  align-items: flex-end;
+  padding: 16px;
+  cursor: pointer;
+  overflow: hidden;
+  transition: transform 0.2s cubic-bezier(0.2, 0, 0, 1), border-color 0.2s ease, box-shadow 0.2s ease;
+  user-select: none;
 }
-.genres-title,
-.formats-title,
-.seasons-title,
-.statuses-title {
-  color: white;
-  margin-bottom: 10px;
-  font-size: 2.5rem;
-  margin-top: 40px;
-  margin-left: 2.6%;
+
+.filter-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 24px -2px rgba(0, 0, 0, 0.5);
 }
-.genres-title {
-  margin-top: 80px;
+
+.filter-card-title {
+  position: relative;
+  z-index: 2;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #fff;
+  background: rgba(10, 11, 16, 0.82);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  padding: 4px 12px;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  letter-spacing: 0.3px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.45);
+  transition: all 0.2s ease;
 }
-.statusesdiv {
-  padding-bottom: 50px;
+
+.filter-card:hover .filter-card-title {
+  background: var(--accent-primary);
+  border-color: var(--accent-light);
+  color: #ffffff;
 }
-@media screen and (max-width: 560px) {
-  .genres-title,
-  .formats-title,
-  .seasons-title,
-  .statuses-title {
-    margin-left: 4.2%;
+
+@media screen and (max-width: 768px) {
+  .filter-container {
+    padding: 0 16px;
+    margin-top: 85px;
   }
-  .genresdiv,
-  .formatsdiv,
-  .statusesdiv,
-  .seasonsdiv {
-    width: 90%;
-    grid-template-columns: repeat(auto-fill, minmax(41vw, 1fr));
+  .filter-cards-grid {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 12px;
   }
-  .genresdiv div,
-  .formatsdiv div,
-  .statusesdiv div,
-  .seasonsdiv div {
-    gap: 10px;
-    row-gap: 0px;
-    column-gap: 0px;
-    width: 46vw;
-    height: 120px;
+  .filter-card {
+    height: 100px;
+    padding: 12px;
   }
-}
-@media screen and (max-width: 375px) {
-  .genresdiv,
-  .formatsdiv,
-  .statusesdiv .seasonsdiv {
-    width: 90%;
-    grid-template-columns: repeat(auto-fill, minmax(40vw, 1fr));
-  }
-  .genresdiv div,
-  .formatsdiv div,
-  .statusesdiv div,
-  .seasonsdiv div {
-    width: 46vw;
-  }
-}
-@media screen and (max-width: 300px) {
-  .genresdiv div,
-  .formatsdiv div,
-  .statusesdiv div,
-  .seasonsdiv div {
-    width: 90vw;
+  .filter-card-title {
+    font-size: 0.95rem;
   }
 }

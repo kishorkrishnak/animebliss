@@ -1,5 +1,7 @@
-import TextTruncate from "react-text-truncate";
+import React, { useState } from "react";
+import { YoutubeFilled, PlayCircleFilled } from "@ant-design/icons";
 import "./UpcomingCard.css";
+
 const UpcomingCard = ({
   title,
   image,
@@ -7,34 +9,51 @@ const UpcomingCard = ({
   setIsPlaying,
   setTrailerId,
 }) => {
-  return (
-    <>
-      <div
-        onClick={(e) => {
-          e.preventDefault();
-          setTrailerId(trailerVideoId);
-          setIsPlaying(true);
-        }}
-        className="upcomingcard-wrapper"
-      >
-        <div
-          className="upcomingcard-card"
-          style={{
-            backgroundImage: `url(${image})`,
-          }}
-        ></div>
+  const [imgLoaded, setImgLoaded] = useState(false);
 
-        <a
-          onClick={(e) => {
-            e.preventDefault();
+  const handleClick = (e) => {
+    e.preventDefault();
+    if (trailerVideoId) {
+      setTrailerId(trailerVideoId);
+      setIsPlaying(true);
+    }
+  };
+
+  return (
+    <div onClick={handleClick} className="upcomingcard-wrapper" title={title}>
+      <div className="upcomingcard-poster-container">
+        {!imgLoaded && <div className="upcomingcard-skeleton skeleton" />}
+        <img
+          src={image || "https://placehold.co/300x450/151824/8b5cf6?text=Upcoming"}
+          alt={title}
+          className={`upcomingcard-img ${imgLoaded ? "loaded" : "loading"}`}
+          loading="lazy"
+          onLoad={() => setImgLoaded(true)}
+          onError={(e) => {
+            e.target.src = "https://placehold.co/300x450/151824/8b5cf6?text=Upcoming";
+            setImgLoaded(true);
           }}
-          href="/"
-          className="upcomingcard-title"
-        >
-          <TextTruncate text={title} line={2}></TextTruncate>
-        </a>
+        />
+
+        <div className="upcomingcard-overlay">
+          <div className="upcomingcard-play-btn">
+            <PlayCircleFilled />
+          </div>
+        </div>
+
+        <div className="upcomingcard-trailer-badge">
+          <YoutubeFilled style={{ color: "#ef4444" }} />
+          <span>Trailer</span>
+        </div>
       </div>
-    </>
+
+      <div className="upcomingcard-info">
+        <h4 className="upcomingcard-title">
+          {title || "Untitled"}
+        </h4>
+      </div>
+    </div>
   );
 };
+
 export default UpcomingCard;

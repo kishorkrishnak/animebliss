@@ -1,52 +1,60 @@
+import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { useEffect, useState } from "react";
 import { Col, Container, Row, setConfiguration } from "react-grid-system";
 import { v4 as uuidv4 } from "uuid";
-import CarouselCard from "../Cards/AnimeCard";
-setConfiguration({ breakpoints: [600, 924, 1434, 1785, 2000, 2400] });
+import AnimeCard from "../Cards/AnimeCard";
+
+setConfiguration({ breakpoints: [576, 768, 992, 1200, 1500, 1800] });
+
 const GridRenderer = ({ finalQuery, setAnimeInfo, isAnimate }) => {
-  useEffect(() => {
-    setIsAnimated(isAnimate);
-  }, [isAnimate]);
   const [isAnimated, setIsAnimated] = useState(true);
+
+  useEffect(() => {
+    if (isAnimate !== undefined) {
+      setIsAnimated(isAnimate);
+    }
+  }, [isAnimate]);
+
+  if (!finalQuery || !Array.isArray(finalQuery) || finalQuery.length === 0) {
+    return (
+      <div style={{ textAlign: "center", padding: "40px 20px", color: "var(--text-muted)" }}>
+        No anime found.
+      </div>
+    );
+  }
+
   return (
-    <Container fluid={true}>
-      <Row justify="start" gutterWidth={12}>
+    <Container fluid={true} style={{ padding: "0 24px" }}>
+      <Row justify="start" gutterWidth={16}>
         {finalQuery.map((query, index) => (
           <Col
-            align="center"
-            md={2.4}
-            lg={2}
-            sm={3}
-            xs={3.95}
-            xl={1.71}
+            align="stretch"
+            xl={2}
+            lg={2.4}
+            md={3}
+            sm={4}
+            xs={6}
             key={uuidv4()}
+            style={{ marginBottom: 12 }}
           >
             <motion.div
-              initial={
-                isAnimated
-                  ? {
-                      opacity: 0,
-                      translateX: -50,
-                    }
-                  : {}
-              }
-              
-              animate={isAnimated ? { opacity: 1, translateX: 0 } : {}}
-              transition={{ duration: 0.3, delay: index * 0.05 }}
+              initial={isAnimated ? { opacity: 0, y: 20 } : {}}
+              animate={isAnimated ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.35, delay: Math.min(index * 0.04, 0.4) }}
               viewport={{ once: true }}
+              style={{ height: "100%" }}
             >
-              <CarouselCard
+              <AnimeCard
                 setAnimeInfo={setAnimeInfo}
                 title={query.title}
                 id={query.id}
                 image={query.image}
-                key={uuidv4()}
                 rating={query.rating}
                 year={query.releaseDate}
+                type={query.type}
                 episodeNumber={query.episodeNumber ? query.episodeNumber : 0}
-                results={query}
-              ></CarouselCard>
+                totalEpisodes={query.totalEpisodes}
+              />
             </motion.div>
           </Col>
         ))}
@@ -54,4 +62,5 @@ const GridRenderer = ({ finalQuery, setAnimeInfo, isAnimate }) => {
     </Container>
   );
 };
+
 export default GridRenderer;

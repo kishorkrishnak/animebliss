@@ -1,80 +1,144 @@
+import React, { useState } from "react";
 import {
   CalendarOutlined,
   ClockCircleOutlined,
-  PlayCircleOutlined,
+  PlayCircleFilled,
+  HeartFilled,
+  HeartOutlined,
+  StarFilled,
 } from "@ant-design/icons";
 import { faListOl } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useNavigate } from "react-router-dom";
-import TextTruncate from "react-text-truncate";
+import { isInWatchlist, addToWatchlist, removeFromWatchlist } from "../../services/storage";
+import toast from "react-hot-toast";
 import "./HeroCard.css";
+
 const HeaderCarouselCard = ({
   duration,
   cover,
+  image,
   title,
   id,
   year,
   description,
   epcount,
+  rating,
+  spotlightIndex = 1,
+  seasonLabel,
 }) => {
   const navigate = useNavigate();
-  async function fetchVideo(id) {
-    navigate("/watch/" + id);
-  }
+  const [inWatchlist, setInWatchlist] = useState(() => isInWatchlist(id));
+
+  const displayTitle = typeof title === "object" ? title?.english || title?.romaji || "Untitled Anime" : title || "Untitled Anime";
+
+  const cleanDescription = (desc) => {
+    if (!desc) return "No description available.";
+    return desc
+      .substring(
+        0,
+        desc.indexOf("(") === -1 ? desc.length : desc.indexOf("(")
+      )
+      .replaceAll(/<\/?[\w\s]*>|<.+[\W]>/g, "");
+  };
+
+  const handleWatchlistToggle = (e) => {
+    e.preventDefault();
+    if (inWatchlist) {
+      removeFromWatchlist(id);
+      setInWatchlist(false);
+      toast.success("Removed from Watchlist");
+    } else {
+      addToWatchlist({
+        id,
+        title: typeof title === "object" ? title : { english: displayTitle, romaji: displayTitle },
+        image: cover || image,
+        rating,
+        releaseDate: year,
+        totalEpisodes: epcount,
+      });
+      setInWatchlist(true);
+      toast.success("Added to Watchlist!");
+    }
+  };
+
+  const bgImage = cover || image || "https://placehold.co/1920x800/10121a/8b5cf6?text=AnimeBliss";
 
   return (
-    <>
-      <div
-        className="herocard-wrapper"
-        style={{
-          backgroundImage: ` linear-gradient( rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.3) ),url(${cover})`,
-        }}
-      >
-        <div className="herocard-animeinfo-wrapper">
-          <h1 className="herocard-animeinfo-title">{title}</h1>
-
-          <div className="herocard-animeinfo">
-            <p className="herocard-animeinfo-item">
-              {" "}
-              <PlayCircleOutlined /> TV
-            </p>
-            <p className="herocard-animeinfo-item">
-              <FontAwesomeIcon icon={faListOl} /> {epcount} Episodes
-            </p>
-            <p className="herocard-animeinfo-item">
-              <ClockCircleOutlined /> {duration} Minutes
-            </p>
-            <p className="herocard-animeinfo-item">
-              <CalendarOutlined /> {year}
-            </p>
-          </div>
-          <span className="herocard-animeinfo-description">
-            {" "}
-            <TextTruncate
-              text={description
-                .substring(
-                  0,
-                  description.indexOf("(") === -1
-                    ? description.length
-                    : description.indexOf("(")
-                )
-                .replaceAll(/<\/?[\w\s]*>|<.+[\W]>/g, "")}
-              line={4}
-            ></TextTruncate>
-          </span>
+    <div
+      className="herocard-wrapper"
+      style={{
+        backgroundImage: `url(${bgImage})`,
+      }}
+    >
+      <div className="herocard-content">
+        <div className="herocard-spotlight-badge">
+          <span className="spotlight-dot"></span>
+          <span>SPOTLIGHT #{spotlightIndex} {seasonLabel ? `• ${seasonLabel}` : "• THIS SEASON"}</span>
         </div>
-        <button
-          onClick={(e) => {
-            e.preventDefault();
-            fetchVideo(id);
-          }}
-          className="btn herocard-btn-watch"
-        >
-          <PlayCircleOutlined />
-          &nbsp;&nbsp;WATCH
-        </button>
+
+        <h1 className="herocard-title" title={displayTitle}>
+          {displayTitle}
+        </h1>
+
+        <div className="herocard-badges">
+          <span className="hero-badge badge-tv">TV</span>
+          {epcount && (
+            <span className="hero-badge">
+              <FontAwesomeIcon icon={faListOl} /> {epcount} EP
+            </span>
+          )}
+          {duration && (
+            <span className="hero-badge">
+              <ClockCircleOutlined /> {duration}m
+            </span>
+          )}
+          {year && (
+            <span className="hero-badge">
+              <CalendarOutlined /> {year}
+            </span>
+          )}
+          {rating && (
+            <span className="hero-badge badge-rating">
+              <StarFilled style={{ color: "#fbbf24" }} /> {(rating / 10).toFixed(1)}
+            </span>
+          )}
+          <span className="hero-badge badge-quality">HD</span>
+        </div>
+
+        <p className="herocard-description">
+          {cleanDescription(description)}
+        </p>
+
+        <div className="herocard-actions">
+          <button
+            onClick={() => navigate(`/watch/${id}`)}
+            className="hero-btn-watch"
+          >
+            <PlayCircleFilled style={{ fontSize: "1.2rem" }} />
+            <span>Watch Now</span>
+          </button>
+
+          <button
+            onClick={handleWatchlistToggle}
+            className={`hero-btn-watchlist ${inWatchlist ? "active" : ""}`}
+            title={inWatchlist ? "Remove from Watchlist" : "Add to Watchlist"}
+          >
+            {inWatchlist ? (
+              <>
+                <HeartFilled style={{ color: "#ec4899" }} />
+                <span>In Watchlist</span>
+              </>
+            ) : (
+              <>
+                <HeartOutlined />
+                <span>Add to Watchlist</span>
+              </>
+            )}
+          </button>
+        </div>
       </div>
-    </>
+    </div>
   );
 };
 

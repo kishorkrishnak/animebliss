@@ -1,40 +1,75 @@
-import { setConfiguration } from "react-grid-system";
-import { useLocation } from "react-router-dom";
+import React, { useMemo } from "react";
+import { useLocation, useParams } from "react-router-dom";
 import InfiniteSection from "../Sections/InfiniteSection";
-import "./Genres.css";
-import { useState } from "react";
 import Navbar from "../Sections/Navbar";
-setConfiguration({ breakpoints: [768, 1170, 1500, 1700, 1800, 1900] });
-const GenresPage = () => {
+import "./Genres.css";
+
+import { CONSUMET_API_URL } from "../../services/api";
+
+const FilteredPage = () => {
   const location = useLocation();
-  const baseURL = process.env.REACT_APP_CONSUMET_API_URL;
-  const [queryUrl, setQueryUrl] = useState(
-    location.state.type === "genre"
-      ? `${baseURL}/meta/anilist/advanced-search?genres=[` +
-          '"' +
-          location.state.value +
-          '"' +
-          "]"
-      : `${baseURL}/meta/anilist/advanced-search?` +
-          location.state.type +
-          "=" +
-          location.state.value
-  );
+  const params = useParams();
+
+  const filterType = params.type || location.state?.type || "genre";
+  const filterValue = params.value || location.state?.value || "Action";
+
+  const baseQueryUrl = useMemo(() => {
+    const formattedVal = filterValue.toUpperCase();
+    const currentYear = new Date().getFullYear();
+
+    if (filterType.toLowerCase() === "genre") {
+      return `${CONSUMET_API_URL}/meta/anilist/advanced-search?genres=["${filterValue}"]`;
+    }
+    if (filterType.toLowerCase() === "season") {
+      return `${CONSUMET_API_URL}/meta/anilist/advanced-search?season=${formattedVal}&year=${currentYear}`;
+    }
+    return `${CONSUMET_API_URL}/meta/anilist/advanced-search?${filterType}=${formattedVal}`;
+  }, [filterType, filterValue]);
+
+  const sortTabs = useMemo(() => {
+    return [
+      {
+        id: "trending",
+        label: "Trending",
+        queryParam: 'sort=["TRENDING_DESC"]',
+      },
+      {
+        id: "new-releasing",
+        label: "New & Airing",
+        queryParam: 'status=RELEASING&sort=["START_DATE_DESC"]',
+      },
+      {
+        id: "top-rated",
+        label: "Top Rated",
+        queryParam: 'sort=["SCORE_DESC"]',
+      },
+      {
+        id: "popular",
+        label: "Popular",
+        queryParam: 'sort=["POPULARITY_DESC"]',
+      },
+    ];
+  }, []);
+
+  const displayTitle = `${filterValue.charAt(0).toUpperCase() + filterValue.slice(1).replace("_", " ")} Anime`;
+
   return (
-    <>
-      <Navbar></Navbar>
-      {queryUrl && queryUrl !== "" && (
+    <div style={{ minHeight: "100vh", paddingBottom: 60 }}>
+      <Navbar />
+      <div style={{ marginTop: 20 }}>
         <InfiniteSection
           isGenresPage={true}
-          url={queryUrl}
-          sectiontitle={`${location.state.value}`}
+          url={baseQueryUrl}
+          sectiontitle={displayTitle}
           itemlimit={24}
           id="filterresults"
           querytype={"&"}
-        ></InfiniteSection>
-      )}
-    </>
+          sortTabs={sortTabs}
+          defaultTabId="trending"
+        />
+      </div>
+    </div>
   );
 };
 
-export default GenresPage;
+export default FilteredPage;

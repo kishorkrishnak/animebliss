@@ -1,0 +1,19 @@
+.skeleton-card-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+  max-width: 220px;
+  margin: 10px auto;
+}
+
+.skeleton-card-poster {
+  width: 100%;
+  aspect-ratio: 2 / 3;
+  border-radius: 12px;
+  min-height: 240px;
+}
+
+.skeleton-card-line {
+  border-radius: 4px;
+}
