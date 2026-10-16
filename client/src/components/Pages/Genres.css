@@ -83,15 +83,23 @@
 .filter-card-title {
   position: relative;
   z-index: 2;
-  font-size: 1.1rem;
+  font-size: 0.95rem;
   font-weight: 700;
   color: #fff;
-  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.95);
+  background: rgba(10, 11, 16, 0.82);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  padding: 4px 12px;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
   letter-spacing: 0.3px;
-  transition: color 0.2s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.45);
+  transition: all 0.2s ease;
 }
 
 .filter-card:hover .filter-card-title {
+  background: var(--accent-primary);
+  border-color: var(--accent-light);
   color: #ffffff;
 }
 

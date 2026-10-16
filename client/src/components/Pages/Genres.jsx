@@ -136,12 +136,9 @@ const statusesInfo = [
   },
 ];
 
-// Clear thumbnail presentation with subtle bottom text gradient only
+// Pure original thumbnail presentation with zero filters
 const getCardStyle = (imageUrl) => ({
-  backgroundImage: `
-    linear-gradient(to top, rgba(0, 0, 0, 0.75) 0%, rgba(0, 0, 0, 0.2) 35%, transparent 60%),
-    url(${imageUrl})
-  `,
+  backgroundImage: `url(${imageUrl})`,
 });
 
 const Genres = () => {

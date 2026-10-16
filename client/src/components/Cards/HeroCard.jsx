@@ -68,7 +68,7 @@ const HeaderCarouselCard = ({
     <div
       className="herocard-wrapper"
       style={{
-        backgroundImage: `linear-gradient(to right, rgba(10, 11, 16, 0.95) 0%, rgba(10, 11, 16, 0.75) 50%, rgba(10, 11, 16, 0.4) 100%), url(${bgImage})`,
+        backgroundImage: `url(${bgImage})`,
       }}
     >
       <div className="herocard-content">

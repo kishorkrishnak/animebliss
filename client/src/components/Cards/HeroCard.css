@@ -17,11 +17,18 @@
 }
 
 .herocard-content {
-  max-width: 650px;
+  max-width: 620px;
   display: flex;
   flex-direction: column;
   gap: 16px;
   z-index: 2;
+  background: rgba(10, 11, 16, 0.78);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  padding: 30px 36px;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.5);
 }
 
 .herocard-spotlight-badge {
@@ -164,6 +171,10 @@
   .herocard-wrapper {
     min-height: 400px;
     padding: 30px 24px;
+  }
+  .herocard-content {
+    max-width: 100%;
+    padding: 22px;
   }
   .herocard-title {
     font-size: 1.8rem;
