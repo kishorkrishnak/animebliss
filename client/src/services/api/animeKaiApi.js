@@ -83,13 +83,7 @@ export const animeKaiApi = {
   async getServers(episodeId) {
     if (!episodeId) return [];
     const path = ENDPOINTS.animekai.servers(episodeId);
-
-    const fallbackFn = async () => {
-      const res = await apiClient.get(ENDPOINTS.providers.kickassanimeServers(episodeId));
-      return res.data;
-    };
-
-    const data = await fetchWithFallback(path, fallbackFn);
+    const data = await fetchWithFallback(path);
     return Array.isArray(data) ? data : (data?.servers || []);
   },
 

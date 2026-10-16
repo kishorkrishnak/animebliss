@@ -1,6 +1,89 @@
 import apiClient, { fetchWithFallback, normalizeApiResponse } from "./client";
 import { ENDPOINTS, ANILIST_API_URL } from "./config";
 
+const getTitles = (anime) => {
+  const title = anime?.title;
+  const titles = typeof title === "string"
+    ? [title]
+    : [title?.english, title?.romaji, title?.native];
+  return [...new Set([...titles, anime?.name].filter(Boolean))];
+};
+
+const normalizeTitle = (title) => String(title || "")
+  .toLowerCase()
+  .replace(/[^a-z0-9]+/g, " ")
+  .trim();
+
+const titleScore = (candidate, titles) => {
+  const candidateTitle = normalizeTitle(
+    typeof candidate?.title === "string"
+      ? candidate.title
+      : candidate?.title?.english || candidate?.title?.romaji || candidate?.name
+  );
+  if (!candidateTitle) return 0;
+
+  return titles.reduce((best, title) => {
+    const normalized = normalizeTitle(title);
+    if (!normalized) return best;
+    if (normalized === candidateTitle) return Math.max(best, 3);
+    if (normalized.includes(candidateTitle) || candidateTitle.includes(normalized)) {
+      return Math.max(best, 2);
+    }
+    return best;
+  }, 0);
+};
+
+const getProviderEpisode = async (provider, anime, episode) => {
+  const titles = getTitles(anime);
+  const episodeNumber = Number(episode?.number || episode?.episodeNumber);
+  if (!titles.length || !Number.isFinite(episodeNumber) || episodeNumber < 1) return null;
+
+  const routes = {
+    animepahe: {
+      search: ENDPOINTS.providers.animepaheSearch,
+      info: ENDPOINTS.providers.animepaheInfo,
+    },
+    animesaturn: {
+      search: ENDPOINTS.providers.animesaturnSearch,
+      info: ENDPOINTS.providers.animesaturnInfo,
+    },
+    animeunity: {
+      search: ENDPOINTS.providers.animeunitySearch,
+      info: ENDPOINTS.providers.animeunityInfo,
+    },
+  }[provider];
+  if (!routes) return null;
+
+  for (const title of titles) {
+    const searchData = await fetchWithFallback(routes.search(title));
+    const results = Array.isArray(searchData)
+      ? searchData
+      : searchData?.results || searchData?.data || [];
+    const candidates = Array.isArray(results)
+      ? results
+          .map((item) => ({ item, score: titleScore(item, titles) }))
+          .filter(({ score }) => score > 0)
+          .sort((a, b) => b.score - a.score)
+          .slice(0, 3)
+      : [];
+
+    for (const { item } of candidates) {
+      if (!item?.id) continue;
+      const info = await fetchWithFallback(routes.info(item.id));
+      const episodes = Array.isArray(info?.episodes) ? info.episodes : [];
+      const mappedEpisode = episodes.find((candidate) =>
+        Number(candidate.number || candidate.episodeNumber) === episodeNumber
+      ) || (episodes.every((candidate) => candidate.number == null && candidate.episodeNumber == null)
+        ? episodes[episodeNumber - 1]
+        : null);
+
+      if (mappedEpisode?.id) return mappedEpisode;
+    }
+  }
+
+  return null;
+};
+
 /**
  * Multi-Provider Streaming & Server API Module
  * Implements additional video streaming and server discovery endpoints
@@ -63,65 +146,42 @@ export const providerApi = {
     return Array.isArray(data) ? data : (data?.servers || []);
   },
 
-  /**
-   * Resilient Multi-Provider Stream Resolver:
-   * Tries AnimeKai first, then AnimePahe, AnimeSaturn, AnimeUnity, and finally AniList/Gogoanime
-   */
-  async resolveEpisodeStream(episodeId, preferredProvider = "animekai") {
-    if (!episodeId) return null;
+  /** Resolve each provider's own anime and episode IDs before requesting its stream. */
+  async resolveEpisodeStream(anime, episode, preferredProvider = "animekai", preferredServer = null) {
+    if (!anime || !episode?.id) return null;
 
-    // 1. Try AnimeKai if preferred
-    if (preferredProvider === "animekai" || !preferredProvider) {
+    const providers = ["animekai", "animepahe", "animesaturn", "animeunity"];
+    const orderedProviders = [
+      preferredProvider,
+      ...providers.filter((provider) => provider !== preferredProvider),
+    ].filter((provider) => providers.includes(provider));
+
+    for (const provider of orderedProviders) {
       try {
-        const kaiData = await fetchWithFallback(ENDPOINTS.animekai.watch(episodeId));
-        if (kaiData && kaiData.sources && kaiData.sources.length > 0) {
-          return { provider: "animekai", data: kaiData };
+        let providerEpisodeId = episode.id;
+        if (provider !== "animekai") {
+          const mappedEpisode = await getProviderEpisode(provider, anime, episode);
+          if (!mappedEpisode?.id) continue;
+          providerEpisodeId = mappedEpisode.id;
+        }
+
+        const path = provider === "animekai"
+          ? ENDPOINTS.animekai.watch(
+              providerEpisodeId,
+              provider === preferredProvider ? preferredServer : null
+            )
+          : provider === "animepahe"
+            ? ENDPOINTS.providers.animepaheWatch(providerEpisodeId)
+            : provider === "animesaturn"
+              ? ENDPOINTS.providers.animesaturnWatch(providerEpisodeId)
+              : ENDPOINTS.providers.animeunityWatch(providerEpisodeId);
+        const data = await fetchWithFallback(path);
+        if (Array.isArray(data?.sources) && data.sources.length > 0) {
+          return { provider, data };
         }
       } catch (err) {
-        // Fall through to next provider
+        // Continue with the next provider when lookup or playback fails.
       }
-    }
-
-    // 2. Try AnimePahe
-    if (preferredProvider === "animepahe" || preferredProvider === "animekai") {
-      try {
-        const paheData = await fetchWithFallback(ENDPOINTS.providers.animepaheWatch(episodeId));
-        if (paheData && paheData.sources && paheData.sources.length > 0) {
-          return { provider: "animepahe", data: paheData };
-        }
-      } catch (err) {
-        // Fall through
-      }
-    }
-
-    // 3. Try AnimeSaturn
-    try {
-      const saturnData = await fetchWithFallback(ENDPOINTS.providers.animesaturnWatch(episodeId));
-      if (saturnData && saturnData.sources && saturnData.sources.length > 0) {
-        return { provider: "animesaturn", data: saturnData };
-      }
-    } catch (err) {
-      // Fall through
-    }
-
-    // 4. Try AnimeUnity
-    try {
-      const unityData = await fetchWithFallback(ENDPOINTS.providers.animeunityWatch(episodeId));
-      if (unityData && unityData.sources && unityData.sources.length > 0) {
-        return { provider: "animeunity", data: unityData };
-      }
-    } catch (err) {
-      // Fall through
-    }
-
-    // 5. High-reliability AniList / Gogoanime Meta fallback
-    try {
-      const anilistData = await apiClient.get(`${ANILIST_API_URL}/watch/${encodeURIComponent(episodeId)}?provider=gogoanime`);
-      if (anilistData?.data?.sources && anilistData.data.sources.length > 0) {
-        return { provider: "anilist-gogoanime", data: anilistData.data };
-      }
-    } catch (err) {
-      // Fallback failed
     }
 
     return null;
