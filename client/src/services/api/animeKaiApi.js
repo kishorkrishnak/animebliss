@@ -51,7 +51,7 @@ export const animeKaiApi = {
     const path = ENDPOINTS.animekai.info(id);
 
     const fallbackFn = async () => {
-      const res = await apiClient.get(`${ANILIST_API_URL}/info/${encodeURIComponent(id)}`);
+      const res = await apiClient.get(`${ANILIST_API_URL}/data/${encodeURIComponent(id)}`);
       return res.data;
     };
 

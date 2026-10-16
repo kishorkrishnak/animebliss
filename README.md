@@ -112,11 +112,8 @@ animebliss/
 
    The default configuration is ready out of the box:
    ```env
-   # Primary Consumet API Base URL
-   REACT_APP_CONSUMET_API_URL=https://api.consumet.org
-
-   # Resilient Fallback Mirror (ensures uninterrupted streaming)
-   REACT_APP_CONSUMET_FALLBACK_URL=https://consumet-instance-alpha.vercel.app
+   # Self-hosted Consumet API Base URL (registered AnimeKai routes)
+   REACT_APP_CONSUMET_API_URL=https://consumet-instance-alpha.vercel.app
 
    # AniList Meta API (Rich artwork, seasonal metadata)
    REACT_APP_ANILIST_API_URL=https://consumet-instance-alpha.vercel.app/meta/anilist
